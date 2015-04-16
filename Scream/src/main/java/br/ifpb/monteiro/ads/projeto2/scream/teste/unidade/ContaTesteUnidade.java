@@ -1,6 +1,6 @@
 package br.ifpb.monteiro.ads.projeto2.scream.teste.unidade;
 
-import br.ifpb.monteiro.ads.projeto2.scream.modelo.Conta;
+import br.ifpb.monteiro.ads.projeto2.scream.entities.Conta;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
