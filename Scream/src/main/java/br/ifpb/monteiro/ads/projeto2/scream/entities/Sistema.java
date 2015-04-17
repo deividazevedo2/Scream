@@ -3,13 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-package br.ifpb.monteiro.ads.projeto2.scream.modelo;
+package br.ifpb.monteiro.ads.projeto2.scream.entities;
 
 /**
  *
- * @author Hugo
+ * @author Mauricio
  */
-public class Conta {
+public class Sistema {
     
 }
