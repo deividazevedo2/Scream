@@ -6,13 +6,14 @@
 
 package br.ifpb.monteiro.ads.projeto2.scream.modelo;
 
+import br.ifpb.monteiro.ads.projeto2.scream.entities.Conta;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
