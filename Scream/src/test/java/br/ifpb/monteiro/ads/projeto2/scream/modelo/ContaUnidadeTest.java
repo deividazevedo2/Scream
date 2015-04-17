@@ -1,23 +1,37 @@
-package br.ifpb.monteiro.ads.projeto2.scream.teste.unidade;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
-import br.ifpb.monteiro.ads.projeto2.scream.modelo.Conta;
-import org.junit.*;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
+package br.ifpb.monteiro.ads.projeto2.scream.modelo;
 
-
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
  *
- * @author Hugo Correia
+ * @author Hugo
  */
-@RunWith(JUnit4.class)
-public class ContaTesteUnidade {
+public class ContaUnidadeTest {
     
+    
+    @Before
+    public void setUp() {
+    }
+    
+    @After
+    public void tearDown() {
+    }
+
     @Test
-    public void test(){
-        
-//        Conta c = new Conta();
+    public void testSomeMethod() {
+        Conta c = new Conta();
 //        c.setUsuario("hugo");
 //        c.setSenha("123");
 //        Assert.assertEquals(true, c.setEmail("hugo@x.com"));
@@ -30,7 +44,6 @@ public class ContaTesteUnidade {
 //        Assert.assertEquals(true, c.login("Hugo","123") == false);
 //        Assert.assertEquals(true, c.login("Hugo",123) == false);
 //        Assert.assertEquals(true, c.login("hugo",123) == false);
-        
     }
     
 }
