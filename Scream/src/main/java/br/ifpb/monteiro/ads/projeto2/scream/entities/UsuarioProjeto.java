@@ -19,7 +19,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
- *
+ * Classe para modelar e comportar a entidade 
  * @author Mauricio
  */
 @Entity
