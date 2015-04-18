@@ -34,12 +34,13 @@ public class Conta implements Identifiable {
     @Column(name = "id", updatable=false)
     private Long id;
 
+
     @OneToMany(mappedBy="id_usuario_projeto") 
     private List<UsuarioProjeto> listUsuarioProjeto;
           
     @Column(nullable=false, length=30, name = "nome")
     private String nome;
-    
+
     @Column(nullable=false, length=16, name = "senha")
     private String senha;
     
