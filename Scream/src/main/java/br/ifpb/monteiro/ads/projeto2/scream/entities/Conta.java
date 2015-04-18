@@ -12,4 +12,16 @@ package br.ifpb.monteiro.ads.projeto2.scream.entities;
  */
 public class Conta {
     
+    private String nome;
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    
+    
+    
 }
