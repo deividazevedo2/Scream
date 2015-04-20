@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.ifpb.monteiro.ads.projeto2.scream.dao.facade;
+package br.ifpb.monteiro.ads.projeto2.scream.beans.facade;
 
 /**
- * Interface para implementação da ContaDAO
+ *
  * @author Mauricio
  */
-public interface ContaDAOIF extends GenericDaoIF{
+public interface ContaServiceIF extends GenericServiceIF{
     
 }

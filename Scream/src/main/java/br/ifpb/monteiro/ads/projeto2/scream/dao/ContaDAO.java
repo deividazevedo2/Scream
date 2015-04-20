@@ -5,14 +5,16 @@
  */
 package br.ifpb.monteiro.ads.projeto2.scream.dao;
 
-import br.ifpb.monteiro.ads.projeto2.scream.dao.facade.ContaDAOIF;
+import br.ifpb.monteiro.ads.projeto2.scream.dao.facade.ContaDaoIF;
+import br.ifpb.monteiro.ads.projeto2.scream.dao.qualifers.ContaDaoQlf;
 import br.ifpb.monteiro.ads.projeto2.scream.entities.Conta;
 
 /**
  *
  * @author Mauricio
  */
-public class ContaDAO extends GenericDAO<Conta> implements ContaDAOIF{
+@ContaDaoQlf
+public class ContaDAO extends GenericDAO<Conta> implements ContaDaoIF{
     
     public ContaDAO(){
         super(Conta.class);
