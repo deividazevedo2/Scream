@@ -3,18 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-package br.ifpb.monteiro.ads.projeto2.scream.entities;
-
-import java.io.Serializable;
-import javax.enterprise.inject.Default;
+package br.ifpb.monteiro.ads.projeto2.scream.beans.facade;
 
 /**
  *
  * @author Mauricio
  */
-@Default
-public interface Identifiable extends Serializable{
- 
-    public Long getId();
+public interface ContaServiceIF extends GenericServiceIF{
+    
 }
