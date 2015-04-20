@@ -1,0 +1,177 @@
+/* 
+    Created on : 18/04/2015, 18:23:36
+    Author     : Markus
+*/
+
+html, body{height: 100%;}
+
+body {
+    background-color: #ffffff;
+    font-size: 12px;
+    font-family: Frutlger,Verdana, "Verdana CE",  Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+    color: #000000;  
+    margin: 0px;
+}
+
+h1 {
+    font-family: Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+    font-size:  16px;
+    font-weight: bold;
+    margin: 0px;
+    padding: 0px;
+}
+
+a:link, a:visited {
+    color: #045491;
+    //color: #045491;
+    font-weight : bold;
+    text-decoration: none;
+}
+
+a:link:hover, a:visited:hover  {
+    color: #045491;
+    font-weight : bold;
+    text-decoration : underline;
+}
+
+header{
+    position: relative;
+    height: 60px; 
+    /*background-color: #036fab;*/
+    /*color: white;*/
+    padding: 1px;
+    margin: 0px 0px 0px 0px;
+    background: #b4ddb4; /* Old browsers */
+    background: -moz-linear-gradient(left, #b4ddb4 0%, #83c783 17%, #52b152 33%, #008a00 100%, #005700 100%, #002400 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,#b4ddb4), color-stop(17%,#83c783), color-stop(33%,#52b152), color-stop(100%,#008a00), color-stop(100%,#005700), color-stop(100%,#002400)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(left, #b4ddb4 0%,#83c783 17%,#52b152 33%,#008a00 100%,#005700 100%,#002400 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(left, #b4ddb4 0%,#83c783 17%,#52b152 33%,#008a00 100%,#005700 100%,#002400 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(left, #b4ddb4 0%,#83c783 17%,#52b152 33%,#008a00 100%,#005700 100%,#002400 100%); /* IE10+ */
+    background: linear-gradient(to right, #b4ddb4 0%,#83c783 17%,#52b152 33%,#008a00 100%,#005700 100%,#002400 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b4ddb4', endColorstr='#002400',GradientType=1 ); /* IE6-9 */
+}
+
+footer {
+    padding: 0px;
+    margin: 0px 0px 0px 0px;
+    position:fixed; 
+    width: 100%;
+    bottom:0; 
+    /*z-index:999999;*/
+    background-color: #83c783;
+}
+
+.grid-login{
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-top: 8px;
+}
+
+#lostPassword{
+    font-size: 11px;
+    float: right;
+}
+
+.logo{
+    width: 200px; 
+    height: 55px; 
+    margin-top: 3px;
+    padding-left: 10px;
+}
+
+#logo-login{
+    float: bottom; 
+    padding-top: 50px; position: relative; text-align: center;
+}
+
+#logged-user-top-message{
+
+    float: left; 
+    margin-top: 15px; 
+    height: 30px; 
+    line-height: 30px; 
+    margin-right: 20px;
+}
+
+#systemName{
+
+    float: left;
+    position: relative;
+    padding: 5px;
+    margin: 0px 0px 0px 0px;
+}
+
+#copyright{
+    float: right;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+    text-align: right;
+    padding: 5px;
+    right: 0px;
+}
+
+#left {
+    float: left;
+    background-color: #ece3a5;
+    padding: 5px;
+    width: 150px;
+}
+
+#right {
+    float: right;
+    background-color: #ece3a5;
+    padding: 5px;
+    width: 150px;
+}
+
+#content {
+    position: relative;
+    padding: 5px;
+    margin: 10px 10px 0px 10px;
+    padding-bottom: 30px;
+    text-align: justify;
+}
+
+.left_content {
+    background-color: #dddddd;
+    padding: 5px;
+    margin-left: 170px;
+}
+
+.right_content {
+    background-color: #dddddd;
+    padding: 5px;
+    margin: 0px 170px 0px 170px;
+}
+
+#text-login a{
+    color: white;
+    font-weight : bold;
+    text-decoration: none;
+}
+
+
+#text-login a:link, #text-login a:visited {
+    color: white;
+    font-weight : bold;
+    text-decoration: none;
+}
+
+#text-login a:link:hover, #text-login a:visited:hover  {
+    color: black;
+    font-weight : bold;
+    text-decoration : underline;
+}
+
+/* Menu of top for logged user */
+.user-top-menu {
+    border: 0px !important;
+    padding: 0px !important;
+    background: none !important;
+}
+
+.user-top-menu .ui-menu-parent > a .ui-menuitem-text, .user-top-menu > .ui-menu-list > .ui-menuitem > a > .ui-menuitem-text {
+    color: #ffffff !important;
+}
+
