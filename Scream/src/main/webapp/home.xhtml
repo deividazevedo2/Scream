@@ -7,7 +7,15 @@
     </h:head>
     <h:body>
         Daaale!
-        <h:outputText id="outName" value="#{testeBean.name}"/>
+        <br>
+        <h:outputText id="outName" value="#{contaController.selected.nome}"/>
+        </br><br>
+            <h:outputText id="outPassword" value="#{contaController.selected.senha}"/>
+        </br><br>
+            <h:outputText id="outEmail" value="#{contaController.selected.email}"/>
+        </br><br>
+            <h:outputText id="outUserName" value="#{contaController.selected.usuario}"/>
+        </br>
     </h:body>
 </html>
 

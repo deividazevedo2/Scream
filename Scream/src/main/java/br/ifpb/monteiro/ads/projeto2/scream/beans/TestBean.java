@@ -15,7 +15,7 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean
 @SessionScoped
-public class TesteBean {
+public class TestBean {
     
     private String name;
 

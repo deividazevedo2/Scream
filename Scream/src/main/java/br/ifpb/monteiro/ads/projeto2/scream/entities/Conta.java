@@ -6,6 +6,7 @@
 
 package br.ifpb.monteiro.ads.projeto2.scream.entities;
 
+import br.ifpb.monteiro.ads.projeto2.scream.qualifiers.ContaQlf;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Column;
@@ -22,6 +23,7 @@ import javax.persistence.Table;
  * Classe para modelar e comportar a entidade Conta
  * @author Mauricio
  */
+@ContaQlf
 @Entity
 @Table(name = "conta")
 @PrimaryKeyJoinColumn(name = "id")

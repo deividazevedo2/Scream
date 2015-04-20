@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.ifpb.monteiro.ads.projeto2.scream.controllers;
+package br.ifpb.monteiro.ads.projeto2.scream.controllers.facade;
+
+import java.io.Serializable;
 
 /**
  *
  * @author Mauricio
  */
-public class ContaCtrl {
+public interface ContaControllerIF extends Serializable{
     
 }
