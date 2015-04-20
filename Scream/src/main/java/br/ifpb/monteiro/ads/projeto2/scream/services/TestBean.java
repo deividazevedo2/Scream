@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package br.ifpb.monteiro.ads.projeto2.scream.beans;
+package br.ifpb.monteiro.ads.projeto2.scream.services;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;

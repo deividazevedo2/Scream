@@ -5,8 +5,8 @@
  */
 package br.ifpb.monteiro.ads.projeto2.scream.controllers;
 
-import br.ifpb.monteiro.ads.projeto2.scream.beans.facade.ContaBeanIF;
-import br.ifpb.monteiro.ads.projeto2.scream.beans.facade.GenericBeanIF;
+import br.ifpb.monteiro.ads.projeto2.scream.beans.facade.ContaServiceIF;
+import br.ifpb.monteiro.ads.projeto2.scream.beans.facade.GenericServiceIF;
 import br.ifpb.monteiro.ads.projeto2.scream.controllers.facade.ContaControllerIF;
 import br.ifpb.monteiro.ads.projeto2.scream.entities.Conta;
 import br.ifpb.monteiro.ads.projeto2.scream.qualifiers.ContaQlf;
@@ -20,7 +20,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import javax.inject.Inject;
-import javax.inject.Named;
 
 /**
  *
@@ -31,7 +30,7 @@ import javax.inject.Named;
 public class ContaController extends GenericController<Conta> implements ContaControllerIF{
     
     @Inject
-    private ContaBeanIF contaBean;
+    private ContaServiceIF contaService;
     
     @Inject
     @ContaQlf
@@ -48,8 +47,8 @@ public class ContaController extends GenericController<Conta> implements ContaCo
     }
 
     @Override
-    protected GenericBeanIF getBeans() {
-        return contaBean;
+    protected GenericServiceIF getService() {
+        return contaService;
     }
 
     @FacesConverter(forClass = Conta.class)

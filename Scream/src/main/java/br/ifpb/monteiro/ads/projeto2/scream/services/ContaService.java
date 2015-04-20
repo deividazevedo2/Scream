@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.ifpb.monteiro.ads.projeto2.scream.beans;
+package br.ifpb.monteiro.ads.projeto2.scream.services;
 
-import br.ifpb.monteiro.ads.projeto2.scream.beans.facade.ContaBeanIF;
+import br.ifpb.monteiro.ads.projeto2.scream.beans.facade.ContaServiceIF;
 import br.ifpb.monteiro.ads.projeto2.scream.dao.facade.ContaDaoIF;
 import br.ifpb.monteiro.ads.projeto2.scream.dao.qualifers.ContaDaoQlf;
 import br.ifpb.monteiro.ads.projeto2.scream.entities.Identifiable;
@@ -21,7 +21,7 @@ import javax.transaction.Transactional;
  * @author Mauricio
  */
 @SessionScoped
-public class ContaBean implements ContaBeanIF{
+public class ContaService implements ContaServiceIF{
     
     @Inject
     @ContaDaoQlf

@@ -5,7 +5,7 @@
  */
 package br.ifpb.monteiro.ads.projeto2.scream.controllers;
 
-import br.ifpb.monteiro.ads.projeto2.scream.beans.facade.GenericBeanIF;
+import br.ifpb.monteiro.ads.projeto2.scream.beans.facade.GenericServiceIF;
 import br.ifpb.monteiro.ads.projeto2.scream.entities.Identifiable;
 import br.ifpb.monteiro.ads.projeto2.scream.exceptions.ScreamException;
 import br.ifpb.monteiro.ads.projeto2.scream.util.jsf.JsfUtil;
@@ -33,12 +33,12 @@ public abstract class GenericController<T extends Identifiable> implements Gener
 
     public abstract void setSelected(T selected);
 
-    protected abstract GenericBeanIF getBeans();
+    protected abstract GenericServiceIF getService();
 
     public void create() {
         try {
             logger.info("Controller Create Acessado");
-            this.getBeans().create(getSelected());
+            this.getService().create(getSelected());
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("resources/Bundle").getString("ItemCreated"));
             throw new ScreamException(); //Verificar se isso realemente é assim ^^
 
@@ -52,7 +52,7 @@ public abstract class GenericController<T extends Identifiable> implements Gener
     public void update() {
         try {
 
-            this.getBeans().edit(getSelected());
+            this.getService().edit(getSelected());
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("resources/Bundle").getString("ItemUpdated"));
             throw new ScreamException();
 
@@ -65,7 +65,7 @@ public abstract class GenericController<T extends Identifiable> implements Gener
     public void destroy() {
         try {
 
-            this.getBeans().remove(getSelected());
+            this.getService().remove(getSelected());
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("resources/Bundle").getString("ItemDeleted"));
             if (!JsfUtil.isValidationFailed()) {
                 setSelected(null);
@@ -82,20 +82,20 @@ public abstract class GenericController<T extends Identifiable> implements Gener
 
     public List<Identifiable> getItems() {
         if (items == null) {
-            items = getBeans().findAll();
+            items = getService().findAll();
         }
         return items;
     }
 
     public Identifiable getItem(Long id) {
-        return getBeans().find(id);
+        return getService().find(id);
     }
 
     public List<Identifiable> getItemsAvailableSelectMany() {
-        return getBeans().findAll();
+        return getService().findAll();
     }
 
     public List<Identifiable> getItemsAvailableSelectOne() {
-        return getBeans().findAll();
+        return getService().findAll();
     }
 }

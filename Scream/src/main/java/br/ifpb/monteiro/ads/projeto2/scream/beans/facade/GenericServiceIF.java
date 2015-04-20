@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author Mauricio
  */
-public interface GenericBeanIF extends Serializable{
+public interface GenericServiceIF extends Serializable{
 
     int count();
     

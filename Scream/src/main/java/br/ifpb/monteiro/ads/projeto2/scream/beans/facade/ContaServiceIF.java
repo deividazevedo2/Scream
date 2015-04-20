@@ -9,6 +9,6 @@ package br.ifpb.monteiro.ads.projeto2.scream.beans.facade;
  *
  * @author Mauricio
  */
-public interface ContaBeanIF extends GenericBeanIF{
+public interface ContaServiceIF extends GenericServiceIF{
     
 }
