@@ -38,7 +38,7 @@ header{
     position: relative;
     height: 60px; 
     /*background-color: #036fab;*/
-    /*color: white;*/
+    color: white;
     padding: 1px;
     margin: 0px 0px 0px 0px;
     background: #0274A8; /* Old browsers */
@@ -84,7 +84,7 @@ footer {
 }
 
 #systemName{
-
+    color: white;
     float: left;
     position: relative;
     padding: 5px;
@@ -93,6 +93,7 @@ footer {
 
 #copyright{
     float: right;
+    color: white;
     position: relative;
     margin: 0px 0px 0px 0px;
     text-align: right;
