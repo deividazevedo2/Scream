@@ -11,7 +11,7 @@
     </servlet>
     <context-param>
         <param-name>primefaces.THEME</param-name>
-        <param-value>excite-bike</param-value>
+        <param-value>flick</param-value>
     </context-param>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
