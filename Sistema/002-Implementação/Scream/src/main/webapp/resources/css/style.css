@@ -41,14 +41,8 @@ header{
     /*color: white;*/
     padding: 1px;
     margin: 0px 0px 0px 0px;
-    background: #b4ddb4; /* Old browsers */
-    background: -moz-linear-gradient(left, #b4ddb4 0%, #83c783 17%, #52b152 33%, #008a00 100%, #005700 100%, #002400 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, right top, color-stop(0%,#b4ddb4), color-stop(17%,#83c783), color-stop(33%,#52b152), color-stop(100%,#008a00), color-stop(100%,#005700), color-stop(100%,#002400)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(left, #b4ddb4 0%,#83c783 17%,#52b152 33%,#008a00 100%,#005700 100%,#002400 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(left, #b4ddb4 0%,#83c783 17%,#52b152 33%,#008a00 100%,#005700 100%,#002400 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(left, #b4ddb4 0%,#83c783 17%,#52b152 33%,#008a00 100%,#005700 100%,#002400 100%); /* IE10+ */
-    background: linear-gradient(to right, #b4ddb4 0%,#83c783 17%,#52b152 33%,#008a00 100%,#005700 100%,#002400 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b4ddb4', endColorstr='#002400',GradientType=1 ); /* IE6-9 */
+    background: #0274A8; /* Old browsers */
+   
 }
 
 footer {
@@ -58,7 +52,7 @@ footer {
     width: 100%;
     bottom:0; 
     /*z-index:999999;*/
-    background-color: #83c783;
+    background-color: #0274A8;
 }
 
 .grid-login{
@@ -78,11 +72,6 @@ footer {
     height: 55px; 
     margin-top: 3px;
     padding-left: 10px;
-}
-
-#logo-login{
-    float: bottom; 
-    padding-top: 50px; position: relative; text-align: center;
 }
 
 #logged-user-top-message{
@@ -145,24 +134,6 @@ footer {
     margin: 0px 170px 0px 170px;
 }
 
-#text-login a{
-    color: white;
-    font-weight : bold;
-    text-decoration: none;
-}
-
-
-#text-login a:link, #text-login a:visited {
-    color: white;
-    font-weight : bold;
-    text-decoration: none;
-}
-
-#text-login a:link:hover, #text-login a:visited:hover  {
-    color: black;
-    font-weight : bold;
-    text-decoration : underline;
-}
 
 /* Menu of top for logged user */
 .user-top-menu {

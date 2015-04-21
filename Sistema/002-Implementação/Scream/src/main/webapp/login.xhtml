@@ -6,13 +6,13 @@
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <h:outputStylesheet library="css" name="style.css"/>
+        <h:outputStylesheet library="css" name="login.css"/>
         <title>Scream - Login</title>
     </h:head>
 
     <h:body>
-        <div style="float: none; padding-top: 50px; position: relative; text-align: center;">
-            <p:graphicImage library="resources/imagens" name="Logo.png"></p:graphicImage>
+        <div style="float: none; padding-top: 20px; position: relative; text-align: center;">
+            <p:graphicImage library="imagens" name="LogoScream.png" height="150" width="150"></p:graphicImage>
         </div>
         <p:dialog header="Entre com seus dados de acesso" visible="true" closable="false" draggable="false" resizable="false" width="auto">
             <h:form>
@@ -26,6 +26,7 @@
 
                     <p:commandButton value="Entrar" style="font-size: 14px;" update="@form"/>
                     <p:button value="Cadastre-se" style="font-size: 14px;" outcome="conta/novaConta.xhtml"/>
+                    <p:link value="Entrar sem login" style="font-size: 14px;" outcome="home.xhtml"/>
 
                 </h:panelGrid>
             </h:form>

@@ -1,0 +1,35 @@
+/* 
+    Created on : 20/04/2015, 21:56:07
+    Author     : Markus
+*/
+
+body{
+    background-color: #0274A8;
+    font-size: 12px;
+    font-family: Frutlger,Verdana, "Verdana CE",  Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+    color: #000000;  
+    margin: 0px;
+}
+#logo-login{
+    float: bottom; 
+    padding-top: 50px; position: relative; text-align: center;
+}
+
+#text-login a{
+    color: white;
+    font-weight : bold;
+    text-decoration: none;
+}
+
+
+#text-login a:link, #text-login a:visited {
+    color: white;
+    font-weight : bold;
+    text-decoration: none;
+}
+
+#text-login a:link:hover, #text-login a:visited:hover  {
+    color: black;
+    font-weight : bold;
+    text-decoration : underline;
+}
