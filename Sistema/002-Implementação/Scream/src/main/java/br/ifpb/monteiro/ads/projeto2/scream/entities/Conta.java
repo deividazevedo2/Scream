@@ -60,10 +60,6 @@ public class Conta implements Identifiable {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public List<UsuarioProjeto> getListUsuarioProjeto() {
         return listUsuarioProjeto;
     }
