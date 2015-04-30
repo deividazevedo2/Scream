@@ -10,7 +10,7 @@
         <title>Scream - Login</title>
     </h:head>
 
-    <h:body>
+<!--    <h:body>
         <div style="float: none; padding-top: 20px; position: relative; text-align: center;">
             <p:graphicImage library="imagens" name="LogoScream.png" height="150" width="150"></p:graphicImage>
         </div>
@@ -31,5 +31,20 @@
                 </h:panelGrid>
             </h:form>
         </p:dialog> 
+    </h:body>-->
+
+    <h:body>
+        <a href="index.xhtml">Retornar para a Página Inicial</a>
+        <form action="j_spring_security_check" method="post">
+            <h:panelGrid columns="2">
+                <h:outputText value="Usuario" />
+                <h:inputText id="j_username" />
+                <h:outputText value="Senha" />
+                <h:inputSecret id="j_password" />
+            </h:panelGrid>
+            <!--<input type="submit" value="Efetuar Login" />-->
+            <button type="submit" class="btn">Log in</button>
+        </form>
     </h:body>
+
 </html>
