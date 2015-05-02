@@ -34,8 +34,8 @@ public abstract class GenericController<T extends Identifiable> implements Gener
     public abstract void setSelected(T selected);
 
     protected abstract GenericServiceIF getService();
-
-    public void create() {
+    
+     public void create() {
         try {
             logger.info("Controller Create Acessado");
             this.getService().create(getSelected());

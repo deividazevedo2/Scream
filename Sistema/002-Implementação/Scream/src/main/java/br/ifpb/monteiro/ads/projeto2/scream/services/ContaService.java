@@ -10,6 +10,7 @@ import br.ifpb.monteiro.ads.projeto2.scream.dao.facade.ContaDaoIF;
 import br.ifpb.monteiro.ads.projeto2.scream.dao.qualifers.ContaDaoQlf;
 import br.ifpb.monteiro.ads.projeto2.scream.entities.Identifiable;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
@@ -22,8 +23,7 @@ import javax.transaction.Transactional;
 @SessionScoped
 public class ContaService implements ContaServiceIF{
     
-    @Inject
-    @ContaDaoQlf
+    @EJB
     private ContaDaoIF contaDao;
     
     @Override

@@ -17,6 +17,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
 import br.ifpb.monteiro.ads.projeto2.scream.entities.Identifiable;
+import javax.persistence.PersistenceContext;
 /**
  *
  * @author Mauricio
@@ -29,8 +30,7 @@ public class GenericDAO<T extends Identifiable> implements GenericDaoIF {
     private Class<T> entityClass;
     private static final Logger logger = Logger.getGlobal();
 
-    
-    @Inject
+    @PersistenceContext(unitName="com.mycompany_Scream_war_1.0-SNAPSHOTPU")
     private EntityManager entityManager;
 
     public EntityManager getEntityManager() {

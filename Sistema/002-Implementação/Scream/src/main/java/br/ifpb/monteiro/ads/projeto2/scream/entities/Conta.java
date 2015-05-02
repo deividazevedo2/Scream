@@ -22,7 +22,6 @@ import javax.persistence.Table;
  * Classe para modelar e comportar a entidade Conta
  * @author Mauricio
  */
-@ContaQlf
 @Entity
 @Table(name = "conta")
 @PrimaryKeyJoinColumn(name = "id")

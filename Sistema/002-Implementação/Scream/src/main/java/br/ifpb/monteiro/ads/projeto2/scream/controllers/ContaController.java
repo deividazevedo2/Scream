@@ -12,6 +12,7 @@ import br.ifpb.monteiro.ads.projeto2.scream.entities.Conta;
 import br.ifpb.monteiro.ads.projeto2.scream.qualifiers.ContaQlf;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
@@ -27,15 +28,18 @@ import javax.inject.Inject;
  */
 @ManagedBean(name="contaController")
 @RequestScoped
-public class ContaController extends GenericController<Conta> implements ContaControllerIF{
+public class ContaController extends GenericController<Conta>{
     
-    @Inject
+    @EJB
     private ContaServiceIF contaService;
     
-    @Inject
-    @ContaQlf
     private Conta selected;
 
+    @PostConstruct
+    public void Init(){
+        selected = new Conta();
+    }
+    
     @Override
     public Conta getSelected() {
         return selected;
@@ -50,6 +54,7 @@ public class ContaController extends GenericController<Conta> implements ContaCo
     protected GenericServiceIF getService() {
         return contaService;
     }
+
 
     @FacesConverter(forClass = Conta.class)
     public static class ContaControllerConverter implements Converter {
@@ -91,5 +96,4 @@ public class ContaController extends GenericController<Conta> implements ContaCo
         }
 
     }
-
 }
