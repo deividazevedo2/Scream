@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/WEB-INF/template/template.xhtml">
+    
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </h:head>
+        
+    <ui:define name="content">
+        <h:form>
+            <div style="float: none; position: relative; text-align: center; 
+                 font-size: 18px; color: #0274A8">
+                <p:outputLabel value="Item 1 do Produto" />
+            </div>
+                
+            <div id="kanban">
+                <p:growl id="msgs" showDetail="true" />
+                <div id="conteudo-1">
+                        <p:fieldset legend="A Fazer" id="fieldSetFormTitle" style="width: 200px">
+                        
+                        <p:panel id="fazer" header="Item 1 ">
+                            <h:outputText value="Descrição do item 1" />
+                            <h1/>
+                            <p:button icon="ui-icon-show"/>
+                            <p:button icon="ui-icon-pencil"/>
+                        </p:panel>
+                        <p:draggable for="fazer" revert="true" handle=".ui-panel-titlebar" stack=".ui-panel" />
+                        
+                        <p:commandButton icon="ui-icon-circle-plus" oncomplete="PF('adicionarItemDialog').show()"/>
+                        <p:dialog id="adicionarItemDialog" header="Adicionar Item" 
+                                  widgetVar="adicionarItemDialog" resizable="false" draggable="false"
+                                  showEffect="fade" hideEffect="fade" modal="true">
+                            <p:outputPanel id="painelItemProduto">
+                                <h:panelGrid columns="2">
+                                    <h:outputLabel value="Descrição: "/>
+                                    <p:inputText maxlength="30" size="30"/>
+                                    <h:outputText value="Aceito: " />
+                                    <p:selectBooleanCheckbox value="false"/>
+                                    <p:outputLabel for="peso" value="Peso:" />
+                                    <p:inputMask id="peso" mask="99"/>
+                                    <p:outputLabel for="prioridade" value="Prioridade:" />
+                                    <p:inputMask id="prioridade" mask="99"/>
+                                    <p:outputLabel for="complexidade" value="Complexidade:" />
+                                    <p:inputMask id="complexidade" mask="99"/>
+                                    <p:outputLabel for="valorGanho" value="Valor Ganho: " />
+                                    <p:inputMask id="valorGanho" mask="9999,99"/>
+                                    
+                                    <p:outputLabel for="dataInicio" value="Data de Inicio: " />
+                                    <p:calendar id="dataInicio" pattern="dd-MM-yyyy" mask="true" />
+                                    <p:outputLabel for="dataTermino" value="Data de Termino: " />
+                                    <p:calendar id="dataTermino" pattern="dd-MM-yyyy" mask="true" />
+                                </h:panelGrid>
+                                <br/>
+                                <p:commandButton value="Salvar" update="fieldSetFormTitle"/>
+                            </p:outputPanel>
+                        </p:dialog>  
+                        
+                    </p:fieldset>
+                </div>
+                
+                <div id="conteudo-2-1">
+                    <p:fieldset legend="Fazendo" id="fieldSetFormFazendo" style="width: 200px" >
+                        <p:panelGrid id="fazendo" >                            
+                            
+                            <p:draggable revert="true" handle=".ui-panel-titlebar" stack=".ui-panel"/>
+                            
+                        </p:panelGrid>
+                        <!--  <p:dashboard id="board" model="{produtoController.model}">
+                              <p:ajax event="reorder"/>
+                              <p:panel id="fazendo" header="Projeto">
+                                  <h:outputText value="Descrição do Projeto" />
+                              </p:panel>
+                                  
+                          </p:dashboard>-->
+                          
+                          
+                    </p:fieldset>
+                </div>
+                <p:droppable for="fieldSetFormFazendo" tolerance="touch"
+                             activeStyleClass="ui-state-highlight" 
+                             >
+                    <p:ajax update="fieldSetFormFazendo" />
+                </p:droppable>
+                
+                <div id="conteudo-2-2">
+                    <p:fieldset legend="Feito" id="fieldSetFormFeito" style="width: 200px" >
+                        
+                        <!--<p:dashboard id="board" model="{produtoController.model}">
+                            <p:ajax event="reorder"/>
+                            <p:panel id="feito" header="Projeto">
+                                <h:outputText value="Descrição do Projeto" />
+                            </p:panel>
+                                
+                        </p:dashboard>-->
+                        
+                        
+                    </p:fieldset>
+                </div>
+            </div>
+        </h:form>
+    </ui:define>
+        
+</ui:composition>
