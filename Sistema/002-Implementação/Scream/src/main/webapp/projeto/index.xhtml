@@ -14,32 +14,15 @@
     <ui:define name="content">
         
         <h:form>
-            
             <div style="float: none; position: relative; text-align: center; 
                  font-size: 18px; color: #0274A8">
-                <p:outputLabel value="Produtos" />
+                <p:outputLabel value="Projetos" />
                 <p:button icon="ui-icon-help" 
                           style="font-size: 14px; position: relative; left: 280px"/>
-                <p:commandButton icon="ui-icon-circle-plus" oncomplete="PF('produtoDialog').show()"
-                                 style="font-size: 14px; position: relative; left: 280px"/>
-                                     
-                <p:dialog id="produtoDialog" header="Adicionar Membro ao Projeto" 
-                          widgetVar="produtoDialog" resizable="false" draggable="false"
-                          showEffect="fade" hideEffect="fade" modal="true" style="font-size: 12px">
-                    <p:outputPanel id="painelProdutoDialog">
-                        <h:panelGrid columns="2" style="font-size: 12px">
-                            <h:outputLabel value="Nome: "/>
-                            <p:inputText maxlength="30" size="30"/>
-                            <h:outputLabel value="Descrição: "/>
-                            <p:inputText maxlength="30" size="30"/>
-                        </h:panelGrid>
-                        <br/>
-                        <p:commandButton value="Salvar"/>
-                    </p:outputPanel>
-                </p:dialog>
+                <p:button icon="ui-icon-circle-plus" outcome="/projeto/novoProjeto.xhtml" 
+                          style="font-size: 14px; position: relative; left: 280px"/>
+                    
             </div>
-                
-                
             <div id="kanban">
                 
                 <p:growl id="msgs" showDetail="true" />
@@ -48,14 +31,14 @@
                     <p:fieldset legend="A fazer" id="fieldSetFormTitle" style="width: 200px">
                         
                         <p:dashboard id="fazerBoard" model="#{produtoController.model}">
-                            <p:panel id="fazer" header="Scream ">
-                                <h:outputText value="Descrição do Scream" />
-                                <h1/>
-                                <p:button icon="ui-icon-view" outcome="/itensProduto/index.xhtml"/> 
-                                <p:button icon="ui-icon-pencil"/> 
+                            <p:panel id="fazer" header="Projeto 1">
+                                <h:outputText value="Descrição do Projeto 1" />
+                                <p:progressBar value="50" labelTemplate="{value}%" displayOnly="true"/>
+                                    
                             </p:panel>
                                 
                         </p:dashboard>
+                            
                             
                     </p:fieldset>
                 </div>
@@ -64,11 +47,10 @@
                     <p:fieldset legend="Fazendo" id="fieldSetFormFazendo" style="width: 200px" >
                         
                         <p:dashboard id="fazendoBoard" model="#{produtoController.model}">
-                            <p:panel id="fazendo" header="Info-Saúde">
-                                <h:outputText value="Descrição do Info-Saúde" />
-                                <h1/>
-                                <p:button icon="ui-icon-view"/> 
-                                <p:button icon="ui-icon-pencil"/> 
+                            <p:panel id="fazendo" header="Projeto">
+                                <h:outputText value="Descrição do Projeto" />
+                                <p:progressBar value="50" labelTemplate="{value}%" displayOnly="true"/>
+                                    
                             </p:panel>
                                 
                         </p:dashboard>
@@ -86,12 +68,11 @@
                     <p:fieldset legend="Feito" id="fieldSetFormFeito" style="width: 200px" >
                         
                         <p:dashboard id="feitoBoard" model="#{produtoController.model}">
-                            <p:panel id="feito" header="Licita">
-                                <h:outputText value="Descrição do Licita" />
-                                <h1/>
-                                <p:button icon="ui-icon-view"/> 
-                                <p:button icon="ui-icon-pencil"/> 
-                                    
+                            <p:panel id="feito" header="Projeto">
+                                <h:outputText value="Descrição do Projeto" />
+                                <p:progressBar value="50" labelTemplate="{value}%" 
+                                               displayOnly="true" />
+                                                   
                             </p:panel>
                                 
                         </p:dashboard>

@@ -17,21 +17,27 @@
             
             <div style="float: none; position: relative; text-align: center; 
                  font-size: 18px; color: #0274A8">
-                <p:outputLabel value="Produtos" />
+                <p:outputLabel value="Atividades do Item .." />
                 <p:button icon="ui-icon-help" 
                           style="font-size: 14px; position: relative; left: 280px"/>
-                <p:commandButton icon="ui-icon-circle-plus" oncomplete="PF('produtoDialog').show()"
+                <p:commandButton icon="ui-icon-circle-plus" oncomplete="PF('atividadeDialog').show()"
                                  style="font-size: 14px; position: relative; left: 280px"/>
                                      
-                <p:dialog id="produtoDialog" header="Adicionar Membro ao Projeto" 
-                          widgetVar="produtoDialog" resizable="false" draggable="false"
+                <p:dialog id="atividadeDialog" header="Criar nova Atividade" 
+                          widgetVar="atividadeDialog" resizable="false" draggable="false"
                           showEffect="fade" hideEffect="fade" modal="true" style="font-size: 12px">
-                    <p:outputPanel id="painelProdutoDialog">
+                    <p:outputPanel id="painelAtividadeDialog">
                         <h:panelGrid columns="2" style="font-size: 12px">
-                            <h:outputLabel value="Nome: "/>
-                            <p:inputText maxlength="30" size="30"/>
+                      
                             <h:outputLabel value="Descrição: "/>
                             <p:inputText maxlength="30" size="30"/>
+                            <h:outputLabel for="tipoAtividade" value="Tipo da Atividade "/>
+                            <h:selectOneMenu id="tipoAtividade" value="" required="true" label="Text 3">
+                                        <f:selectItem itemLabel="Análise" itemValue="" />
+                                        <f:selectItem itemLabel="Projeto" itemValue="" />
+                                        <f:selectItem itemLabel="Desenvolvimento" itemValue="" />
+                                         <f:selectItem itemLabel="Teste" itemValue="" />
+                                    </h:selectOneMenu>
                         </h:panelGrid>
                         <br/>
                         <p:commandButton value="Salvar"/>
@@ -51,7 +57,7 @@
                             <p:panel id="fazer" header="Scream ">
                                 <h:outputText value="Descrição do Scream" />
                                 <h1/>
-                                <p:button icon="ui-icon-view" outcome="/itensProduto/index.xhtml"/> 
+                                <p:button icon="ui-icon-view"/> 
                                 <p:button icon="ui-icon-pencil"/> 
                             </p:panel>
                                 

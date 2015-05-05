@@ -173,4 +173,11 @@ footer {
     left:50%;
     margin-left:-350px; /* ou seja ele pega 50% da largura tela e diminui  metade do valor da largura no caso 250 */
 }
-
+#todo{
+    //width:900px; /* Tamanho da Largura da Div */
+    position:absolute; 
+    //top:50%; 
+   // margin-top:20px; /* ou seja ele pega 50% da altura tela e sobe metade do valor da altura no caso 100 */
+  //  left:50%;
+   // margin-left:-350px; /* ou seja ele pega 50% da largura tela e diminui  metade do valor da largura no caso 250 */
+}
