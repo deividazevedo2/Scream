@@ -7,13 +7,10 @@ package br.ifpb.monteiro.ads.projeto2.scream.services;
 
 import br.ifpb.monteiro.ads.projeto2.scream.beans.facade.ContaServiceIF;
 import br.ifpb.monteiro.ads.projeto2.scream.dao.facade.ContaDaoIF;
-import br.ifpb.monteiro.ads.projeto2.scream.dao.qualifers.ContaDaoQlf;
 import br.ifpb.monteiro.ads.projeto2.scream.entities.Identifiable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.bean.ManagedBean;
-import javax.inject.Inject;
 import javax.transaction.Transactional;
 
 /**

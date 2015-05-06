@@ -7,11 +7,7 @@
     <h:form> 
         <p:growl id="messages"/>
         <p:menubar>
-            <p:submenu label="Projeto">
-                        <p:menuitem value="Novo Projeto" url="/projeto/novoProjeto.xhtml"/>
-                        <p:menuitem value="Procurar" url="/projeto/buscaProjeto.xhtml"/>
-                    </p:submenu> 
-            
+                        
             <p:submenu label="Usuários" icon="ui-icon-person" >
                     <p:submenu label="Conta do Usuário" icon="ui-icon-person">
                         <p:menuitem value="Procurar" url="/conta/buscaConta.xhtml" icon="ui-icon-search"/>
@@ -21,10 +17,10 @@
                     </p:submenu> 
                                  
             </p:submenu> 
-            
-            <p:submenu label="Product Backlog">
+            <p:menuitem value="Produto" url="/produto/index.xhtml"/> 
 
-            </p:submenu>
+            <p:menuitem value="Projeto" url="/projeto/index.xhtml"/> 
+
 
             <p:submenu label="Chart Kankan">
 

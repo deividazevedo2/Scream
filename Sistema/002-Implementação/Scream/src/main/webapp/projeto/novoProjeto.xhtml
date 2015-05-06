@@ -6,65 +6,82 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 template="/WEB-INF/template/template.xhtml">
-
+                    
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     </h:head>
-
+        
     <ui:define name="content">
-        <p:fieldset legend="Novo Projeto" id="fieldSetFormTitle">
-            <h:form id="formNovoProjeto">
-                <p:growl id="msgProjetoForm" showDetail="true" sticky="true" />
-                <h:panelGrid columns="2" cellpadding="2">
-                    
-                    <p:outputLabel for="name" value="Nome: "/>
-                    <p:inputText id="name" size="30" placeholder="Nome ou parte dele"/>
-
-                    <p:outputLabel for="dataInicio" value="Data de Inicio:" />
-                    <p:calendar id="dataInicio" pattern="dd-MM-yyyy" mask="true"/>
-                    
-                    <p:outputLabel for="dataTermino" value="Data de Termino:" />
-                    <p:calendar id="dataTermino" pattern="dd-MM-yyyy" mask="true" />
-
-                    <h:outputText value="Completo:" />
-                    <p:selectBooleanCheckbox value="True" />
-                    
-                    <p:outputLabel for="tempoSprint" value="Tempo da Sprint: "/>
-                    <p:inputText id="tempoSprint" size="30" placeholder="Tempo da duração de cada sprint"/>
-                    
-                </h:panelGrid>
-                <br/>
-                <p:toolbar id="panelButtonsConta">
-                    <p:toolbarGroup>
-                        <p:button style="font-size: 13px;" value="Salvar" id="salvar" icon="ui-icon-disk"/>
-                        <p:commandButton style="font-size: 13px;" value="Adicionar Membro" id="adicionarMembro" 
-                                         icon="ui-icon-circle-plus" oncomplete="PF('adicionarMembroDialog').show()"/>
-                    </p:toolbarGroup>
-                    
-                </p:toolbar>
-                
-                <p:dialog id="adicionarMembroDialog" header="Adicionar Membro ao Projeto" 
-                          widgetVar="adicionarMembroDialog" showEffect="explode"
-                          resizable="false" hideEffect="explode" >
-                    <p:outputPanel id="painelAdicionarMembro">
-                    <h:panelGrid columns="2">
-                        <h:outputLabel value="Usuario: "/>
-                        <p:inputText maxlength="30" size="30"/>
-                        <h:outputLabel for="especialidade" value="Especialidade:* " />
-                        <h:selectOneMenu id="especialidade" value="" required="true" label="Text 3">
-                            <f:selectItem itemLabel="Membro de Time" itemValue="" />
-                            <f:selectItem itemLabel="Scrum Master" itemValue="" />
-                            <f:selectItem itemLabel="Product Owner" itemValue="" />
-                        </h:selectOneMenu>
-                        <p:outputLabel for="horas" value="Horas de Trabalho:" />
-                        <p:calendar id="horas" pattern="HH:mm a" timeOnly="true"  />
-                    </h:panelGrid>
-                    <br/>
-                    <p:commandButton value="Salvar"/>
-                </p:outputPanel>
-                </p:dialog>
-                
-            </h:form>
-        </p:fieldset>   
+        <div style="width: 400px">
+          
+                <p:fieldset legend="Novo Projeto" id="fieldSetFormTitle">
+                    <h:form id="formNovoProjeto">
+                        <p:growl id="msgProjetoForm" showDetail="true" sticky="true" />
+                        <h:panelGrid columns="2" cellpadding="2">
+                            
+                            <p:outputLabel for="name" value="Nome: "/>
+                            <p:inputText id="name" size="30" placeholder="Nome ou parte dele"/>
+                                
+                            <p:outputLabel for="dataInicio" value="Data de Inicio:" />
+                            <p:calendar id="dataInicio" pattern="dd-MM-yyyy" mask="true"/>
+                                
+                            <p:outputLabel for="dataTermino" value="Data de Termino:" />
+                            <p:calendar id="dataTermino" pattern="dd-MM-yyyy" mask="true" />
+                                
+                            <h:outputText value="Completo:" />
+                            <p:selectBooleanCheckbox value="True" />
+                                
+                            <p:outputLabel for="tempoSprint" value="Tempo da Sprint: "/>
+                            <p:inputText id="tempoSprint" size="30" placeholder="Tempo da duração de cada sprint"/>
+                                
+                        </h:panelGrid>
+                        <br/>
+                        <p:toolbar id="panelButtonsConta">
+                            <p:toolbarGroup >
+                                <p:button style="font-size: 13px;text-align: center;" value="Salvar" id="salvar" icon="ui-icon-disk"/>
+                                <p:commandButton style="font-size: 13px;text-align: center;" value="Adicionar Membro" id="adicionarMembro" 
+                                                 icon="ui-icon-circle-plus" oncomplete="PF('adicionarMembroDialog').show()"/>
+                            </p:toolbarGroup>
+                                
+                        </p:toolbar>
+                            
+                        <p:dialog id="adicionarMembroDialog" header="Adicionar Membro ao Projeto" 
+                                  widgetVar="adicionarMembroDialog" resizable="false" draggable="false"
+                                  showEffect="fade" hideEffect="fade" modal="true" >
+                            <p:outputPanel id="painelAdicionarMembro">
+                                <h:panelGrid columns="2">
+                                    <h:outputLabel value="Usuario: "/>
+                                    <p:inputText maxlength="30" size="30"/>
+                                    <h:outputLabel for="especialidade" value="Especialidade:* " />
+                                    <h:selectOneMenu id="especialidade" value="" required="true" label="Text 3">
+                                        <f:selectItem itemLabel="Membro de Time" itemValue="" />
+                                        <f:selectItem itemLabel="Scrum Master" itemValue="" />
+                                        <f:selectItem itemLabel="Product Owner" itemValue="" />
+                                    </h:selectOneMenu>
+                                    <p:outputLabel for="horas" value="Horas de Trabalho:" />
+                                    <p:calendar id="horas" pattern="HH:mm a" timeOnly="true"  />
+                                </h:panelGrid>
+                                <br/>
+                                <p:commandButton value="Salvar"/>
+                            </p:outputPanel>
+                        </p:dialog>
+                        <p:dataTable id="checkboxProduto" var="car" style="margin-bottom:0">
+                            <f:facet name="header">
+                                Adicione Produtos ao seu Projeto
+                            </f:facet>
+                            <p:column selectionMode="multiple" style="font-size: 10px;text-align:center"/>
+                            <p:column headerText="Nome">
+                                <h:outputText value="Produto 1" />
+                                <h:outputText value="Produto 2" />
+                            </p:column>
+                            <f:facet name="footer">
+                                <p:button icon="ui-icon-disk" value="Salvar"/>
+                            </f:facet>
+                        </p:dataTable>
+                    </h:form>
+                        
+                </p:fieldset>
+       
+        </div>
     </ui:define>
 </ui:composition>

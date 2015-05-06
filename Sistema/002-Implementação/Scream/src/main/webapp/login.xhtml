@@ -3,48 +3,52 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html" 
       xmlns:p="http://primefaces.org/ui"> 
-
+          
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet library="css" name="login.css"/>
         <title>Scream - Login</title>
     </h:head>
-
+        
+        
+    <!-- <p:dialog header="Entre com seus dados de acesso" visible="true" closable="false" draggable="false" resizable="false" width="auto">
+         <h:form>
+             <p:growl/>
+             <h:panelGrid columns="2" cellpadding="5">
+                 <p:outputLabel for="username" value="Usuario:" /> 
+                 <p:inputText id="username" required="true" size="35"/>
+                        
+                 <p:outputLabel for="password" value="Senha:" />
+                 <p:password id="password" required="true" size="35"/>
+                        
+                 <p:commandButton value="Entrar" style="font-size: 14px;" update="@form"/>
+                 <p:button value="Cadastre-se" style="font-size: 14px;" outcome="conta/registroConta.xhtml"/>
+                 <p:link value="Entrar sem login" style="font-size: 14px;" outcome="home.xhtml"/>
+                        
+             </h:panelGrid>
+         </h:form>
+     </p:dialog> 
+ </h:body>-->
+        
     <h:body>
         <div style="float: none; padding-top: 20px; position: relative; text-align: center;">
             <p:graphicImage library="imagens" name="LogoScream.png" height="150" width="150"></p:graphicImage>
         </div>
-        <p:dialog header="Entre com seus dados de acesso" visible="true" closable="false" draggable="false" resizable="false" width="auto">
-            <h:form>
-                <p:growl/>
-                <h:panelGrid columns="2" cellpadding="5">
-                    <p:outputLabel for="username" value="Usuario:" /> 
-                    <p:inputText id="username" required="true" size="35"/>
-
-                    <p:outputLabel for="password" value="Senha:" />
-                    <p:password id="password" required="true" size="35"/>
-
-                    <p:commandButton value="Entrar" style="font-size: 14px;" update="@form"/>
-                    <p:button value="Cadastre-se" style="font-size: 14px;" outcome="conta/registroConta.xhtml"/>
-                    <p:link value="Entrar sem login" style="font-size: 14px;" outcome="home.xhtml"/>
-
+        <p:dialog header="Entre com seus dados de acesso" visible="true" closable="false" draggable="false" resizable="false" width="auto"> 
+            <a href="index.xhtml">Retornar para a Página Inicial</a>
+            <h1/>
+            <form action="j_spring_security_check" method="post">
+                <h:panelGrid columns="2">
+                    <h:outputText value="Usuario" />
+                    <h:inputText id="j_username" />
+                    <h:outputText value="Senha" />
+                    <h:inputSecret id="j_password" />
                 </h:panelGrid>
-            </h:form>
-        </p:dialog> 
+                <h1/>
+                <!--<input type="submit" value="Efetuar Login" />-->
+                <button type="submit" class="btn">Log in</button>
+            </form>
+        </p:dialog>
     </h:body>
-
-<!--    <h:body>
-        <a href="index.xhtml">Retornar para a Página Inicial</a>
-        <form action="j_spring_security_check" method="post">
-            <h:panelGrid columns="2">
-                <h:outputText value="Usuario" />
-                <h:inputText id="j_username" />
-                <h:outputText value="Senha" />
-                <h:inputSecret id="j_password" />
-            </h:panelGrid>
-            <input type="submit" value="Efetuar Login" />
-            <button type="submit" class="btn">Log in</button>
-        </form>
-    </h:body>-->
-
+        
 </html>
