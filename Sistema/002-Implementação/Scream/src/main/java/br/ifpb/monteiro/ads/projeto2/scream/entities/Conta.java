@@ -35,8 +35,8 @@ public class Conta implements Identifiable {
     private Long id;
 
 
-    @OneToMany(mappedBy="id_usuario_projeto") 
-    private List<UsuarioProjeto> listUsuarioProjeto;
+    //@OneToMany(mappedBy = "id_usuario_do_projeto")
+    // List<UsuarioProjeto> listUsuarioProjeto;
           
     @Column(nullable=false, length=30, name = "nome")
     private String nome;
@@ -59,13 +59,13 @@ public class Conta implements Identifiable {
         return id;
     }
 
-    public List<UsuarioProjeto> getListUsuarioProjeto() {
-        return listUsuarioProjeto;
-    }
+    //public List<UsuarioProjeto> getListUsuarioProjeto() {
+    //    return listUsuarioProjeto;
+    //}
 
-    public void setListUsuarioProjeto(List<UsuarioProjeto> listUsuarioProjeto) {
-        this.listUsuarioProjeto = listUsuarioProjeto;
-    }
+    //public void setListUsuarioProjeto(List<UsuarioProjeto> listUsuarioProjeto) {
+    //    this.listUsuarioProjeto = listUsuarioProjeto;
+    //}
 
     public String getNome() {
         return nome;

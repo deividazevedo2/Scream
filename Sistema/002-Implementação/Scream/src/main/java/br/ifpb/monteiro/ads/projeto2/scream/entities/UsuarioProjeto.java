@@ -26,6 +26,8 @@ import javax.persistence.Table;
 @Table(name = "usuario_projeto")
 @PrimaryKeyJoinColumn(name = "id")
 public class UsuarioProjeto implements Identifiable {
+    @ManyToOne
+    private Conta id_conta;
     @Id
     @SequenceGenerator(name="id_usuario_projeto",
                        sequenceName="id_usuario_projeto",
@@ -34,8 +36,8 @@ public class UsuarioProjeto implements Identifiable {
     @Column(name = "id")
     private Long id;
     
-    @ManyToOne @JoinColumn(name="id_usuario_projeto")
-    private UsuarioProjeto usuarioProjeto;
+    //@ManyToOne @JoinColumn(name="id_usuario_do_projeto")
+    //private UsuarioProjeto usuarioProjeto;
     
     @Column(nullable=false, length=30, name = "horario")
     private Timestamp horario;
@@ -52,13 +54,13 @@ public class UsuarioProjeto implements Identifiable {
         this.id = id;
     }
 
-    public UsuarioProjeto getUsuarioProjeto() {
-        return usuarioProjeto;
-    }
+//    public UsuarioProjeto getUsuarioProjeto() {
+//        return usuarioProjeto;
+//    }
 
-    public void setUsuarioProjeto(UsuarioProjeto usuarioProjeto) {
-        this.usuarioProjeto = usuarioProjeto;
-    }
+    //public void setUsuarioProjeto(UsuarioProjeto usuarioProjeto) {
+    //    this.usuarioProjeto = usuarioProjeto;
+    //}
 
     public Timestamp getHorario() {
         return horario;

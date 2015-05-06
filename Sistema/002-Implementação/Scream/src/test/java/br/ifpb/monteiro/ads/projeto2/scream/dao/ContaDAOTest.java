@@ -7,6 +7,11 @@
 package br.ifpb.monteiro.ads.projeto2.scream.dao;
 
 import br.ifpb.monteiro.ads.projeto2.scream.entities.Conta;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import static org.junit.Assert.fail;
@@ -19,6 +24,7 @@ import static sun.management.Agent.error;
  * @author Hugo
  */
 public class ContaDAOTest {
+    //ContaDAO contaDAO = lookupContaDAOBean();
     
     private final Conta conta;
     
@@ -47,7 +53,6 @@ public class ContaDAOTest {
         System.out.println("create");
         GenericDAO instance = new ContaDAO();
         instance.create(conta); 
-    }
-        
+    }        
     
 }

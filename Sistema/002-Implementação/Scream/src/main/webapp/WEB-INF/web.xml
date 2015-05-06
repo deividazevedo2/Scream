@@ -25,28 +25,36 @@
     <welcome-file-list>
         <welcome-file>index.xhtml</welcome-file>
     </welcome-file-list>
-    
     <!-- Configurações SPRING SECURITY -->
     <context-param>
-          <param-name>contextConfigLocation</param-name>
-          <param-value>/WEB-INF/spring/security.xml</param-value>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/spring/security.xml</param-value>
     </context-param>
-
     <listener>
-          <listener-class>
+        <listener-class>
             org.springframework.web.context.ContextLoaderListener
           </listener-class>
     </listener>
-
     <filter>
-          <filter-name>springSecurityFilterChain</filter-name>
-          <filter-class>                     
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>                     
             org.springframework.web.filter.DelegatingFilterProxy
           </filter-class>
     </filter>
     <filter-mapping>
-          <filter-name>springSecurityFilterChain</filter-name>
-          <url-pattern>/*</url-pattern>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
     </filter-mapping>
-    <!-- Fim Configurações SPRING SECURITY -->    
+    <!-- Fim Configurações SPRING SECURITY -->
+    <!--
+    <ejb-local-ref>
+        <ejb-ref-name>contaDAO</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>br.ifpb.monteiro.ads.projeto2.scream.dao.facade.ContaDaoIF</local>
+        <ejb-link>Scream-ejb.jar#ContaDAO</ejb-link>
+        
+        Scream-1.0-SNAPSHOT#ContaDAO
+        
+    </ejb-local-ref>
+    -->
 </web-app>
