@@ -30,12 +30,8 @@ public class ContaService {
         }
     }
 
-    public void edit(Conta entity) {
-        contaDao.edit(entity);
-    }
-
     public Conta find(Long id) {
-        return (Conta) contaDao.find(id);
+        return (Conta) contaDao.findById(id);
     }
 
     public List<Conta> findAll() {
@@ -48,7 +44,7 @@ public class ContaService {
 
     @Transactional
     public void remove(Conta entity) {
-        this.contaDao.remove(entity);
+        this.contaDao.delete(entity);
     }
 
     public ContaDAO getContaDao() {

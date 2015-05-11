@@ -17,14 +17,12 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "conta")
 @PrimaryKeyJoinColumn(name = "id")
-public class Conta implements Serializable{
+public class Conta implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //@OneToMany(mappedBy = "id_usuario_do_projeto")
-    // List<UsuarioProjeto> listUsuarioProjeto;
     @Column(nullable = false, length = 30, name = "nome")
     private String nome;
 
@@ -37,20 +35,16 @@ public class Conta implements Serializable{
     @Column(nullable = false, length = 40, name = "email")
     private String email;
 
+    //@OneToMany(mappedBy = "id_usuario_do_projeto")
+    // List<UsuarioProjeto> listUsuarioProjeto;
     public Long getId() {
         return id;
     }
 
-     public void setId(Long id) {
+    public void setId(Long id) {
         this.id = id;
     }
-    
-    //public List<UsuarioProjeto> getListUsuarioProjeto() {
-    //    return listUsuarioProjeto;
-    //}
-    //public void setListUsuarioProjeto(List<UsuarioProjeto> listUsuarioProjeto) {
-    //    this.listUsuarioProjeto = listUsuarioProjeto;
-    //}
+
     public String getNome() {
         return nome;
     }

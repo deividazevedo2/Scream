@@ -14,9 +14,6 @@ import java.util.logging.Logger;
  */
 public abstract class GenericController<T> implements GenericControllerIF {
 
-    /**
-     *
-     */
     private List<T> items = null;
     private static final Logger logger = Logger.getGlobal();
 

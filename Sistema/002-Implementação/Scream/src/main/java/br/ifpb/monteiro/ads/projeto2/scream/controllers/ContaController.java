@@ -1,9 +1,14 @@
 package br.ifpb.monteiro.ads.projeto2.scream.controllers;
 
 import br.ifpb.monteiro.ads.projeto2.scream.entities.Conta;
+import br.ifpb.monteiro.ads.projeto2.scream.exceptions.ScreamException;
 import br.ifpb.monteiro.ads.projeto2.scream.services.ContaService;
+import br.ifpb.monteiro.ads.projeto2.scream.util.jsf.JsfUtil;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
-import javax.inject.Inject;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -31,6 +36,8 @@ public class ContaController {
 
     public void create() {
         contaService.create(selected);
+        JsfUtil.addSuccessMessage("Conta adicionada com sucesso!");
+        voltaTelaLogin();
     }
 
     public ContaService getContaService() {
@@ -39,6 +46,15 @@ public class ContaController {
 
     public void setContaService(ContaService contaService) {
         this.contaService = contaService;
+    }
+
+    public void voltaTelaLogin() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/Scream/login.xhtml");
+        } catch (IOException ex) {
+            JsfUtil.addErrorMessage(ex, "Pagina não encontrada");
+            Logger.getLogger(ContaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

@@ -11,10 +11,16 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
     
+    <!-- Hide comments on code to avoid security breach and weight in the renderization page -->
     <context-param>
+        <param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    
+<!--    <context-param>
         <param-name>primefaces.THEME</param-name>
         <param-value>flick</param-value>
-    </context-param>
+    </context-param>-->
     
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>

@@ -1,76 +1,135 @@
 package br.ifpb.monteiro.ads.projeto2.scream.dao;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.criteria.CriteriaQuery;
 
 /**
  *
  * @author Mauricio
  * @param <T>
  */
-public class GenericDAO<T> {
+public class GenericDAO<T> implements Serializable {
 
-    private Class<T> entityClass;
     private static final Logger logger = Logger.getGlobal();
 
+    @Inject
     private EntityManager entityManager;
 
+    private Class<T> entity;
+
+    /**
+     * Construtor da classe que captura a entidade que chamar esta classe.
+     *
+     * @param entityClass
+     */
+    public GenericDAO(Class<T> entityClass) {
+        this.entity = entityClass;
+    }
+
+    /**
+     * Método get para a instância do EntityManager
+     *
+     * @return
+     */
     public EntityManager getEntityManager() {
         return entityManager;
     }
 
-    public GenericDAO() {
-    }
-
-    public GenericDAO(Class<T> entityClass) {
-        this.entityClass = entityClass;
-    }
-
+    /**
+     * Metodo utilizado para salvar um novo cadastro no banco de dados ou editar
+     * um cadastro existente.
+     *
+     * @param entity
+     */
     public void create(T entity) {
         logger.info("DAO Create Acessado");
         try {
-            getEntityManager().persist(entity);
+            entityManager.merge(entity);
         } catch (Exception e) {
             logger.log(Level.INFO, "Erro no DAO: {0}", e.getMessage());
         }
 
     }
 
-    public void edit(T entity) {
-        getEntityManager().merge(entity);
+    /**
+     * Método utilizado para remover um cadastro do banco de dados
+     *
+     * @param entity
+     */
+    public void delete(T entity) {
+        entityManager.remove(entity);
     }
 
-    public void remove(T entity) {
-        getEntityManager().remove(getEntityManager().merge(entity));
-    }
-
-    public T find(Object id) {
-        return getEntityManager().find(entityClass, id);
-    }
-
+    /**
+     * Método utilizado para retornar uma lista com todos os resultados
+     * encontrados no banco de dados para a esntidade que a chamar. A consulta é
+     * feita através de Criteria
+     *
+     * @return
+     */
     public List<T> findAll() {
-        javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
-        cq.select(cq.from(entityClass));
+        CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
+        cq.select(cq.from(entity));
         return getEntityManager().createQuery(cq).getResultList();
     }
 
+    /**
+     * Método utilizado para buscar um registro no banco de dados para
+     * determinada entidade através da passagem do seu ID como parâmetro.
+     *
+     * @param id
+     * @return
+     */
+    public T findById(Long id) {
+        return entityManager.find(entity, id);
+    }
+
+    /**
+     *
+     * @param range
+     * @return
+     */
     public List<T> findRange(int[] range) {
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
-        cq.select(cq.from(entityClass));
+        cq.select(cq.from(entity));
         javax.persistence.Query q = getEntityManager().createQuery(cq);
         q.setMaxResults(range[1] - range[0] + 1);
         q.setFirstResult(range[0]);
         return q.getResultList();
     }
 
+    /**
+     *
+     * @return
+     */
     public int count() {
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
-        javax.persistence.criteria.Root<T> rt = cq.from(entityClass);
+        javax.persistence.criteria.Root<T> rt = cq.from(entity);
         cq.select(getEntityManager().getCriteriaBuilder().count(rt));
         javax.persistence.Query q = getEntityManager().createQuery(cq);
         return ((Long) q.getSingleResult()).intValue();
     }
 
+    /**
+     * Método get para a instância da entidade que usar esta classe
+     *
+     * @return
+     */
+    public Class<T> getEntity() {
+        return entity;
+    }
+
+    /**
+     * Método set para a instância da entidade que usar esta classe
+     *
+     * @param entity
+     */
+    public void setEntity(Class<T> entity) {
+        this.entity = entity;
+    }
 }
