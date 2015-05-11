@@ -4,37 +4,24 @@
       xmlns:h="http://java.sun.com/jsf/html" 
       xmlns:p="http://primefaces.org/ui"> 
 
-    <h:head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <h:outputStylesheet library="css" name="login.css"/>
-        <title>Scream - Cadastre-se</title>
-    </h:head>
+    <h:form>
+        <p:messages/>
+        <h:panelGrid columns="2" cellpadding="5">
 
-    <h:body>
-        <div style="float: none; padding-top: 20px; position: relative; text-align: center;">
-           <p:graphicImage library="imagens" name="LogoScream.png" height="150" width="150"></p:graphicImage>
-        </div>
-        <p:dialog header="Cadastre-se" visible="true" closable="false" draggable="false" resizable="false" width="auto">
-            <h:form>
-                <p:growl/>
-                <h:panelGrid columns="2" cellpadding="5">
-                    
-                    <p:outputLabel for="nome" value="Nome:" /> 
-                    <p:inputText id="nome" required="true" size="35" value="#{contaController.selected.nome}"/>
-                    
-                    <p:outputLabel for="usuario" value="Usuário:" /> 
-                    <p:inputText id="usuario" required="true" size="35" value="#{contaController.selected.usuario}"/>
+            <p:outputLabel for="nome" value="Nome:" /> 
+            <p:inputText id="nome" required="true" size="35" value="#{contaController.selected.nome}" requiredMessage="preenche aí ÕOO"/>
 
-                    <p:outputLabel for="senha" value="Senha:" />
-                    <p:password id="senha" required="true" size="35" value="#{contaController.selected.senha}"/>
-                    
-                    <p:outputLabel for="email" value="E-mail:" /> 
-                    <p:inputText id="email" required="true" size="35" value="#{contaController.selected.email}"/>
+            <p:outputLabel for="usuario" value="Usuário:" /> 
+            <p:inputText id="usuario" required="true" size="35" value="#{contaController.selected.usuario}"/>
 
-                    <p:commandButton value="Salvar" style="font-size: 14px;" update="@form" actionListener="#{contaController.create()}"/>
-                    
-                </h:panelGrid>
-            </h:form>
-        </p:dialog> 
-    </h:body>
+            <p:outputLabel for="senha" value="Senha:" />
+            <p:password id="senha" required="true" size="35" value="#{contaController.selected.senha}"/>
+
+            <p:outputLabel for="email" value="E-mail:" /> 
+            <p:inputText id="email" required="true" size="35" value="#{contaController.selected.email}"/>
+
+            <p:commandButton value="Salvar" style="font-size: 14px;"/>
+
+        </h:panelGrid>
+    </h:form>
 </html>

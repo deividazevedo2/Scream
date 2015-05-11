@@ -1,12 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.ifpb.monteiro.ads.projeto2.scream.controllers;
 
-import br.ifpb.monteiro.ads.projeto2.scream.beans.facade.GenericServiceIF;
-import br.ifpb.monteiro.ads.projeto2.scream.entities.Identifiable;
+import br.ifpb.monteiro.ads.projeto2.scream.services.facade.GenericServiceIF;
 import br.ifpb.monteiro.ads.projeto2.scream.exceptions.ScreamException;
 import br.ifpb.monteiro.ads.projeto2.scream.util.jsf.JsfUtil;
 import java.util.List;
@@ -18,12 +12,12 @@ import java.util.logging.Logger;
  * @author Mauricio
  * @param <T>
  */
-public abstract class GenericController<T extends Identifiable> implements GenericControllerIF {
+public abstract class GenericController<T> implements GenericControllerIF {
 
     /**
      *
      */
-    private List<Identifiable> items = null;
+    private List<T> items = null;
     private static final Logger logger = Logger.getGlobal();
 
     public GenericController() {
@@ -34,8 +28,8 @@ public abstract class GenericController<T extends Identifiable> implements Gener
     public abstract void setSelected(T selected);
 
     protected abstract GenericServiceIF getService();
-    
-     public void create() {
+
+    public void create() {
         try {
             logger.info("Controller Create Acessado");
             this.getService().create(getSelected());
@@ -80,22 +74,22 @@ public abstract class GenericController<T extends Identifiable> implements Gener
 
     }
 
-    public List<Identifiable> getItems() {
+    public List<T> getItems() {
         if (items == null) {
             items = getService().findAll();
         }
         return items;
     }
 
-    public Identifiable getItem(Long id) {
-        return getService().find(id);
-    }
+//    public T getItem(Long id) {
+//        return getService().find(id);
+//    }
 
-    public List<Identifiable> getItemsAvailableSelectMany() {
+    public List<T> getItemsAvailableSelectMany() {
         return getService().findAll();
     }
 
-    public List<Identifiable> getItemsAvailableSelectOne() {
+    public List<T> getItemsAvailableSelectOne() {
         return getService().findAll();
     }
 }

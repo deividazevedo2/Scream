@@ -1,67 +1,62 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.ifpb.monteiro.ads.projeto2.scream.services;
 
-import br.ifpb.monteiro.ads.projeto2.scream.beans.facade.ContaServiceIF;
-import br.ifpb.monteiro.ads.projeto2.scream.dao.facade.ContaDaoIF;
-import br.ifpb.monteiro.ads.projeto2.scream.entities.Identifiable;
+import br.ifpb.monteiro.ads.projeto2.scream.dao.ContaDAO;
+import br.ifpb.monteiro.ads.projeto2.scream.entities.Conta;
+import br.ifpb.monteiro.ads.projeto2.scream.util.jpa.Transactional;
 import java.util.List;
-import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
-import javax.transaction.Transactional;
 
 /**
  *
  * @author Mauricio
  */
-@SessionScoped
-public class ContaService implements ContaServiceIF{
-    
-    @EJB
-    private ContaDaoIF contaDao;
-    
-    @Override
+public class ContaService {
+
+    private ContaDAO contaDao;
+
+    public ContaService() {
+        this.contaDao = new ContaDAO();
+    }
+
     public int count() {
         return contaDao.count();
     }
 
     @Transactional
-    @Override
-    public void create(Identifiable entity) {
-        try{
+    public void create(Conta entity) {
+        try {
             this.contaDao.create(entity);
-            
-        }catch(Exception e){
+        } catch (Exception e) {
             System.err.println("Erro no Service: " + e.getMessage());
         }
     }
 
-    @Override
-    public void edit(Identifiable entity) {
+    public void edit(Conta entity) {
         contaDao.edit(entity);
     }
 
-    @Override
-    public Identifiable find(Object id) {
-        return contaDao.find(id);
+    public Conta find(Long id) {
+        return (Conta) contaDao.find(id);
     }
 
-    @Override
-    public List<Identifiable> findAll() {
+    public List<Conta> findAll() {
         return contaDao.findAll();
     }
 
-    @Override
-    public List<Identifiable> findRange(int[] range) {
+    public List<Conta> findRange(int[] range) {
         return contaDao.findRange(range);
     }
 
-    @Override
-    public void remove(Identifiable entity) {
+    @Transactional
+    public void remove(Conta entity) {
         this.contaDao.remove(entity);
     }
-    
+
+    public ContaDAO getContaDao() {
+        return contaDao;
+    }
+
+    public void setContaDao(ContaDAO contaDao) {
+        this.contaDao = contaDao;
+    }
+
 }

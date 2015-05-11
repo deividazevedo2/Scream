@@ -1,33 +1,27 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.ifpb.monteiro.ads.projeto2.scream.dao.facade;
 
-import br.ifpb.monteiro.ads.projeto2.scream.entities.Identifiable;
 import java.io.Serializable;
 import java.util.List;
 
 /**
  *
  * @author Mauricio
+ * @param <T>
  */
-
-public interface GenericDaoIF extends Serializable {
+public interface GenericDaoIF<T> extends Serializable {
 
     int count();
-    
-    void create(Identifiable entity);
 
-    void edit(Identifiable entity);
+    void create(T entity);
 
-    Identifiable find(Object id);
+    void edit(T entity);
 
-    List<Identifiable> findAll();
+    T find(Long id);
 
-    List<Identifiable> findRange(int[] range);
+    List<T> findAll();
 
-    void remove(Identifiable entity);
+    List<T> findRange(int[] range);
+
+    public void remove(T entity);
 
 }

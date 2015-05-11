@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.ifpb.monteiro.ads.projeto2.scream.controllers.facade;
 
 import java.io.Serializable;
@@ -11,6 +6,6 @@ import java.io.Serializable;
  *
  * @author Mauricio
  */
-public interface ContaControllerIF extends Serializable{
-    
+public interface ContaControllerIF extends Serializable {
+
 }

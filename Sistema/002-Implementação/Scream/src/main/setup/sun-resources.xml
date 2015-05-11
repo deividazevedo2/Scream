@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<!--<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE resources PUBLIC "-//Sun Microsystems, Inc.//DTD Application Server 9.0 Resource Definitions //EN" "http://www.sun.com/software/appserver/dtds/sun-resources_1_3.dtd">
 <resources>
   <jdbc-resource enabled="true" jndi-name="jdbc/ScreamProvider" object-type="user" pool-name="ScreamProvider">
@@ -33,4 +33,4 @@
     <property name="User" value="postgres"/>
     <property name="Password" value="postgres"/>
   </jdbc-connection-pool>
-</resources>
+</resources>-->
