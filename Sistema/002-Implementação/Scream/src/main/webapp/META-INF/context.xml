@@ -1,2 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context antiJARLocking="true" path="/Scream"/>
+<!--<Context antiJARLocking="true" path="/Scream"/> -->
+<Context antiJARLocking="true" path="/scream">
+	<Resource auth="Container" factory="org.jboss.weld.resources.ManagerObjectFactory"
+		name="BeanManager" type="javax.enterprise.inject.spi.BeanManager" />
+	<!--<Resource name="jdbc/Scream" auth="Container" type="javax.sql.DataSource" 
+		username="postgres" password="postgres" driverClassName="org.postgresql.Driver" 
+		url="jdbc:postgresql://localhost:5432/Scream" maxActive="20" maxIdle="10" 
+		validationQuery="select 1" /> -->
+	<Resource auth="Container" driverClassName="org.postgresql.Driver"
+		maxActive="20" maxIdle="10" maxWait="-1" name="jdbc/scream" password="postgres"
+		type="javax.sql.DataSource" url="jdbc:postgresql://127.0.0.1:5432/Scream"
+		username="postgres" />
+</Context>

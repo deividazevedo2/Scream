@@ -4,6 +4,7 @@ import br.ifpb.monteiro.ads.projeto2.scream.dao.ContaDAO;
 import br.ifpb.monteiro.ads.projeto2.scream.entities.Conta;
 import br.ifpb.monteiro.ads.projeto2.scream.util.jpa.Transactional;
 import java.util.List;
+import javax.inject.Inject;
 
 /**
  *
@@ -11,10 +12,11 @@ import java.util.List;
  */
 public class ContaService {
 
+    //@Inject
     private ContaDAO contaDao;
 
     public ContaService() {
-        this.contaDao = new ContaDAO();
+//        this.contaDao = new ContaDAO();
     }
 
     public int count() {

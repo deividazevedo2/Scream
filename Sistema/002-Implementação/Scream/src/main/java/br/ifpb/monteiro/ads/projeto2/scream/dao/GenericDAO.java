@@ -51,6 +51,7 @@ public class GenericDAO<T> implements Serializable {
         try {
             entityManager.merge(entity);
         } catch (Exception e) {
+            logger.log(Level.WARNING, entity.toString());
             logger.log(Level.INFO, "Erro no DAO: {0}", e.getMessage());
         }
 

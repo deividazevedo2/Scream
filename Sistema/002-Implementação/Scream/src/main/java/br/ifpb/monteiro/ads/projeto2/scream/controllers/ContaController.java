@@ -8,21 +8,26 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 /**
  *
  * @author Mauricio
  */
-@ManagedBean
+@Named
+@RequestScoped
 public class ContaController {
 
+    @Inject
     private ContaService contaService;
 
     private Conta selected;
 
     public ContaController() {
-        this.contaService = new ContaService();
+        //this.contaService = new ContaService();
         this.selected = new Conta();
     }
 
@@ -35,6 +40,7 @@ public class ContaController {
     }
 
     public void create() {
+        System.out.println(contaService);
         contaService.create(selected);
         JsfUtil.addSuccessMessage("Conta adicionada com sucesso!");
         voltaTelaLogin();
