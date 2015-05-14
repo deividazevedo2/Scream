@@ -4,14 +4,15 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="Scream" transaction-type="RESOURCE_LOCAL">
             
-            <class>br.ifpb.monteiro.ads.projeto2.scream.entities.Conta</class>
-		<!-- <jta-data-source>jdbc/scream</jta-data-source> <exclude-unlisted-classes>false</exclude-unlisted-classes> -->
+            <!-- <class>br.ifpb.monteiro.ads.projeto2.scream.entities.Conta</class> -->
+		<!-- <jta-data-source>jdbc/scream</jta-data-source>  -->
+		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 			<properties>
 				<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
 				<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/Scream" />
 				<property name="javax.persistence.jdbc.user" value="postgres" />
 				<property name="javax.persistence.jdbc.password" value="postgres" />
-				<property name="eclipselink.ddl-generation" value="create-tables" />
+				<property name="eclipselink.ddl-generation" value="create-or-extend-tables" />
 				<property name="eclipselink.ddl-generation.output-mode"
 					value="database" />
 			</properties>

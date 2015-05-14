@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/beans_1_1.xsd"
        bean-discovery-mode="annotated">
     
-    <!--<interceptors>
-        <class>br.ifpb.monteiro.ads.projeto2.scream.util.jpa.TransactionInterceptor</class>
-    </interceptors>-->
+    <interceptors>
+        <class>br.ifpb.monteiro.scream.util.jpa.TransactionInterceptor</class>
+    </interceptors>
 </beans>

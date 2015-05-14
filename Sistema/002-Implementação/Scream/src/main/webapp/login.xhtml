@@ -11,7 +11,7 @@
 
     <h:body>
         <h:form id="formularioLogin">
-            <p:growl id="menssgensLogin"/>
+        	<p:growl id="growl" showDetail="true" sticky="true" life="5000"/>
 
             <div style="float: none; padding-top: 20px; position: relative; text-align: center;">
                 <p:graphicImage id="logo" library="imagens" name="LogoScream.png" height="150" width="150"></p:graphicImage>
@@ -20,11 +20,13 @@
             <p:dialog id="loginDialog" header="Entre com seus dados de acesso" visible="true" closable="false" 
                       draggable="false" resizable="false" width="auto" styleClass="dialogBorder"> 
                 <h:panelGrid columns="2">
-                    <p:outputLabel id="usuario" for="j_username" value="Usuario"/>
-                    <p:inputText id="j_username"  required="true" requiredMessage="O usuário deve ser informado"/>
-                    <p:outputLabel id="senha" for="j_password" value="Senha" />
-                    <p:password id="j_password" required="true" requiredMessage="A senha deve ser informada"/>
-                    <p:commandButton id="botaoEntrar" value="Entrar" style="margin-top: 20px" ajax="false" process="@this"/>
+                    <p:outputLabel id="usuario" for="username" value="Usuario"/>
+                    <p:inputText id="username"  required="true"
+                     requiredMessage="O usuário deve ser informado" value="#{contaController.usuario}"/>
+                    <p:outputLabel id="senha" for="password" value="Senha" />
+                    <p:password id="password" required="true" requiredMessage="A senha deve ser informada" value="#{contaController.senha}"/>
+                    <p:commandButton id="botaoEntrar" value="Entrar" style="margin-top: 20px" ajax="false" process="@this" 
+                    update="growl" actionListener="#{contaController.fazerLogin}"/>
                     <p:button id="novaConta" value="Nova conta"  style="margin-top: 20px; margin-left: 65px" outcome="/conta/registroConta"/> 
                     <!--onclick="PF('novaConta').show(); return false;"-->
                 </h:panelGrid>
