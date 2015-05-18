@@ -29,12 +29,12 @@
                     <p:outputPanel id="painelProdutoDialog">
                         <h:panelGrid columns="2" style="font-size: 12px">
                             <h:outputLabel value="Nome: "/>
-                            <p:inputText maxlength="30" size="30"/>
+                            <p:inputText maxlength="30" size="30" value="#{produtoController.produto.nome}"/>
                             <h:outputLabel value="Descrição: "/>
-                            <p:inputText maxlength="30" size="30"/>
+                            <p:inputText maxlength="30" size="30" value="#{produtoController.produto.descricao}"/>
                         </h:panelGrid>
                         <br/>
-                        <p:commandButton value="Salvar"/>
+                        <p:commandButton value="Salvar" actionListener="#{produtoController.create}"/>
                     </p:outputPanel>
                 </p:dialog>
             </div>

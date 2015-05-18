@@ -1,9 +1,13 @@
 package br.ifpb.monteiro.scream.controllers;
 
+import br.ifpb.monteiro.scream.entities.Produto;
+import br.ifpb.monteiro.scream.services.ProdutoService;
+import br.ifpb.monteiro.scream.util.jsf.JsfUtil;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.event.CloseEvent;
 import org.primefaces.event.DashboardReorderEvent;
@@ -21,12 +25,22 @@ import org.primefaces.model.DefaultDashboardModel;
 @RequestScoped
 public class ProdutoController {
     
+    @Inject
+    private ProdutoService service;
+    
+    private Produto produto= new Produto();
+    
     private DashboardModel model;
     
     /**
      * Creates a new instance of ProdutoController
      */
     public ProdutoController() {
+    }
+    
+    public void create(){
+        service.create(produto);
+        JsfUtil.addSuccessMessage("Produto Criado com Sucesso");
     }
     
     @PostConstruct
@@ -74,4 +88,22 @@ public class ProdutoController {
     public DashboardModel getModel() {
         return model;
     }
+
+    public ProdutoService getService() {
+        return service;
+    }
+
+    public void setService(ProdutoService service) {
+        this.service = service;
+    }
+
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public void setProduto(Produto produto) {
+        this.produto = produto;
+    }
+    
+    
 }

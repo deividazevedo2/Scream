@@ -52,9 +52,9 @@ public class ContaController {
 
 	public void create() {
 		System.out.println(contaService);
-//		contaService.create(conta);
+		contaService.create(conta);
 		JsfUtil.addSuccessMessage("Conta adicionada com sucesso!");
-		voltaTelaLogin();
+		//voltaTelaLogin();
 	}
 	public String getUsuario() {
 		return usuario;

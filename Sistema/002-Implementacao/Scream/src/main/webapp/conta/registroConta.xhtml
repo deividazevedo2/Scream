@@ -23,16 +23,16 @@
             <h:panelGrid columns="2" cellpadding="5">
 
                 <p:outputLabel for="nome" value="Nome:" /> 
-                <p:inputText id="nome" required="true" size="35" value="#{contaController.selected.nome}" requiredMessage="preenche aí ÕOO"/>
+                <p:inputText id="nome" required="true" size="35" value="#{contaController.conta.nome}" requiredMessage="preenche aí ÕOO"/>
 
                 <p:outputLabel for="usuario" value="Usuário:" /> 
-                <p:inputText id="usuario" required="true" size="35" value="#{contaController.selected.usuario}"/>
+                <p:inputText id="usuario" required="true" size="35" value="#{contaController.conta.usuario}"/>
 
                 <p:outputLabel for="senha" value="Senha:" />
-                <p:password id="senha" required="true" size="35" value="#{contaController.selected.senha}"/>
+                <p:password id="senha" required="true" size="35" value="#{contaController.conta.senha}"/>
 
                 <p:outputLabel for="email" value="E-mail:" /> 
-                <p:inputText id="email" required="true" size="35" value="#{contaController.selected.email}"/>
+                <p:inputText id="email" required="true" size="35" value="#{contaController.conta.email}"/>
 
                 <p:commandButton value="Salvar" style="font-size: 14px;" ajax="false" action="#{contaController.create}"/>
                 <p:button value="Cancelar" style="font-size: 14px;" outcome="/login"/>

@@ -1,25 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence version="2.1"
-	xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-	<persistence-unit name="Scream" transaction-type="RESOURCE_LOCAL">
-            
-            <!-- <class>br.ifpb.monteiro.ads.projeto2.scream.entities.Conta</class> -->
-		<!-- <jta-data-source>jdbc/scream</jta-data-source>  -->
-		<exclude-unlisted-classes>false</exclude-unlisted-classes>
-			<properties>
-				<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
-				<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/Scream" />
-				<property name="javax.persistence.jdbc.user" value="postgres" />
-				<property name="javax.persistence.jdbc.password" value="postgres" />
-				<property name="eclipselink.ddl-generation" value="create-or-extend-tables" />
-				<property name="eclipselink.ddl-generation.output-mode"
-					value="database" />
-			</properties>
-		</persistence-unit>
-		<!--<properties> <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/Scream" 
-			/> <property name="javax.persistence.jdbc.user" value="postgres" /> <property 
-			name="javax.persistence.jdbc.password" value="postgres" /> <property name="javax.persistence.jdbc.driver" 
-			value="org.postgresql.Driver" /> <property name="javax.persistence.schema-generation.database.action" 
-			value="create"/> </properties> -->
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="Scream" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <!-- <class>br.ifpb.monteiro.ads.projeto2.scream.entities.Conta</class> -->
+    <!-- <jta-data-source>jdbc/scream</jta-data-source>  -->
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/Scream"/>
+      <property name="javax.persistence.jdbc.user" value="postgres"/>
+      <property name="javax.persistence.jdbc.password" value="123"/>
+      <property name="eclipselink.ddl-generation" value="create-or-extend-tables"/>
+      <property name="eclipselink.ddl-generation.output-mode" value="database"/>
+    </properties>
+  </persistence-unit>
+  <!--<properties> <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/Scream" 
+    /> <property name="javax.persistence.jdbc.user" value="postgres" /> <property 
+    name="javax.persistence.jdbc.password" value="postgres" /> <property name="javax.persistence.jdbc.driver" 
+    value="org.postgresql.Driver" /> <property name="javax.persistence.schema-generation.database.action" 
+    value="create"/> </properties> -->
 </persistence>

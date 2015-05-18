@@ -37,8 +37,8 @@ public class UsuarioProjeto implements Serializable {
     @Column(nullable = false, length = 30, name = "administrador")
     private Boolean administrador;
 
-    @ManyToOne
-    private Conta id_conta;
+//    @ManyToOne
+//    private Conta id_conta;
 
     //@ManyToOne @JoinColumn(name="id_usuario_do_projeto")
     //private UsuarioProjeto usuarioProjeto;
@@ -66,11 +66,11 @@ public class UsuarioProjeto implements Serializable {
         this.administrador = administrador;
     }
 
-    public Conta getId_conta() {
-        return id_conta;
-    }
-
-    public void setId_conta(Conta id_conta) {
-        this.id_conta = id_conta;
-    }
+//    public Conta getId_conta() {
+//        return id_conta;
+//    }
+//
+//    public void setId_conta(Conta id_conta) {
+//        this.id_conta = id_conta;
+//    }
 }
