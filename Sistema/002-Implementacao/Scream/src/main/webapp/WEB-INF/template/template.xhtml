@@ -25,7 +25,7 @@
                 <span id="logged-user-top-message">Olá usuário!</span>
 
                 <h:link outcome="/login">
-                    <p:button style="float: right; margin: 15px;" value="Sair"/>
+                    <p:commandButton style="float: right; margin: 15px;" value="Sair" actionListener="#{contaController.voltaTelaLogin()}" />
                 </h:link>
             </div>
         </header>

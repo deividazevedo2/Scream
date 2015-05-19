@@ -109,10 +109,5 @@ public class SecurityService {
 //		em.close();
 //	}
 	
-	public ContaDAO getContaDao() {
-		return contaDao;
-	}
-	public void setContaDao(ContaDAO contaDao) {
-		this.contaDao = contaDao;
-	}
+
 }

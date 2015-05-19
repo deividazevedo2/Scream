@@ -4,11 +4,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.enterprise.context.spi.CreationalContext;
-import javax.enterprise.inject.spi.Bean;
-import javax.enterprise.inject.spi.BeanManager;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 import org.apache.shiro.authc.AccountException;
 import org.apache.shiro.authc.AuthenticationException;
@@ -22,14 +21,12 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
-import br.ifpb.monteiro.scream.dao.ContaDAO;
 import br.ifpb.monteiro.scream.entities.Conta;
 import br.ifpb.monteiro.scream.services.SecurityService;
 
 public class ScreamRealm extends AuthorizingRealm {
 
-	//	@Inject
-	//	private SecurityService ss;
+	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("Scream"); 
 
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(
@@ -50,30 +47,22 @@ public class ScreamRealm extends AuthorizingRealm {
 		}
 
 		//		SecurityService ss = new SecurityService();
-		BeanManager beanManager;
 		Conta conta = null;
 
-		try {
-			beanManager = (BeanManager) new InitialContext().lookup("java:comp/BeanManager");
-			Bean<ContaDAO> userDAObean = (Bean<ContaDAO>) beanManager.resolve(beanManager.getBeans(ContaDAO.class));
-			CreationalContext<ContaDAO> creationalContext = beanManager.createCreationalContext(null);
-			ContaDAO contaDao = userDAObean.create(creationalContext);
-
-			List<Conta> contas = contaDao.query("select conta from Conta conta "
-					+ "where conta.usuario = ?1");
-			if (contas !=null && !contas.isEmpty()) {
-				conta = contas.get(0);
-			}
-			//			Conta conta = userDAO.getConta(username);
-			if (conta != null) {
-				info = new ScreamSaltedAuthenticationInfo(username, conta.getSenha(), conta.getSalt());
-			}
-		} catch (NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		EntityManager em = emf.createEntityManager();
+		Query q = em.createQuery("select conta from Conta conta "
+				+ "where conta.usuario = ?1 ");
+		q.setParameter(1, username);
+		
+		@SuppressWarnings("unchecked")
+		List<Conta> contas = q.getResultList();
+		if (contas.size() == 1) {
+			conta = contas.get(0);
 		}
-
-
+		em.close();
+		if (conta != null) {
+			info = new ScreamSaltedAuthenticationInfo(conta.getUsuario(), conta.getSenha(), conta.getSalt());
+		}
 		return info;
 	}
 

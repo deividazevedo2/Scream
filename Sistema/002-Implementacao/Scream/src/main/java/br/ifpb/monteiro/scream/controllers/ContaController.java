@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -30,17 +31,22 @@ public class ContaController {
 	@Inject
 	private SecurityService ss;
 
-	private Conta conta = new Conta();
-	
-	private String usuario;
+	private Conta conta;
 
-	private String senha;
+	//	private String usuario;
+	//
+	//	private String senha;
 
-//	public ContaController() {
-//		if (this.conta == null) {
-//			this.conta = new Conta();
-//		}
-//	}
+	@PostConstruct
+	public void Init(){
+		this.conta = new Conta();
+
+	}
+	//	public ContaController() {
+	//		if (this.conta == null) {
+	//			this.conta = new Conta();
+	//		}
+	//	}
 
 	public Conta getConta() {
 		return conta;
@@ -51,26 +57,26 @@ public class ContaController {
 	}
 
 	public void create() {
-		System.out.println(contaService);
+		//		System.out.println(contaService);
 		contaService.create(conta);
 		JsfUtil.addSuccessMessage("Conta adicionada com sucesso!");
-		//voltaTelaLogin();
+		voltaTelaLogin();
 	}
-	public String getUsuario() {
-		return usuario;
-	}
-	
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
-	}
-	
-	public String getSenha() {
-		return senha;
-	}
-	
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
+	//	public String getUsuario() {
+	//		return usuario;
+	//	}
+	//	
+	//	public void setUsuario(String usuario) {
+	//		this.usuario = usuario;
+	//	}
+	//	
+	//	public String getSenha() {
+	//		return senha;
+	//	}
+	//	
+	//	public void setSenha(String senha) {
+	//		this.senha = senha;
+	//	}
 
 	public ContaService getContaService() {
 		return contaService;
@@ -81,27 +87,27 @@ public class ContaController {
 	}
 
 	public String fazerLogin() {
-
-		Conta c = ss.login(usuario, senha, true);
-		if (c != null) {
-			return "success";
+		Conta conta  = null;
+		try {
+			conta = ss.login(this.conta.getUsuario(), this.conta.getSenha(), true);
+		} catch (Exception e) {
+			FacesContext
+			.getCurrentInstance()
+			.addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR,
+							"Falha no Login:",
+							"O login e senha informados não possuem credencias de acesso"));
 		}
-
-		FacesContext
-				.getCurrentInstance()
-				.addMessage(
-						null,
-						new FacesMessage(FacesMessage.SEVERITY_ERROR,
-								"Falha no Login:",
-								"O login e senha informados não possuem credencias de acesso"));
-		return null;
+		return (conta != null)? "success" : null;
 
 	}
 
 	public void voltaTelaLogin() {
 		try {
+                        ss.logout();
 			FacesContext.getCurrentInstance().getExternalContext()
-					.redirect("/Scream/login.xhtml");
+			.redirect("/scream/login.xhtml");
 		} catch (IOException ex) {
 			JsfUtil.addErrorMessage(ex, "Pagina não encontrada");
 			Logger.getLogger(ContaController.class.getName()).log(Level.SEVERE,

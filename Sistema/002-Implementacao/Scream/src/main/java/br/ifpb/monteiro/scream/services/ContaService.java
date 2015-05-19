@@ -17,7 +17,8 @@ public class ContaService {
     @Inject
     private ContaDAO contaDao;
     
-    private SecurityService securityService = new SecurityService();
+    @Inject
+    private SecurityService securityService;
 
     public ContaService() {
 //        this.contaDao = new ContaDAO();
@@ -32,8 +33,9 @@ public class ContaService {
     public void create(Conta entity) {
         try {
             this.contaDao.create(entity);
+            this.securityService.registrar(entity, entity.getSenha());
         } catch (Exception e) {
-            System.err.println("Erro no Service: " + e.getMessage());
+            System.err.println("Erro no ContaService: " + e.getMessage());
         }
     }
 
