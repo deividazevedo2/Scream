@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -39,11 +40,9 @@ public class Produto implements Serializable{
     @Temporal(TemporalType.DATE)
     private Date dataTermino;
     
-//    @ManyToOne
-//    private List<ItemProductBacklog> listItensProduct;
-//    
-//    @ManyToOne
-//    private List<Projeto> listProjeto;
+    @ManyToOne
+    @JoinColumn(name="id_projeto", referencedColumnName = "id_projeto")
+            Projeto projeto;
     
     public Long getId() {
         return id;
@@ -85,22 +84,14 @@ public class Produto implements Serializable{
         this.nome = nome;
     }
     
-//    public List<ItemProductBacklog> getListItensProduct() {
-//        return listItensProduct;
-//    }
-//    
-//    public void setListItensProduct(List<ItemProductBacklog> listItensProduct) {
-//        this.listItensProduct = listItensProduct;
-//    }
-//    
-//    public List<Projeto> getListProjeto() {
-//        return listProjeto;
-//    }
-//    
-//    public void setListProjeto(List<Projeto> listProjeto) {
-//        this.listProjeto = listProjeto;
-//    }
-
+    public Projeto getProjeto() {
+        return projeto;
+    }
+    
+    public void setProjeto(Projeto projeto) {
+        this.projeto = projeto;
+    }
+    
     @Override
     public String toString() {
         return "Produto{" + "nome=" + nome + ", descricao=" + descricao +
