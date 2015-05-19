@@ -60,7 +60,7 @@ public class ContaController {
 		//		System.out.println(contaService);
 		contaService.create(conta);
 		JsfUtil.addSuccessMessage("Conta adicionada com sucesso!");
-		voltaTelaLogin();
+		//voltaTelaLogin();
 	}
 	//	public String getUsuario() {
 	//		return usuario;
@@ -69,7 +69,7 @@ public class ContaController {
 	//	public void setUsuario(String usuario) {
 	//		this.usuario = usuario;
 	//	}
-	//	
+	//
 	//	public String getSenha() {
 	//		return senha;
 	//	}
@@ -107,7 +107,7 @@ public class ContaController {
 		try {
                         ss.logout();
 			FacesContext.getCurrentInstance().getExternalContext()
-			.redirect("/scream/login.xhtml");
+			.redirect("/Scream/login.xhtml");
 		} catch (IOException ex) {
 			JsfUtil.addErrorMessage(ex, "Pagina não encontrada");
 			Logger.getLogger(ContaController.class.getName()).log(Level.SEVERE,

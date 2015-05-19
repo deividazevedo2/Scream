@@ -2,7 +2,11 @@ package br.ifpb.monteiro.scream.dao;
 
 import br.ifpb.monteiro.scream.entities.Conta;
 
-import java.io.Serializable;
+import java.util.List;
+import java.util.logging.Level;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -10,14 +14,10 @@ import java.io.Serializable;
  */
 public class ContaDAO extends GenericDAO<Conta>{
 
-    /**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
 	public ContaDAO() {
-        super(Conta.class);
-    }
-
-
+		super(Conta.class);
+	}
 }

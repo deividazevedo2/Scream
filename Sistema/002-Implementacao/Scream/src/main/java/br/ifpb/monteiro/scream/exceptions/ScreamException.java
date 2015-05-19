@@ -6,7 +6,10 @@ package br.ifpb.monteiro.scream.exceptions;
  */
 public class ScreamException extends Exception {
     
-    private String msg;
+
+	private static final long serialVersionUID = 1L;
+	
+	private String msg;
 
     public ScreamException() {
     }
@@ -15,5 +18,14 @@ public class ScreamException extends Exception {
         super(message);
         this.msg = message;
     }
+
+	public String getMsg() {
+		return msg;
+	}
+
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
+    
     
 }

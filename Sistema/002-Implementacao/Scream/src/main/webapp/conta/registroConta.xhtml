@@ -34,7 +34,7 @@
                 <p:outputLabel for="email" value="E-mail:" /> 
                 <p:inputText id="email" required="true" size="35" value="#{contaController.conta.email}"/>
 
-                <p:commandButton value="Salvar" style="font-size: 14px;" ajax="false" action="#{contaController.create}"/>
+                <p:commandButton id="salvar" value="Salvar" style="font-size: 14px;" ajax="false" action="#{contaController.create}"/>
                 <p:button value="Cancelar" style="font-size: 14px;" outcome="/login"/>
 
             </h:panelGrid>

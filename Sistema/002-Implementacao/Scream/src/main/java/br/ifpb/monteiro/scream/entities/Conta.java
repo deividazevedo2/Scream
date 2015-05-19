@@ -28,16 +28,16 @@ public class Conta implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 30, name = "nome")
+    @Column(nullable = false, length = 100, name = "nome" )
     private String nome;
 
-    @Column(nullable = false, length = 255, name = "senha")
+    @Column(nullable = false, length = 255, name = "senha" )
     private String senha;
 
-    @Column(nullable = false, length = 10, name = "usuario")
+    @Column(nullable = false, length = 30, name = "usuario" ,unique=true)
     private String usuario;
 
-    @Column(nullable = false, length = 40, name = "email")
+    @Column(nullable = false, length = 40, name = "email" ,unique=true)
     private String email;
     
     private String salt;

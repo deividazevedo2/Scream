@@ -1,6 +1,7 @@
 package br.ifpb.monteiro.scream.dao;
 
 import java.io.Serializable;
+import java.text.BreakIterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,7 +28,7 @@ public class GenericDAO<T> implements Serializable {
     @Inject
     private EntityManager entityManager;
 
-    private Class<T> entity;
+    protected Class<T> entity;
 
     /**
      * Construtor da classe que captura a entidade que chamar esta classe.
@@ -54,12 +55,12 @@ public class GenericDAO<T> implements Serializable {
      * @param entity
      */
     public void update(T entity) {
-        logger.info("DAO Create Acessado");
+        getLogger().info("DAO Create Acessado");
         try {
             entityManager.merge(entity);
         } catch (Exception e) {
-            logger.log(Level.WARNING, entity.toString());
-            logger.log(Level.INFO, "Erro no DAO: {0}", e.getMessage());
+            getLogger().log(Level.WARNING, entity.toString());
+            getLogger().log(Level.INFO, "Erro no DAO: {0}", e.getMessage());
         }
 
     }
@@ -71,12 +72,14 @@ public class GenericDAO<T> implements Serializable {
      * @param entity
      */
     public void create(T entity) {
-        logger.info("DAO Create Acessado");
-        try {
-            entityManager.persist(entity);
-        } catch (Exception e) {
-            logger.log(Level.WARNING, entity.toString());
-            logger.log(Level.INFO, "Erro no DAO: {0}", e.getMessage());
+        getLogger().info("DAO Create Acessado");
+        
+        try{
+        	entityManager.persist(entity);        	
+        }catch(Exception e){
+        	getLogger().log(Level.WARNING, entity.toString());
+	        getLogger().log(Level.INFO, "Erro no DAO: {1}", e.getMessage());
+
         }
 
     }
@@ -168,4 +171,14 @@ public class GenericDAO<T> implements Serializable {
     	result = q.getResultList();
     	return result;
     }
+
+	public static Logger getLogger() {
+		return logger;
+	}
+	
+	
+
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
 }
