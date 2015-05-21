@@ -16,13 +16,13 @@
  
         <header>
             <div style="float: left;">
-                <h:link outcome="/home">
+                <h:link outcome="/app.xhtml">
                     <h:graphicImage library="imagens" name="LogoScream1.png" styleClass="logo"/>
                 </h:link>
             </div>
 
             <div style="float: right;" >
-                <span id="logged-user-top-message">Olá usuário!</span>
+                <span id="logged-user-top-message">Olá #{contaController.usuarioLogado().nome}!</span>
 
                 <h:link outcome="/login">
                     <p:commandButton style="float: right; margin: 15px;" value="Sair" actionListener="#{contaController.voltaTelaLogin()}" />

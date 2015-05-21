@@ -14,7 +14,7 @@ public class AceitacaoFazerLoginTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		driver = new FirefoxDriver();
-		driver.get("localhost:8080/Scream/");
+		driver.get("localhost:8080/scream/");
 	}
 	@Test
 	public void testFazerLogin() {

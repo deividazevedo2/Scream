@@ -100,6 +100,12 @@
 		  <version>1.2.3</version>
 		</dependency>
 		
+        <!-- Mockito implementação -->   
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>1.9.0</version>
+        </dependency>
         
         <!--<dependency>
             <groupId>org.jboss.weld.servlet</groupId>
@@ -114,21 +120,21 @@
             <scope>compile</scope>
         </dependency>-->
         <dependency>
-	<groupId>org.jboss.weld</groupId>
-	<artifactId>weld-core</artifactId>
-	<version>2.1.2.Final</version>
-</dependency>
-	<dependency>
-		<groupId>org.jboss.weld.servlet</groupId>
-		<artifactId>weld-servlet</artifactId>
-		<version>2.1.2.Final</version>
-	</dependency>
+            <groupId>org.jboss.weld</groupId>
+            <artifactId>weld-core</artifactId>
+            <version>2.1.2.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.weld.servlet</groupId>
+            <artifactId>weld-servlet</artifactId>
+            <version>2.1.2.Final</version>
+        </dependency>
         
         <dependency>
-	<groupId>javax.enterprise</groupId>
-	<artifactId>cdi-api</artifactId>
-	<version>1.2</version>
-</dependency>
+            <groupId>javax.enterprise</groupId>
+            <artifactId>cdi-api</artifactId>
+            <version>1.2</version>
+        </dependency>
     </dependencies>
     
     <repositories>
