@@ -14,10 +14,10 @@ public class AceitacaoCriarContaTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		driver = new FirefoxDriver();
-		driver.get("localhost:8080/scream/");
+		driver.get("localhost:8080/Scream/");
 	}
 
-//	@Test
+	@Test
 	public void testCriarConta() {
 		driver.findElement(By.id("formularioLogin:novaConta")).click();
 		/**
