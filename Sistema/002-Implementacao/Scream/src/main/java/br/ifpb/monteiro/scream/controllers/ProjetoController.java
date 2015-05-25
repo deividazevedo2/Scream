@@ -9,12 +9,16 @@ import br.ifpb.monteiro.scream.entities.Projeto;
 import br.ifpb.monteiro.scream.services.ProjetoService;
 import br.ifpb.monteiro.scream.util.jsf.JsfUtil;
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 /**
  *
  * @author Mauricio
  */
+@Named
+@RequestScoped
 public class ProjetoController {
     
     @Inject

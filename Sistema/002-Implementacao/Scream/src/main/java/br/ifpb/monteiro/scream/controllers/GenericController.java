@@ -1,5 +1,6 @@
 package br.ifpb.monteiro.scream.controllers;
 
+import br.ifpb.monteiro.scream.controllers.facade.GenericControllerIF;
 import br.ifpb.monteiro.scream.exceptions.ScreamException;
 import br.ifpb.monteiro.scream.services.facade.GenericServiceIF;
 import br.ifpb.monteiro.scream.util.jsf.JsfUtil;

@@ -1,4 +1,4 @@
-package br.ifpb.monteiro.scream.controllers;
+package br.ifpb.monteiro.scream.controllers.facade;
 
 import java.io.Serializable;
 
