@@ -11,19 +11,19 @@
 
     <h:form>
 
-        <p:growl id="mensagens"/>
+        <p:growl id="mensagens" autoUpdate="true" showDetail="true"/>
 
         <div style="float: none; padding-top: 20px; position: relative; text-align: center;">
             <p:graphicImage id="logo" library="imagens" name="LogoScream.png" height="150" width="150"/>
         </div>
 
         <p:dialog id="loginDialog" header="Entre com seus dados de acesso" visible="true" closable="false" 
-                  draggable="false" resizable="false" width="auto" styleClass="dialogBorder"> 
+                  draggable="false" resizable="false" width="auto" styleClass="dialogBorder" > 
 
             <h:panelGrid columns="2" cellpadding="5">
 
-                <p:outputLabel for="nome" value="Nome:" /> 
-                <p:inputText id="nome" required="true" size="35" value="#{contaController.conta.nome}" />
+                <p:outputLabel for="nome" value="Nome:"/> 
+                <p:inputText id="nome" required="true" size="35" value="#{contaController.conta.nome}"/>
 
                 <p:outputLabel for="usuario" value="Usuário:" /> 
                 <p:inputText id="usuario" required="true" size="35" value="#{contaController.conta.usuario}"/>
@@ -32,10 +32,10 @@
                 <p:password id="senha" required="true" size="35" value="#{contaController.conta.senha}"/>
 
                 <p:outputLabel for="email" value="E-mail:" /> 
-                <p:inputText id="email" required="true" size="35" value="#{contaController.conta.email}"/>
+                <p:inputText id="email" required="true" size="35" value="#{contaController.conta.email}" />
 
-                <p:commandButton id="salvar" value="Salvar" style="font-size: 14px;" ajax="false" action="#{contaController.create}"/>
-                <p:button value="Cancelar" style="font-size: 14px;" outcome="/login"/>
+                <p:commandButton id="salvar" value="Salvar" style="font-size: 14px;" ajax="false"  action="#{contaController.create}"/>
+                <p:button value="Cancelar" style="font-size: 14px;" outcome="/login" />
 
             </h:panelGrid>
 

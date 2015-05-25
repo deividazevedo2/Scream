@@ -59,7 +59,8 @@ public class ContaController {
     public void create() {
         //		System.out.println(contaService);
         contaService.create(conta);
-        JsfUtil.addSuccessMessage("Conta adicionada com sucesso!");
+        if (contaService.validado(conta))
+            JsfUtil.addSuccessMessage("Conta adicionada com sucesso!");
         //voltaTelaLogin();
     }
     //	public String getUsuario() {
@@ -95,7 +96,7 @@ public class ContaController {
                     .getCurrentInstance()
                     .addMessage(
                             null,
-                            new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                            new FacesMessage(FacesMessage.SEVERITY_INFO,
                                     "Falha no Login:",
                                     "O login e senha informados não possuem credencias de acesso"));
         }

@@ -16,7 +16,7 @@ public class AceitacaoFazerLoginTest {
 		driver = new FirefoxDriver();
 		driver.get("localhost:8080/scream/");
 	}
-	@Test
+//	@Test
 	public void testFazerLogin() {
 		/**
 		 * Tenta entrar sem preencher campos

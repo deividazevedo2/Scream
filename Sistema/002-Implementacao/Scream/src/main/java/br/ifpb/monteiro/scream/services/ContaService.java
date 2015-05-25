@@ -62,7 +62,20 @@ public class ContaService {
     
     @Transactional
     public void create(Conta entity) {
-        if(validarEmail(entity) && validarUsuario(entity)){
+        if(!validado(entity)){
+            if (!validarEmail(entity)) {
+                FacesContext.getCurrentInstance().addMessage(null,
+                        new FacesMessage(FacesMessage.SEVERITY_WARN,
+                                "Falha no Registro:",
+                                "Ja existe uma conta com esse Email"));
+            }if (!validarUsuario(entity)) {
+                FacesContext.getCurrentInstance().addMessage(null,
+                        new FacesMessage(FacesMessage.SEVERITY_WARN,
+                                "Falha no Registro:",
+                                "Ja existe uma conta com esse Username"));
+            }
+            
+        }else{
 //			try {
             this.contaDao.create(entity);
             this.securityService.registrar(entity, entity.getSenha());
@@ -70,19 +83,6 @@ public class ContaService {
 //			} catch (Exception e) {
 //				System.err.println("Erro no ContaService: " + e.getMessage());
 //			}
-        }else{
-            if (!validarEmail(entity)) {
-                FacesContext.getCurrentInstance().addMessage(null,
-                        new FacesMessage(FacesMessage.SEVERITY_WARN,
-                                "Falha no Registro:",
-                                "Já existe uma conta com esse Email"));
-            }if (!validarUsuario(entity)) {
-                FacesContext.getCurrentInstance().addMessage(null,
-                        new FacesMessage(FacesMessage.SEVERITY_WARN,
-                                "Falha no Registro:",
-                                "Já existe uma conta com esse Username"));
-            }
-            
         }
         
     }
@@ -95,6 +95,10 @@ public class ContaService {
             Logger.getLogger(ContaController.class.getName()).log(Level.SEVERE,
                     null, ex);
         }
+    }
+    
+    public boolean validado(Conta entity){
+        return validarEmail(entity) && validarUsuario(entity);
     }
     
     public Conta find(Long id) {
