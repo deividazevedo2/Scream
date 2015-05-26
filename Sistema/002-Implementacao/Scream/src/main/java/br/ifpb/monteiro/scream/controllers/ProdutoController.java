@@ -43,6 +43,10 @@ public class ProdutoController {
         JsfUtil.addSuccessMessage("Produto Criado com Sucesso");
     }
     
+    public void update(){
+    	service.create(produto);
+    }
+    
     @PostConstruct
     public void init(){
         model = new DefaultDashboardModel();

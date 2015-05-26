@@ -20,12 +20,23 @@ public class ProdutoService {
     }
     
     @Transactional
-    public void create(Produto entity) {
+    public boolean create(Produto entity) {
         try {
             this.produtoDAO.create(entity);
+            return true;
         } catch (Exception e) {
             System.err.println("Erro no Service: " + e.getMessage());
+            return false;
         }
+    }
+    
+    public boolean update(Produto entity){
+    	try{
+    		produtoDAO.update(entity);
+    		return true;
+    	}catch(Exception e){
+    		return false;
+    	}
     }
     
     public Produto find(Long id) {

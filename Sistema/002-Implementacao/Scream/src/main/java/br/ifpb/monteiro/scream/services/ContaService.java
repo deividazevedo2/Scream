@@ -61,7 +61,7 @@ public class ContaService {
     }
     
     @Transactional
-    public void create(Conta entity) {
+    public boolean create(Conta entity) {
         if(!validado(entity)){
             if (!validarEmail(entity)) {
                 FacesContext.getCurrentInstance().addMessage(null,
@@ -74,17 +74,14 @@ public class ContaService {
                                 "Falha no Registro:",
                                 "Ja existe uma conta com esse Username"));
             }
-            
+            return false;
         }else{
-//			try {
+
             this.contaDao.create(entity);
             this.securityService.registrar(entity, entity.getSenha());
             voltaTelaLogin();
-//			} catch (Exception e) {
-//				System.err.println("Erro no ContaService: " + e.getMessage());
-//			}
+            return true;
         }
-        
     }
     public void voltaTelaLogin() {
         try {
