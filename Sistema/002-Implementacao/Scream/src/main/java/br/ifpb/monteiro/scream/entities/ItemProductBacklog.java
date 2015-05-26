@@ -2,11 +2,17 @@ package br.ifpb.monteiro.scream.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -51,9 +57,13 @@ public class ItemProductBacklog  implements Serializable{
     @Column(nullable = false, length = 100, name = "valor_ganho")
     private Double valorGanho;
     
-//    @ManyToOne
-//    @JoinColumn(name="id_item_productbacklog", referencedColumnName = "id_item_productbacklog")
-//    ItemProductBacklog itemProductBacklog;
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="produto_id")
+    private Produto produto;
+    
+    //Um item de PB possui vários critérios de aceitação
+    @OneToMany(mappedBy="itemProductBacklog", cascade=CascadeType.ALL)
+    private List<CriterioAceitacao> listCriterioAceitacao;
 
     public Long getId() {
         return id;
@@ -125,6 +135,24 @@ public class ItemProductBacklog  implements Serializable{
 
     public void setValorGanho(Double valorGanho) {
         this.valorGanho = valorGanho;
-    }  
+    } 
+    
+    public Produto getProduto() {
+		return produto;
+	}
+    public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
+//
+//	public List<CriterioAceitacao> getListCriterioAceitacao() {
+//		return listCriterioAceitacao;
+//	}
+//
+//	public void setListCriterioAceitacao(
+//			List<CriterioAceitacao> listCriterioAceitacao) {
+//		this.listCriterioAceitacao = listCriterioAceitacao;
+//	}
+    
+    
     
 }
