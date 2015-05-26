@@ -1,6 +1,8 @@
 package br.ifpb.monteiro.scream.entities;
 
 import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +17,7 @@ import javax.persistence.Table;
  * @author Mauricio
  */
 @Entity
-@Table(name = "criterioAceitacao")
+@Table(name = "criterio_aceitacao")
 public class CriterioAceitacao implements Serializable{
     
     private static final long serialVersionUID = 1L;
@@ -36,6 +38,10 @@ public class CriterioAceitacao implements Serializable{
 //  
 //    @OneToMany(mappedBy = "unimplemented_yet")
 //    private List<Unimplemented_yet> unimplemented_yet;
+    
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="item_product_backlog")
+    private ItemProductBacklog itemProductBacklog;
 
     public Long getId() {
         return id;

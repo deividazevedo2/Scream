@@ -3,12 +3,16 @@ package br.ifpb.monteiro.scream.entities;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -39,11 +43,13 @@ public class Produto implements Serializable{
     @Temporal(TemporalType.DATE)
     private Date dataTermino;
     
-//    @ManyToOne
-//    private List<ItemProductBacklog> listItensProduct;
-//    
-//    @ManyToOne
-//    private List<Projeto> listProjeto;
+    //Um produto possui vários itens de PB
+    @OneToMany(mappedBy="produto", cascade=CascadeType.ALL)
+    private List<ItemProductBacklog> listItensProduct;
+    
+    //Um produto possui vários itens de definição de pronto
+    @OneToOne(mappedBy="produto", cascade=CascadeType.ALL)
+    private DefinicaoDePronto definicaoDePronto;
     
     public Long getId() {
         return id;
@@ -85,13 +91,13 @@ public class Produto implements Serializable{
         this.nome = nome;
     }
     
-//    public List<ItemProductBacklog> getListItensProduct() {
-//        return listItensProduct;
-//    }
-//    
-//    public void setListItensProduct(List<ItemProductBacklog> listItensProduct) {
-//        this.listItensProduct = listItensProduct;
-//    }
+    public List<ItemProductBacklog> getListItensProduct() {
+        return listItensProduct;
+    }
+    
+    public void setListItensProduct(List<ItemProductBacklog> listItensProduct) {
+        this.listItensProduct = listItensProduct;
+    }
 //    
 //    public List<Projeto> getListProjeto() {
 //        return listProjeto;
