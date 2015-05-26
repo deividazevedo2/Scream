@@ -31,6 +31,8 @@ public class ContaController {
     @Inject
     private SecurityService ss;
     
+    private Conta usuarioLogado;
+    
     private Conta conta;
     
     //	private String usuario;
@@ -59,8 +61,7 @@ public class ContaController {
     public void create() {
         //		System.out.println(contaService);
         contaService.create(conta);
-        if (contaService.validado(conta))
-            JsfUtil.addSuccessMessage("Conta adicionada com sucesso!");
+        JsfUtil.addSuccessMessage("Conta adicionada com sucesso!");
         //voltaTelaLogin();
     }
     //	public String getUsuario() {
@@ -96,7 +97,7 @@ public class ContaController {
                     .getCurrentInstance()
                     .addMessage(
                             null,
-                            new FacesMessage(FacesMessage.SEVERITY_INFO,
+                            new FacesMessage(FacesMessage.SEVERITY_ERROR,
                                     "Falha no Login:",
                                     "O login e senha informados não possuem credencias de acesso"));
         }
@@ -108,7 +109,7 @@ public class ContaController {
         try {
             ss.logout();
             FacesContext.getCurrentInstance().getExternalContext()
-                    .redirect("/Scream/login.xhtml");
+                    .redirect("/scream/login.xhtml");
         } catch (IOException ex) {
             JsfUtil.addErrorMessage(ex, "Pagina não encontrada");
             Logger.getLogger(ContaController.class.getName()).log(Level.SEVERE,
@@ -116,7 +117,7 @@ public class ContaController {
         }
     }
     public Conta  usuarioLogado(){
-        return ss.getCurrentUser();
+        return usuarioLogado=ss.getCurrentUser();
     }
     public SecurityService getSs() {
         return ss;
@@ -126,6 +127,8 @@ public class ContaController {
         this.ss = ss;
     }
     
-    
+    public void edicao(){
+        setConta(usuarioLogado());
+    }
     
 }
