@@ -1,23 +1,18 @@
 package br.ifpb.monteiro.scream.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import br.ifpb.monteiro.scream.entities.Produto;
-import br.ifpb.monteiro.scream.services.ProdutoService;
-import br.ifpb.monteiro.scream.util.jsf.JsfUtil;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.Application;
 import javax.faces.application.FacesMessage;
-import javax.faces.component.UIComponentBase;
 import javax.faces.component.html.HtmlOutputText;
 import javax.faces.context.FacesContext;
-import javax.faces.view.facelets.Facelet;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ActionEvent;
+import javax.faces.event.ActionListener;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.swing.text.html.CSS;
 
 import org.primefaces.component.commandbutton.CommandButton;
 import org.primefaces.component.dashboard.Dashboard;
@@ -31,9 +26,12 @@ import org.primefaces.model.DashboardColumn;
 import org.primefaces.model.DashboardModel;
 import org.primefaces.model.DefaultDashboardColumn;
 import org.primefaces.model.DefaultDashboardModel;
-import org.w3c.dom.html.HTMLHeadingElement;
 
-import com.gargoylesoftware.htmlunit.html.HtmlHeading1;
+import com.sun.faces.application.ActionListenerImpl;
+
+import br.ifpb.monteiro.scream.entities.Produto;
+import br.ifpb.monteiro.scream.services.ProdutoService;
+import br.ifpb.monteiro.scream.util.jsf.JsfUtil;
 
 /**
  *
@@ -41,7 +39,7 @@ import com.gargoylesoftware.htmlunit.html.HtmlHeading1;
  */
 @Named(value = "produtoController")
 @RequestScoped
-public class ProdutoController {
+public class ProdutoController{
     
     @Inject
     private ProdutoService service;
@@ -54,8 +52,10 @@ public class ProdutoController {
     
     private Dashboard dashboard;
     
-    private List<Produto> lisProduto = new ArrayList<Produto>();
+    private CommandButton buttonEditar;
     
+    private CommandButton buttonDelete;
+        
     /**
      * Creates a new instance of ProdutoController
      */
@@ -67,12 +67,22 @@ public class ProdutoController {
         JsfUtil.addSuccessMessage("Produto Criado com Sucesso");
     }
     
+    public void delete(){
+    	service.remove(produto);
+    	JsfUtil.addSuccessMessage("Produto Apagado com Sucesso");
+    }
+    
+    public void editar(){
+    	service.create(produto);
+    	JsfUtil.addSuccessMessage("Produto Editado com Sucesso");
+    }
+    
     @PostConstruct
     public void init(){
                 
         FacesContext fc = FacesContext.getCurrentInstance();
 		Application application = fc.getApplication();
-
+		ActionListener listener = new ActionScream();
 		dashboard = (Dashboard) application.createComponent(fc, "org.primefaces.component.Dashboard", "org.primefaces.component.DashboardRenderer");
 		dashboard.setId("dashboard");
 
@@ -101,11 +111,14 @@ public class ProdutoController {
 			Toolbar toolbar = new Toolbar();
 			toolbar.setId("toolbarProduto"+i);
 			
+			buttonEditar= new CommandButton();
+			buttonDelete= new CommandButton();
 			
-			CommandButton buttonEditar= new CommandButton();
 			buttonEditar.setValue("Editar");
-			CommandButton buttonDelete= new CommandButton();
+			//buttonEditar.addActionListener(listener);
 			buttonDelete.setValue("Apagar");
+			//buttonDelete.addActionListener(listener);
+
 			
 			
 			
@@ -124,7 +137,6 @@ public class ProdutoController {
 			panel.getChildren().add(text);
 			panel.getChildren().add(toolbar);
 
-			
 		}
         
         
@@ -194,6 +206,21 @@ public class ProdutoController {
 	public List<Produto> getLisProduto() {
 		return service.findAll();
 	}
+	
+	private class ActionScream implements ActionListener{
 
+		@Override
+		public void processAction(ActionEvent event)
+				throws AbortProcessingException {
+			
+			/*//System.out.println(produto);
+			if(event.getComponent().equals(buttonDelete)){
+
+				service.remove(produto);
+			}*/
+		}
+		
+	}
+	
      
 }

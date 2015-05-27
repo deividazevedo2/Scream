@@ -39,7 +39,7 @@
 						</h:panelGrid>
 						<br />
 						<p:commandButton value="Salvar"
-							actionListener="#{produtoController.create}" update="fieldSetFormTitle" />
+							actionListener="#{produtoController.create}" update="@form" />
 					</p:outputPanel>
 				</p:dialog>
 			</div>
@@ -63,6 +63,19 @@
                             </p:panel> -->
 
 						</p:dashboard>
+						<p:toolbar>
+							<p:toolbarGroup>
+								<p:button style="font-size: 13px;" value="Editar"
+									id="saveButton" update="@form" />
+
+							</p:toolbarGroup>
+
+							<p:toolbarGroup align="right">
+								<p:commandButton value="Apagar" id="delete"
+									icon="ui-icon ui-icon-pencil"
+									actionListener="#{produtoController.delete}" />
+							</p:toolbarGroup>
+						</p:toolbar>
 
 					</p:fieldset>
 				</div>
