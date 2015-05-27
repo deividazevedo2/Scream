@@ -43,11 +43,8 @@ public class Projeto implements Serializable{
     @Column(nullable = false, length = 10, name = "duracao_sprint")
     private int sprintDuration;
     
-    @OneToMany(mappedBy = "usuarioProjeto")
+    @OneToMany(mappedBy = "projeto")
     private List<UsuarioProjeto> listUsuarioProjeto;
-    
-    @OneToMany(mappedBy = "criterioAceitacao")
-    private List<CriterioAceitacao> criterios;
     
     public Long getId() {
         return id;

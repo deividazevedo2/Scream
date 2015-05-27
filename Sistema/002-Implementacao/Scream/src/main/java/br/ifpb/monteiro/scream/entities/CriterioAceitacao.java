@@ -32,9 +32,6 @@ public class CriterioAceitacao implements Serializable{
     @Column(nullable = false, length = 255, name = "estado_criterio")
     private Boolean estadoDocriterio;
 
-//    @ManyToOne
-//    @JoinColumn(name="id_criterio_aceitacao", referencedColumnName = "id_criterio_aceitacao")
-//    private CriterioAceitacao criterioAceitacao;
 //  
 //    @OneToMany(mappedBy = "unimplemented_yet")
 //    private List<Unimplemented_yet> unimplemented_yet;

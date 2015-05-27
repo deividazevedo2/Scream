@@ -109,7 +109,7 @@ public class ContaController {
         try {
             ss.logout();
             FacesContext.getCurrentInstance().getExternalContext()
-                    .redirect("/scream/login.xhtml");
+                    .redirect("/Scream/login.xhtml");
         } catch (IOException ex) {
             JsfUtil.addErrorMessage(ex, "Pagina não encontrada");
             Logger.getLogger(ContaController.class.getName()).log(Level.SEVERE,
