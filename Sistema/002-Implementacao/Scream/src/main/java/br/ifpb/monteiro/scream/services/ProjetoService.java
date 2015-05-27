@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package br.ifpb.monteiro.scream.services;
 
 import br.ifpb.monteiro.scream.dao.ProjetoDAO;
@@ -19,8 +19,8 @@ public class ProjetoService {
     
     @Inject
     private ProjetoDAO projetoDao;
-
-        @Transactional
+    
+    @Transactional
     public void create(Projeto entity) {
         try {
             this.projetoDao.create(entity);
@@ -46,10 +46,15 @@ public class ProjetoService {
         this.projetoDao.delete(entity);
     }
     
+    @Transactional
+    public void update(Projeto entity){
+        this.projetoDao.update(entity); 
+    }    
+    
     public ProjetoDAO getProjetoDao() {
         return projetoDao;
     }
-
+    
     public void setProjetoDao(ProjetoDAO projetoDao) {
         this.projetoDao = projetoDao;
     }

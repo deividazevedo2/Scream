@@ -38,6 +38,11 @@ public class ProjetoController {
         
     }
     
+    public void update(){
+        projetoService.update(projeto);
+         JsfUtil.addSuccessMessage("Atualização do Projeto feita com sucesso!");
+    }
+    
     public ProjetoService getProjetoService() {
         return projetoService;
     }
