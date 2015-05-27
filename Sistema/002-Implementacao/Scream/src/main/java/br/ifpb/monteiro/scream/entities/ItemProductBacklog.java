@@ -31,13 +31,13 @@ public class ItemProductBacklog  implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(nullable = true, length = 300, name = "descricao")
+    @Column(nullable = false, length = 300, name = "descricao")
     private String descricao;
     
     @Column(nullable = true, length = 30, name = "aceitoPO")
     private boolean aceitoPO;
     
-    @Column(nullable = false, length = 100, name = "data_inicio")
+    @Column(nullable = true, length = 100, name = "data_inicio")
     @Temporal(TemporalType.DATE)
     private Date dataInicio;
     
@@ -48,13 +48,13 @@ public class ItemProductBacklog  implements Serializable{
     @Column(nullable = true, length = 10, name = "peso")
     private int peso;
     
-    @Column(nullable = false, length = 100, name = "prioridade")
+    @Column(nullable = true, length = 100, name = "prioridade")
     private int prioridade;
     
-    @Column(nullable = false, length = 100, name = "complexidade")
+    @Column(nullable = true, length = 100, name = "complexidade")
     private int complexidade;
     
-    @Column(nullable = false, length = 100, name = "valor_ganho")
+    @Column(nullable = true, length = 100, name = "valor_ganho")
     private Double valorGanho;
     
     @ManyToOne(cascade=CascadeType.ALL)

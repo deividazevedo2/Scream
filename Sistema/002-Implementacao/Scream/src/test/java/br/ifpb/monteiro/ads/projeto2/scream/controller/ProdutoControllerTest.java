@@ -26,6 +26,7 @@ import br.ifpb.monteiro.scream.util.jpa.EntityManagerProducer;
 @RunWith(MockitoJUnitRunner.class)
 public class ProdutoControllerTest {
 
+	
 	private Produto produto;
 
 	private static EntityManager em;
