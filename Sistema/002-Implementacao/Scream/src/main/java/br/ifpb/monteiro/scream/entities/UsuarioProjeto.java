@@ -2,13 +2,14 @@ package br.ifpb.monteiro.scream.entities;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 /**
@@ -40,8 +41,9 @@ public class UsuarioProjeto implements Serializable {
 //    @ManyToOne
 //    private Conta id_conta;
 
-    //@ManyToOne @JoinColumn(name="id_usuario_do_projeto")
-    //private UsuarioProjeto usuarioProjeto;
+    @ManyToOne @JoinColumn(name="id_usuario_do_projeto")
+    private Projeto projeto;
+    
     public Long getId() {
         return id;
     }

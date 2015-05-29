@@ -23,11 +23,13 @@ public class ItemProductBacklogService {
     
 
     @Transactional
-    public void create(ItemProductBacklog entity) {
+    public boolean create(ItemProductBacklog entity) {
         try {
             this.itemProductBacklogDAO.create(entity);
+            return true;
         } catch (Exception e) {
             System.err.println("Erro no ItemProductBacklogService: " + e.getMessage());
+            return false;
         }
     }
     

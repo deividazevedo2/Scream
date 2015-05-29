@@ -18,8 +18,12 @@ public class EntityManagerProducer {
 
     private static EntityManagerFactory factory;
     private static final Logger log = Logger.getGlobal();
+    
+    public EntityManagerProducer(String factory) {
+        EntityManagerProducer.factory = Persistence.createEntityManagerFactory(factory);
+    }
 
-    protected EntityManagerProducer() {
+    public EntityManagerProducer() {
         EntityManagerProducer.factory = Persistence.createEntityManagerFactory("Scream");
     }
 

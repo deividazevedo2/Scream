@@ -40,6 +40,15 @@ public class ProdutoService {
     	}
     }
     
+    public boolean update(Produto entity){
+    	try{
+    		produtoDAO.update(entity);
+    		return true;
+    	}catch(Exception e){
+    		return false;
+    	}
+    }
+    
     public Produto find(Long id) {
         return (Produto) produtoDAO.findById(id);
     }
