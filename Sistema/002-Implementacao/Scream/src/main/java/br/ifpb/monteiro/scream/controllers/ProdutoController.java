@@ -73,6 +73,10 @@ public class ProdutoController{
         JsfUtil.addSuccessMessage("Produto Criado com Sucesso");
     }
     
+    public void update(){
+    	service.create(produto);
+    }
+    
     public void delete(){
     	service.remove(produtoSelect);
     	JsfUtil.addSuccessMessage("Produto Apagado com Sucesso");
