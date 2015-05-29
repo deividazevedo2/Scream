@@ -1,5 +1,6 @@
 package br.ifpb.monteiro.scream.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -48,6 +49,10 @@ public class ProdutoController{
     
     private Produto produto= new Produto();
     
+    private List<Produto> listProduto;
+    
+    private Produto produtoSelect;
+    
     private DashboardModel model;
     
     private Dashboard dashboard;
@@ -64,23 +69,26 @@ public class ProdutoController{
     
     public void create(){
         service.create(produto);
+        produto= new Produto();
         JsfUtil.addSuccessMessage("Produto Criado com Sucesso");
     }
     
     public void delete(){
-    	service.remove(produto);
+    	service.remove(produtoSelect);
     	JsfUtil.addSuccessMessage("Produto Apagado com Sucesso");
     }
     
     public void editar(){
-    	service.create(produto);
+    	service.update(produtoSelect);
     	JsfUtil.addSuccessMessage("Produto Editado com Sucesso");
+		
     }
     
     @PostConstruct
     public void init(){
-                
-        FacesContext fc = FacesContext.getCurrentInstance();
+    	//produtoSelect= new Produto();
+        listProduto= service.findAll();        
+        /*FacesContext fc = FacesContext.getCurrentInstance();
 		Application application = fc.getApplication();
 		ActionListener listener = new ActionScream();
 		dashboard = (Dashboard) application.createComponent(fc, "org.primefaces.component.Dashboard", "org.primefaces.component.DashboardRenderer");
@@ -94,16 +102,16 @@ public class ProdutoController{
 		dashboard.setModel(model);
 
 				
-		for( int i = 0, n = getLisProduto().size(); i < n; i++ ) {
+		for( int i = 0, n = getListProduto().size(); i < n; i++ ) {
 			Panel panel = (Panel) application.createComponent(fc, "org.primefaces.component.Panel", "org.primefaces.component.PanelRenderer");
 			panel.setId("measure_" + i);
-			panel.setHeader(getLisProduto().get(i).getNome());
+			panel.setHeader(getListProduto().get(i).getNome());
 			
 			getDashboard().getChildren().add(panel);
 			DashboardColumn column = model.getColumn(i%getNumeroColunas());
 			column.addWidget(panel.getId());
 			HtmlOutputText text = new HtmlOutputText();
-			text.setValue(getLisProduto().get(i).getDescricao()+"\n");
+			text.setValue(getListProduto().get(i).getDescricao()+"\n");
 
 			HtmlOutputText textLinha = new HtmlOutputText();
 			textLinha.setValue("                    ");
@@ -135,9 +143,9 @@ public class ProdutoController{
 		
 			
 			panel.getChildren().add(text);
-			panel.getChildren().add(toolbar);
+			panel.getChildren().add(toolbar);*/
 
-		}
+		//}
         
         
     }
@@ -203,23 +211,25 @@ public class ProdutoController{
 		return numeroColunas;
 	}
 
-	public List<Produto> getLisProduto() {
-		return service.findAll();
+	
+	public List<Produto> getListProduto() {
+		return listProduto;
+	}
+
+	public void setListProduto(List<Produto> listProduto) {
+		this.listProduto = listProduto;
+	}
+
+	public Produto getProdutoSelect() {
+		return produtoSelect;
+	}
+
+	public void setProdutoSelect(Produto produtoSelect) {
+		this.produtoSelect = produtoSelect;
 	}
 	
-	private class ActionScream implements ActionListener{
-
-		@Override
-		public void processAction(ActionEvent event)
-				throws AbortProcessingException {
-			
-			/*//System.out.println(produto);
-			if(event.getComponent().equals(buttonDelete)){
-
-				service.remove(produto);
-			}*/
-		}
-		
+	public void produtoSelecionado(Produto produto){
+		this.produtoSelect= produto;
 	}
 	
      
