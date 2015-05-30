@@ -20,12 +20,20 @@ public class ProjetoService {
     @Inject
     private ProjetoDAO projetoDao;
     
+    @Inject
+    private DefinicaoDeProntoService definicaoDeProntoService;
+    
     @Transactional
-    public void create(Projeto entity) {
+    public Boolean create(Projeto entity) {
         try {
+            definicaoDeProntoService.createDefinicaoProntoPB(entity);
+            definicaoDeProntoService.createDefinicaoProntoRelease(entity);
+            definicaoDeProntoService.createDefinicaoProntoSprint(entity);
             this.projetoDao.create(entity);
+            return true;
         } catch (Exception e) {
             System.err.println("Erro no Service: " + e.getMessage());
+            return false;
         }
     }
     
@@ -58,6 +66,13 @@ public class ProjetoService {
     public void setProjetoDao(ProjetoDAO projetoDao) {
         this.projetoDao = projetoDao;
     }
-    
-    
+
+    public DefinicaoDeProntoService getDefinicaoDeProntoService() {
+        return definicaoDeProntoService;
+    }
+
+    public void setDefinicaoDeProntoService(DefinicaoDeProntoService definicaoDeProntoService) {
+        this.definicaoDeProntoService = definicaoDeProntoService;
+    }
+
 }

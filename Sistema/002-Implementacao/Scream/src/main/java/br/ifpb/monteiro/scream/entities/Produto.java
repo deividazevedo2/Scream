@@ -47,9 +47,9 @@ public class Produto implements Serializable{
     @OneToMany(mappedBy="produto", cascade=CascadeType.ALL)
     private List<ItemProductBacklog> listItensProduct;
     
-    //Um produto possui vários itens de definição de pronto
-    @OneToOne(mappedBy="produto", cascade=CascadeType.ALL)
-    private DefinicaoDePronto definicaoDePronto;
+//    //Um produto possui vários itens de definição de pronto
+//    @OneToOne(mappedBy="produto", cascade=CascadeType.ALL)
+//    private DefinicaoDePronto definicaoDePronto;
     
     public Long getId() {
         return id;

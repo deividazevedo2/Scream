@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -43,8 +44,13 @@ public class Projeto implements Serializable{
     @Column(nullable = false, length = 10, name = "duracao_sprint")
     private int sprintDuration;
     
+//    @OneToMany(mappedBy = "projeto")
+//    private List<UsuarioProjeto> listUsuarioProjeto;
+    
+//    @ManyToOne
+    
     @OneToMany(mappedBy = "projeto")
-    private List<UsuarioProjeto> listUsuarioProjeto;
+    private List<DefinicaoDePronto> definicoesDePronto;
     
     public Long getId() {
         return id;
@@ -93,7 +99,17 @@ public class Projeto implements Serializable{
     public void setDataTermino(Date dataTermino) {
         this.dataTermino = dataTermino;
     }
-//
+
+
+    public List<DefinicaoDePronto> getDefinicoesDePronto() {
+        return definicoesDePronto;
+    }
+
+    public void setDefinicoesDePronto(List<DefinicaoDePronto> definicoesDePronto) {
+        this.definicoesDePronto = definicoesDePronto;
+    }
+    
+    
 //    public List<UsuarioProjeto> getListUsuarioProjeto() {
 //        return listUsuarioProjeto;
 //    }
