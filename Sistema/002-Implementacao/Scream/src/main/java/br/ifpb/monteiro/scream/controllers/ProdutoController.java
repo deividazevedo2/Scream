@@ -1,6 +1,10 @@
 package br.ifpb.monteiro.scream.controllers;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -68,14 +72,24 @@ public class ProdutoController{
     }
     
     public void create(){
-        service.create(produto);
+    	registrarData();
+        service.create(produto); 
         produto= new Produto();
         JsfUtil.addSuccessMessage("Produto Criado com Sucesso");
     }
     
-    public void update(){
-    	service.create(produto);
+    private void registrarData() {
+    	SimpleDateFormat dateFormat= new SimpleDateFormat("dd/MM/yyyy");
+    	Calendar calendar = GregorianCalendar.getInstance();
+    	dateFormat.format(calendar.getTime());
+    	
+    	
+    	produto.setDataInicio(calendar.getTime());	
     }
+
+/* public void update(){
+    	service.create(produto);
+    }*/
     
     public void delete(){
     	service.remove(produtoSelect);
@@ -90,7 +104,7 @@ public class ProdutoController{
     
     @PostConstruct
     public void init(){
-    	//produtoSelect= new Produto();
+    	produtoSelect= new Produto();
         listProduto= service.findAll();        
         /*FacesContext fc = FacesContext.getCurrentInstance();
 		Application application = fc.getApplication();

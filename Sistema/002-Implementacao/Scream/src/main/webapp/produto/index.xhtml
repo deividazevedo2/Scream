@@ -92,10 +92,8 @@
 							<p:outputLabel value="Descrição"  />
 							<p:inputTextarea rows="5" cols="30"
 							value="#{produtoController.produtoSelect.descricao}"
-							
 							queryDelay="750" minQueryLength="4" />
-
-
+				
 						</p:panelGrid>
 					</p:outputPanel>
 
@@ -113,13 +111,7 @@
 					style="float: none; position: relative; text-align: center; font-size: 18px; color: #0274A8" />
 				<h1></h1>
 				<h1></h1>
-				<!-- <p:button icon="ui-icon-help"
-					style="font-size: 14px; position: relative; left: 280px" />
-				<p:commandButton icon="ui-icon-circle-plus"
-					oncomplete="PF('produtoDialog').show()"
-					
-					style="font-size: 14px; position: relative; left: 280px" /> -->
-
+	
 				<p:panel>
 
 					<h:panelGrid id="panelSalvar" columns="2" style="font-size: 14px">
@@ -133,10 +125,12 @@
 
 					</h:panelGrid>
 					<h1/>
-					<p:commandButton value="Salvar"
+					
+					<p:commandButton id="buttonSalvar" value="Salvar"
 						actionListener="#{produtoController.create}"
 						update=":formCadastroProduto" />
 				</p:panel>
+					<p:blockUI id="blockSalvar" block="panelSalvar" trigger="buttonSalvar"/>	
 			</h:form>
 
 		</div>

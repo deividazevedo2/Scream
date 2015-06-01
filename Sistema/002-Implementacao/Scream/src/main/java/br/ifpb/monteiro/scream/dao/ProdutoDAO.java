@@ -32,8 +32,6 @@ public class ProdutoDAO extends GenericDAO<Produto>{
 		}
 		Query queryProduto = getEntityManager().createNativeQuery("DELETE FROM produto WHERE id = " + entity.getId());
 		queryProduto.executeUpdate();
-		getEntityManager().getTransaction().commit();
-		getEntityManager().close();
 	}
 
 }

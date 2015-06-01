@@ -23,7 +23,7 @@ public class AceitacaoCriarContaTest {
     /**
      * Tenta salvar sem nenhum campo preenchido preenchido, espera um alerta de erro.
      */
-    @Test
+    //@Test
     public void testCCaOutAll(){
     	
         driver.findElement(By.id("formularioLogin:novaConta")).click();
@@ -33,7 +33,7 @@ public class AceitacaoCriarContaTest {
     /**
      * Tenta salvar apenas o nome de usuário e a senha, espera um alerta de erro.
      */
-    @Test
+    //@Test
     public void testCCbOutNomeEmail(){
 
         driver.findElement(By.id("j_idt5:usuario")).sendKeys("UsuarioTeste");
@@ -57,7 +57,7 @@ public class AceitacaoCriarContaTest {
     /**
      * Salva
      */
-    @Test
+   // @Test
     public void testCCcOk(){
     	
     	driver.findElement(By.id("j_idt5:usuario")).clear();
@@ -73,7 +73,7 @@ public class AceitacaoCriarContaTest {
     /**
      * Tenta Salvar com email e usuário existente
      */
-    @Test
+   // @Test
     public void testCCdInvEmailUsuario(){
 
     	driver.findElement(By.id("formularioLogin:novaConta")).click();
@@ -89,7 +89,7 @@ public class AceitacaoCriarContaTest {
     /**
      * Salva com outro username e email
      */
-    @Test
+   // @Test
     public void testCCeOkOutro(){
 
     	driver.findElement(By.id("j_idt5:nome")).clear();    	
