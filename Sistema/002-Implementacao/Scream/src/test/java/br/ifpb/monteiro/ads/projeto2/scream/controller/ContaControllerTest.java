@@ -6,11 +6,9 @@
 package br.ifpb.monteiro.ads.projeto2.scream.controller;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 import javax.persistence.EntityManager;
 
-import org.eclipse.persistence.jpa.jpql.Assert.AssertException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

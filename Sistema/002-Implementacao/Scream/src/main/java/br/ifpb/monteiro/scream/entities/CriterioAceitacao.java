@@ -71,5 +71,13 @@ public class CriterioAceitacao implements Serializable{
 //    public void setCriterioAceitacao(CriterioAceitacao criterioAceitacao) {
 //        this.criterioAceitacao = criterioAceitacao;
 //    }
+
+    public ItemProductBacklog getItemProductBacklog() {
+        return itemProductBacklog;
+    }
+
+    public void setItemProductBacklog(ItemProductBacklog itemProductBacklog) {
+        this.itemProductBacklog = itemProductBacklog;
+    }
     
 }

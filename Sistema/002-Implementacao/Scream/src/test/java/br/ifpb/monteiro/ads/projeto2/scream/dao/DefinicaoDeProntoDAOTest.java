@@ -22,7 +22,7 @@ import org.junit.Test;
  *
  * @author Mauricio
  */
-public class DefinicaoDeProntoTest {
+public class DefinicaoDeProntoDAOTest {
     
     private static DefinicaoDeProntoDAO definicaoDeProntoDAO;
     private static ProjetoDAO projetoDAO;

@@ -151,7 +151,7 @@ public class ProjetoDAOTest {
         criaProjeto("Pacote");
         criaProjeto("Scream");
         
-        assertEquals(4, projetoDAO.count());
+        assertEquals(15, projetoDAO.count());
         
     }
     
