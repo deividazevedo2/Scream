@@ -69,7 +69,7 @@
 						<p:commandButton process="datatableProdutos"
 							update=":formProduto:produtoDetail" icon="ui-icon-pencil"
 							oncomplete="PF('produtoDialog').show()" />
-						<p:commandButton process="datatableProdutos" update=":formProduto"
+						<p:commandButton process="datatableProdutos" update=":formProduto:datatableProdutos"
 							icon="ui-icon-search" actionListener="#{produtoController.delete}" />
 					</f:facet>
 

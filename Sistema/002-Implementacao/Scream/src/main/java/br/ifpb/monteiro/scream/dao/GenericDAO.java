@@ -11,6 +11,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
 
+import br.ifpb.monteiro.scream.util.jpa.Transactional;
+
 /**
  *
  * @author Mauricio
@@ -89,6 +91,7 @@ public class GenericDAO<T> implements Serializable {
      *
      * @param entity
      */
+    @Transactional
     public void delete(T entity) {
         entityManager.remove(entity);
     }
