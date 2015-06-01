@@ -18,7 +18,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "criterio_aceitacao")
-public class CriterioAceitacao implements Serializable{
+public class TesteAceitacao implements Serializable{
     
     private static final long serialVersionUID = 1L;
     
@@ -64,11 +64,11 @@ public class CriterioAceitacao implements Serializable{
         this.estadoDocriterio = estadoDocriterio;
     }
 
-//    public CriterioAceitacao getCriterioAceitacao() {
+//    public TesteAceitacao getCriterioAceitacao() {
 //        return criterioAceitacao;
 //    }
 //
-//    public void setCriterioAceitacao(CriterioAceitacao criterioAceitacao) {
+//    public void setCriterioAceitacao(TesteAceitacao criterioAceitacao) {
 //        this.criterioAceitacao = criterioAceitacao;
 //    }
 

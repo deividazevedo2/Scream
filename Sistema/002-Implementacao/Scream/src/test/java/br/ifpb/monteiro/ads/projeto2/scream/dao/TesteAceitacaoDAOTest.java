@@ -5,9 +5,9 @@
 */
 package br.ifpb.monteiro.ads.projeto2.scream.dao;
 
-import br.ifpb.monteiro.scream.dao.CriterioAceitacaoDAO;
+import br.ifpb.monteiro.scream.dao.TesteAceitacaoDAO;
 import br.ifpb.monteiro.scream.dao.ItemProductBacklogDAO;
-import br.ifpb.monteiro.scream.entities.CriterioAceitacao;
+import br.ifpb.monteiro.scream.entities.TesteAceitacao;
 import br.ifpb.monteiro.scream.entities.ItemProductBacklog;
 import br.ifpb.monteiro.scream.util.jpa.EntityManagerProducer;
 import java.util.List;
@@ -23,14 +23,14 @@ import org.junit.Test;
 public class TesteAceitacaoDAOTest {
     
     private static ItemProductBacklogDAO IpbDAO;
-    private static CriterioAceitacaoDAO criterioAceitacaoDAO;
+    private static TesteAceitacaoDAO criterioAceitacaoDAO;
     private static EntityManager em;
     
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
         
         IpbDAO = new ItemProductBacklogDAO();
-        criterioAceitacaoDAO = new CriterioAceitacaoDAO();
+        criterioAceitacaoDAO = new TesteAceitacaoDAO();
         EntityManagerProducer emp = new EntityManagerProducer("ScreamTest");
         em = emp.create();
         
@@ -46,16 +46,21 @@ public class TesteAceitacaoDAOTest {
     @Test
     public void testQuery() {
         
-        CriterioAceitacao cA = criaCriterioAceitacao("Fazer Testes");
+        TesteAceitacao cA = criaTesteAceitacao("Fazer Testes");
         
         String descricao = "Fazer Testes";
         
-        List<CriterioAceitacao> criterios = criterioAceitacaoDAO.query("select ca from CriterioAceitacao ca "
+        List<TesteAceitacao> criterios = criterioAceitacaoDAO.query(
+                "select ca from TesteAceitacao ca "
                 + "where ca.descricao = ?1", descricao);
         
-        CriterioAceitacao cAResult = criterios.get(0);
+        TesteAceitacao cAResult = criterios.get(0);
         
         assertEquals(cA.getDescricao(), cAResult.getDescricao());
+        
+        criterioAceitacaoDAO.getEntityManager().getTransaction().begin();
+        criterioAceitacaoDAO.delete(cAResult);
+        criterioAceitacaoDAO.getEntityManager().getTransaction().commit();
         
     }
     
@@ -63,19 +68,21 @@ public class TesteAceitacaoDAOTest {
     public void testDelete() {
         
         
-        criaCriterioAceitacao("Fazer Testes Delete");
+        criaTesteAceitacao("Fazer Testes Delete");
         Boolean valid = true;
         
         String descricao = "Fazer Testes Delete";
         
-        List<CriterioAceitacao> criterios = criterioAceitacaoDAO.query("select ca from CriterioAceitacao ca "
+        List<TesteAceitacao> criterios = criterioAceitacaoDAO.query(
+                "select ca from TesteAceitacao ca "
                 + "where ca.descricao = ?1", descricao);
         
         criterioAceitacaoDAO.getEntityManager().getTransaction().begin();
         criterioAceitacaoDAO.delete(criterios.get(0));
         criterioAceitacaoDAO.getEntityManager().getTransaction().commit();
         
-        List<CriterioAceitacao> criteriosResult = criterioAceitacaoDAO.query("select ca from CriterioAceitacao ca "
+        List<TesteAceitacao> criteriosResult = criterioAceitacaoDAO.query(
+                "select ca from TesteAceitacao ca "
                 + "where ca.descricao = ?1", descricao);
         
         if (criteriosResult.size() < 1) {
@@ -89,14 +96,15 @@ public class TesteAceitacaoDAOTest {
     @Test
     public void testUpdate() {
         
-        criaCriterioAceitacao("Fazer Testes Update");
+        criaTesteAceitacao("Fazer Testes Update");
         
         String descricao = "Fazer Testes Update";
         
-        List<CriterioAceitacao> criterios = criterioAceitacaoDAO.query("select ca from CriterioAceitacao ca "
+        List<TesteAceitacao> criterios = criterioAceitacaoDAO.query(
+                "select ca from TesteAceitacao ca "
                 + "where ca.descricao = ?1", descricao);
         
-        CriterioAceitacao cA = criterios.get(0);
+        TesteAceitacao cA = criterios.get(0);
         cA.setDescricao("Novo Teste Update");
         
         criterioAceitacaoDAO.getEntityManager().getTransaction().begin();
@@ -105,7 +113,8 @@ public class TesteAceitacaoDAOTest {
         
         String descricaoResult = "Novo Teste Update";
         
-        List<CriterioAceitacao> definicoesResult = criterioAceitacaoDAO.query("select ca from CriterioAceitacao ca "
+        List<TesteAceitacao> definicoesResult = criterioAceitacaoDAO.query(
+                "select ca from TesteAceitacao ca "
                 + "where ca.descricao = ?1", descricaoResult);
         
         assertEquals(descricaoResult, definicoesResult.get(0).getDescricao());
@@ -118,11 +127,11 @@ public class TesteAceitacaoDAOTest {
     @Test
     public void testFindAll() {
         
-        criaCriterioAceitacao("Fazer Testes FindAll");
+        criaTesteAceitacao("Fazer Testes FindAll");
         
         Boolean valid = false;
         
-        List<CriterioAceitacao> cA = criterioAceitacaoDAO.findAll();
+        List<TesteAceitacao> cA = criterioAceitacaoDAO.findAll();
         
         if (cA.size() >= 1){
             valid = true;
@@ -132,7 +141,8 @@ public class TesteAceitacaoDAOTest {
         
         String descricao = "Fazer Testes FindAll";
         
-        List<CriterioAceitacao> criterios = criterioAceitacaoDAO.query("select ca from CriterioAceitacao ca "
+        List<TesteAceitacao> criterios = criterioAceitacaoDAO.query(
+                "select ca from TesteAceitacao ca "
                 + "where ca.descricao = ?1", descricao);
         
         criterioAceitacaoDAO.getEntityManager().getTransaction().begin();
@@ -144,26 +154,26 @@ public class TesteAceitacaoDAOTest {
     @Test
     public void testFindById() {
         
-        criaCriterioAceitacao("Fazer O Teste FindById");
+        criaTesteAceitacao("Fazer O Teste FindById");
         
         String descricaoResult = "Fazer O Teste FindById";
         
-        List<CriterioAceitacao> criteriosResult = criterioAceitacaoDAO.query("select ca from CriterioAceitacao ca "
+        List<TesteAceitacao> criteriosResult = criterioAceitacaoDAO.query(
+                "select ca from TesteAceitacao ca "
                 + "where ca.descricao = ?1", descricaoResult);
         
-        CriterioAceitacao cA = null;
+        TesteAceitacao cA = null;
         Boolean valid = false;
         
         cA = criterioAceitacaoDAO.findById(criteriosResult.get(0).getId());
         
-        System.out.println("----------------------------"+cA+"-----------------------");
-        System.out.println("----------------------------"+criterioAceitacaoDAO.findById(1l)+"-----------------------");
         if(cA != null)
             valid = true;
         
         assertEquals(true, valid);
         
-        List<CriterioAceitacao> criterios = criterioAceitacaoDAO.query("select ca from CriterioAceitacao ca "
+        List<TesteAceitacao> criterios = criterioAceitacaoDAO.query(
+                "select ca from TesteAceitacao ca "
                 + "where ca.descricao = ?1", descricaoResult);
         
         criterioAceitacaoDAO.getEntityManager().getTransaction().begin();
@@ -174,14 +184,18 @@ public class TesteAceitacaoDAOTest {
     @Test
     public void testCount() {
         
-        criaCriterioAceitacao("Fazer Teste Count 1");
-        criaCriterioAceitacao("Fazer Teste Count 2");
+        criaTesteAceitacao("Fazer Teste Count 1");
+        criaTesteAceitacao("Fazer Teste Count 2");
         
-        assertEquals(2, criterioAceitacaoDAO.count());
+        List<TesteAceitacao> criteriosCount = criterioAceitacaoDAO.query(
+                "select ca from TesteAceitacao ca");
+        
+        assertEquals(criteriosCount.size(), criterioAceitacaoDAO.count());
         
         String descricao = "Fazer Teste Count 1";
         
-        List<CriterioAceitacao> criterios = criterioAceitacaoDAO.query("select ca from CriterioAceitacao ca "
+        List<TesteAceitacao> criterios = criterioAceitacaoDAO.query(
+                "select ca from TesteAceitacao ca "
                 + "where ca.descricao = ?1", descricao);
         
         criterioAceitacaoDAO.getEntityManager().getTransaction().begin();
@@ -190,7 +204,8 @@ public class TesteAceitacaoDAOTest {
         
         String descricao2 = "Fazer Teste Count 2";
         
-        List<CriterioAceitacao> criterios2 = criterioAceitacaoDAO.query("select ca from CriterioAceitacao ca "
+        List<TesteAceitacao> criterios2 = criterioAceitacaoDAO.query(
+                "select ca from TesteAceitacao ca "
                 + "where ca.descricao = ?1", descricao2);
         
         criterioAceitacaoDAO.getEntityManager().getTransaction().begin();
@@ -212,9 +227,9 @@ public class TesteAceitacaoDAOTest {
         return ipb;
     }
     
-    public CriterioAceitacao criaCriterioAceitacao(String descricao){
+    public TesteAceitacao criaTesteAceitacao(String descricao){
         
-        CriterioAceitacao p = new CriterioAceitacao();
+        TesteAceitacao p = new TesteAceitacao();
         p.setDescricao(descricao);
         p.setEstadoDocriterio(false);
         p.setItemProductBacklog(criaItemProductBacklog("Um Item Aqui", 10));

@@ -151,7 +151,9 @@ public class ProjetoDAOTest {
         criaProjeto("Pacote");
         criaProjeto("Scream");
         
-        assertEquals(15, projetoDAO.count());
+         List<Projeto> projetosResult = projetoDAO.query("select projeto from Projeto projeto");
+        
+        assertEquals(projetosResult.size(), projetoDAO.count());
         
     }
     

@@ -5,16 +5,16 @@
  */
 package br.ifpb.monteiro.scream.dao;
 
-import br.ifpb.monteiro.scream.entities.CriterioAceitacao;
+import br.ifpb.monteiro.scream.entities.TesteAceitacao;
 
 /**
  *
  * @author Mauricio
  */
-public class CriterioAceitacaoDAO extends  GenericDAO<CriterioAceitacao>{
+public class TesteAceitacaoDAO extends  GenericDAO<TesteAceitacao>{
 
-    public CriterioAceitacaoDAO() {
-        super(CriterioAceitacao.class);
+    public TesteAceitacaoDAO() {
+        super(TesteAceitacao.class);
     }    
     
 }

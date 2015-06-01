@@ -8,7 +8,6 @@ package br.ifpb.monteiro.ads.projeto2.scream.dao;
 import br.ifpb.monteiro.scream.dao.DefinicaoDeProntoDAO;
 import br.ifpb.monteiro.scream.dao.ProjetoDAO;
 import br.ifpb.monteiro.scream.entities.DefinicaoDePronto;
-import br.ifpb.monteiro.scream.entities.ItemProductBacklog;
 import br.ifpb.monteiro.scream.entities.Projeto;
 import br.ifpb.monteiro.scream.entities.enums.DefinicaoDeProntoEnum;
 import br.ifpb.monteiro.scream.util.jpa.EntityManagerProducer;
@@ -64,7 +63,8 @@ public class DefinicaoDeProntoDAOTest {
         
         String descricao = "Aqui esta as definicoes de PB";
         
-        List<DefinicaoDePronto> definicoes = definicaoDeProntoDAO.query("select definicao from DefinicaoDePronto definicao "
+        List<DefinicaoDePronto> definicoes = definicaoDeProntoDAO.query(
+                "select definicao from DefinicaoDePronto definicao "
                 + "where definicao.descricao = ?1", descricao);
         
         DefinicaoDePronto dDPResult = definicoes.get(0);
@@ -81,14 +81,16 @@ public class DefinicaoDeProntoDAOTest {
         
         String descricao = "Aqui esta as definicoes de Product Backlog";
         
-        List<DefinicaoDePronto> definicoes = definicaoDeProntoDAO.query("select definicao from DefinicaoDePronto definicao "
+        List<DefinicaoDePronto> definicoes = definicaoDeProntoDAO.query(
+                "select definicao from DefinicaoDePronto definicao "
                 + "where definicao.descricao = ?1", descricao);
         
         definicaoDeProntoDAO.getEntityManager().getTransaction().begin();
         definicaoDeProntoDAO.delete(definicoes.get(0));
         definicaoDeProntoDAO.getEntityManager().getTransaction().commit();
         
-        List<DefinicaoDePronto> definicoesResult = definicaoDeProntoDAO.query("select definicao from DefinicaoDePronto definicao "
+        List<DefinicaoDePronto> definicoesResult = definicaoDeProntoDAO.query(
+                "select definicao from DefinicaoDePronto definicao "
                 + "where definicao.descricao = ?1", descricao);
         
         if (definicoesResult.size() < 1) {
@@ -106,7 +108,8 @@ public class DefinicaoDeProntoDAOTest {
         
         String descricao = "Aqui esta as definicoes de uma outra SPRINT";
         
-        List<DefinicaoDePronto> definicoes = definicaoDeProntoDAO.query("select definicao from DefinicaoDePronto definicao "
+        List<DefinicaoDePronto> definicoes = definicaoDeProntoDAO.query(
+                "select definicao from DefinicaoDePronto definicao "
                 + "where definicao.descricao = ?1", descricao);
         
         DefinicaoDePronto dDP = definicoes.get(0);
@@ -118,7 +121,8 @@ public class DefinicaoDeProntoDAOTest {
         
         String descricaoResult = "Uma outra descricao";
         
-        List<DefinicaoDePronto> definicoesResult = definicaoDeProntoDAO.query("select definicao from DefinicaoDePronto definicao "
+        List<DefinicaoDePronto> definicoesResult = definicaoDeProntoDAO.query(
+                "select definicao from DefinicaoDePronto definicao "
                 + "where definicao.descricao = ?1", descricaoResult);
         
         assertEquals(descricaoResult, definicoesResult.get(0).getDescricao());
@@ -163,7 +167,9 @@ public class DefinicaoDeProntoDAOTest {
         criaDefinicaoDePronto("Aqui esta as definicoes da Release",DefinicaoDeProntoEnum.PRODUCTBACKLOG);
         criaDefinicaoDePronto("Aqui esta as definicoes da Release",DefinicaoDeProntoEnum.RELEASE);
         
-        assertEquals(5, definicaoDeProntoDAO.count());
+        List<DefinicaoDePronto> definicoesResult = definicaoDeProntoDAO.query(
+                "select definicao from DefinicaoDePronto definicao ");
+        assertEquals(definicoesResult.size(), definicaoDeProntoDAO.count());
         
     }
     

@@ -1,7 +1,6 @@
 package br.ifpb.monteiro.scream.dao;
 
 import java.io.Serializable;
-import java.text.BreakIterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;

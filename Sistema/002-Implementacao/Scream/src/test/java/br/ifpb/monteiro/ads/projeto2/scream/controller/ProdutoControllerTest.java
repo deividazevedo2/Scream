@@ -68,23 +68,25 @@ public class ProdutoControllerTest {
 //		Mockito.when(produtoService.create(p)).thenReturn(true);
 //
 //		produtoService.create(p);
-//
+//                
 //		String nome = "Scrim";
 //		String nomeResult="Scream";
 //
-//		List<Produto> produtos = null;
+//		List<Produto> produtos = produtoDAO.query("select produto from Produto produto "
+//				+ "where produto.nome = ?1", nome);
+//                System.out.println("----------------------"+produtos+"-------------------------------");
 //		List<Produto> produtosResult = null;
 //		
 //		Mockito.when(produtoDAO.query("select produto from Produto produto "
 //				+ "where produto.nome = ?1", nome)).thenReturn(produtos);
 //
-//		produtos = produtoDAO.query("select produto from Produto produto "
-//				+ "where produto.nome = ?1", nome);
 //		
 //		System.out.println(produtos);
 //		
 //		Mockito.when(produtoService.update(produtos.get(0))).thenReturn(true);
 //		
+//                System.out.println("------------------"+produtoService+"-----------------");
+//                
 //		Produto produto = produtos.get(0);
 //		produto.setNome("Scream");
 //		produtoService.update(produto);
