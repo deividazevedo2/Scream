@@ -18,7 +18,7 @@ public class ProdutoService {
     public int count() {
         return produtoDAO.count();
     }
-    
+       
     @Transactional
     public boolean create(Produto entity) {
         try {
@@ -30,6 +30,7 @@ public class ProdutoService {
         }
     }
     
+    @Transactional
     public boolean update(Produto entity){
     	try{
     		produtoDAO.update(entity);
@@ -51,7 +52,7 @@ public class ProdutoService {
         return produtoDAO.findRange(range);
     }
     
-    @Transactional
+    //@Transactional
     public void remove(Produto entity) {
         this.produtoDAO.delete(entity);
     }
