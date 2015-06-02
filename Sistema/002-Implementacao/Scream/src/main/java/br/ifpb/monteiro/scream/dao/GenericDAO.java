@@ -12,8 +12,6 @@ import javax.persistence.criteria.CriteriaQuery;
 
 import br.ifpb.monteiro.scream.util.jpa.Transactional;
 
-import br.ifpb.monteiro.scream.util.jpa.Transactional;
-
 /**
  *
  * @author Mauricio
