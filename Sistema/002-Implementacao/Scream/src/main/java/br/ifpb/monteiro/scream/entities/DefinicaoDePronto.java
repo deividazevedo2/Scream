@@ -12,7 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -29,7 +28,7 @@ public class DefinicaoDePronto implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(nullable = false, length = 255, name = "descricao")
+    @Column(nullable = true, length = 255, name = "descricao")
     private String descricao;
     
     @Column(nullable = false, length = 15, name = "tipo_definicao" ,updatable = false)
@@ -38,9 +37,9 @@ public class DefinicaoDePronto implements Serializable{
 //    @OneToMany(mappedBy = "unimplemented_yet")
 //    private List<already_implemented> already_implemented;
 
-    @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="produto_id")
-    private Produto produto;
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="projeto_id")
+    private Projeto projeto;
     
     
     public Long getId() {
@@ -67,14 +66,14 @@ public class DefinicaoDePronto implements Serializable{
         this.tipoDefinicao = tipoDefinicao;
     }
 
-	public Produto getProduto() {
-		return produto;
-	}
+    public Projeto getProjeto() {
+        return projeto;
+    }
 
-	public void setProduto(Produto produto) {
-		this.produto = produto;
-	}
-    
+    public void setProjeto(Projeto projeto) {
+        this.projeto = projeto;
+    }
+  
     
     
 }

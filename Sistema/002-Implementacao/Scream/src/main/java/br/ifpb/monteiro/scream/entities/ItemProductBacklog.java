@@ -63,7 +63,7 @@ public class ItemProductBacklog  implements Serializable{
     
     //Um item de PB possui vários critérios de aceitação
     @OneToMany(mappedBy="itemProductBacklog", cascade=CascadeType.ALL)
-    private List<CriterioAceitacao> listCriterioAceitacao;
+    private List<TesteAceitacao> listCriterioAceitacao;
 
     public Long getId() {
         return id;

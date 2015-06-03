@@ -2,6 +2,8 @@ package br.ifpb.monteiro.scream.dao;
 
 import javax.persistence.Query;
 
+import org.apache.commons.logging.Log;
+
 import br.ifpb.monteiro.scream.entities.Produto;
 import br.ifpb.monteiro.scream.util.jpa.Transactional;
 
@@ -21,14 +23,13 @@ public class ProdutoDAO extends GenericDAO<Produto>{
 	@Transactional
 	@Override
 	public void delete(Produto entity) {
+		
 		if (getEntityManager().getTransaction().isActive()) {
-
-			System.out.println("ATIVA");
+		
 		} else {
-
+			
 			getEntityManager().getTransaction().begin();
-			System.out.println("DESATIVADA");
-
+	
 		}
 		Query queryProduto = getEntityManager().createNativeQuery("DELETE FROM produto WHERE id = " + entity.getId());
 		queryProduto.executeUpdate();

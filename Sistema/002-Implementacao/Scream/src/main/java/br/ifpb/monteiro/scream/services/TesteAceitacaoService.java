@@ -5,8 +5,8 @@
 */
 package br.ifpb.monteiro.scream.services;
 
-import br.ifpb.monteiro.scream.dao.CriterioAceitacaoDAO;
-import br.ifpb.monteiro.scream.entities.CriterioAceitacao;
+import br.ifpb.monteiro.scream.dao.TesteAceitacaoDAO;
+import br.ifpb.monteiro.scream.entities.TesteAceitacao;
 import br.ifpb.monteiro.scream.util.jpa.Transactional;
 import java.util.List;
 import javax.inject.Inject;
@@ -15,14 +15,14 @@ import javax.inject.Inject;
  *
  * @author Mauricio
  */
-public class CriterioAceitacaoService {
+public class TesteAceitacaoService {
     
     @Inject
-    private CriterioAceitacaoDAO criterioAceitacaoDAO;
+    private TesteAceitacaoDAO criterioAceitacaoDAO;
     
     
     @Transactional
-    public void create(CriterioAceitacao entity) {
+    public void create(TesteAceitacao entity) {
         try {
             this.criterioAceitacaoDAO.create(entity);
         } catch (Exception e) {
@@ -31,7 +31,7 @@ public class CriterioAceitacaoService {
     }
     
     @Transactional
-    public void update(CriterioAceitacao entity){
+    public void update(TesteAceitacao entity){
         try {
             this.criterioAceitacaoDAO.update(entity);
         } catch (Exception e) {
@@ -40,7 +40,7 @@ public class CriterioAceitacaoService {
     }
     
     @Transactional
-    public void remove(CriterioAceitacao entity) {
+    public void remove(TesteAceitacao entity) {
         try {
             this.criterioAceitacaoDAO.delete(entity);
         } catch (Exception e) {
@@ -52,23 +52,23 @@ public class CriterioAceitacaoService {
         return criterioAceitacaoDAO.count();
     }
     
-    public CriterioAceitacao find(Long id) {
-        return (CriterioAceitacao) criterioAceitacaoDAO.findById(id);
+    public TesteAceitacao find(Long id) {
+        return (TesteAceitacao) criterioAceitacaoDAO.findById(id);
     }
     
-    public List<CriterioAceitacao> findAll() {
+    public List<TesteAceitacao> findAll() {
         return criterioAceitacaoDAO.findAll();
     }
     
-    public List<CriterioAceitacao> findRange(int[] range) {
+    public List<TesteAceitacao> findRange(int[] range) {
         return criterioAceitacaoDAO.findRange(range);
     }
 
-    public CriterioAceitacaoDAO getCriterioAceitacaoDAO() {
+    public TesteAceitacaoDAO getCriterioAceitacaoDAO() {
         return criterioAceitacaoDAO;
     }
 
-    public void setCriterioAceitacaoDAO(CriterioAceitacaoDAO criterioAceitacaoDAO) {
+    public void setCriterioAceitacaoDAO(TesteAceitacaoDAO criterioAceitacaoDAO) {
         this.criterioAceitacaoDAO = criterioAceitacaoDAO;
     }
     

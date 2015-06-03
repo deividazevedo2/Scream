@@ -18,5 +18,4 @@ public class ProjetoDAO extends GenericDAO<Projeto>{
     public ProjetoDAO() {
         super(Projeto.class);
     }
-    
 }

@@ -5,8 +5,8 @@
  */
 package br.ifpb.monteiro.scream.controllers;
 
-import br.ifpb.monteiro.scream.entities.CriterioAceitacao;
-import br.ifpb.monteiro.scream.services.CriterioAceitacaoService;
+import br.ifpb.monteiro.scream.entities.TesteAceitacao;
+import br.ifpb.monteiro.scream.services.TesteAceitacaoService;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
@@ -19,27 +19,27 @@ import javax.inject.Named;
  */
 @Named
 @RequestScoped
-public class CriterioAceitacaoController {
+public class TesteAceitacaoController {
    
     @Inject
-    CriterioAceitacaoService criterioAceitacaoService;
+    TesteAceitacaoService criterioAceitacaoService;
     
-    CriterioAceitacao criterioAceitacao;
+    TesteAceitacao criterioAceitacao;
     
     @PostConstruct
     public void Init(){
-        criterioAceitacao = new CriterioAceitacao();
+        criterioAceitacao = new TesteAceitacao();
     }
     
     public void create(){
         criterioAceitacaoService.create(criterioAceitacao);
     }
     
-    public void remove(CriterioAceitacao entity) {
+    public void remove(TesteAceitacao entity) {
         this.criterioAceitacaoService.remove(entity);
     }
     
-    public void update(CriterioAceitacao entity){
+    public void update(TesteAceitacao entity){
         this.criterioAceitacaoService.update(entity);
     }
     
@@ -50,17 +50,17 @@ public class CriterioAceitacaoController {
         return criterioAceitacaoService.count();
     }
     
-    public CriterioAceitacao find(Long id) {
-        return (CriterioAceitacao) criterioAceitacaoService.find(id);
+    public TesteAceitacao find(Long id) {
+        return (TesteAceitacao) criterioAceitacaoService.find(id);
     }
     
     
-    public List<CriterioAceitacao> findRange(int[] range) {
+    public List<TesteAceitacao> findRange(int[] range) {
         return criterioAceitacaoService.findRange(range);
     }
     
-    public List<CriterioAceitacao> findAll(){
-        List<CriterioAceitacao> criterioAceitacao = criterioAceitacaoService.findAll();
+    public List<TesteAceitacao> findAll(){
+        List<TesteAceitacao> criterioAceitacao = criterioAceitacaoService.findAll();
         return criterioAceitacao;
     }
     
