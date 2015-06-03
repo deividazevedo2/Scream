@@ -17,7 +17,7 @@
 		</properties>
 	</persistence-unit>
 	
-	<!-- Configuração - Teste
+	<!-- Configuração - Teste-->
 	<persistence-unit name="ScreamTest"	transaction-type="RESOURCE_LOCAL">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
@@ -30,7 +30,7 @@
 			<property name="eclipselink.logging.level.sql" value="FINE" />
 			<property name="eclipselink.logging.parameters" value="true" />
 		</properties>
-	</persistence-unit>-->
+	</persistence-unit>
 
 	<!--<properties> <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/Scream" 
 		/> <property name="javax.persistence.jdbc.user" value="postgres" /> <property 
