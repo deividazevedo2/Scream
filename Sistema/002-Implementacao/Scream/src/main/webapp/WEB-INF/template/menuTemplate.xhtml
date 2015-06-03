@@ -1,30 +1,36 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
 
-    <h:form> 
-        <p:menubar>
-                        
-            <p:submenu label="Usuários" icon="ui-icon-person" >
-                    <p:submenu label="Conta do Usuário" icon="ui-icon-person">
-                        <p:menuitem value="Procurar" url="/conta/buscaConta.xhtml" icon="ui-icon-search"/>
-                    </p:submenu>   
-                    <p:submenu label="Usuário do Projeto" icon="ui-icon-person">
-                        <p:menuitem value="Procurar" url="/usuarioProjeto/buscaUsuario.xhtml" icon="ui-icon-search"/>
-                    </p:submenu> 
-                                 
-            </p:submenu> 
-            <p:menuitem value="Produto" url="/produto/index.xhtml"/> 
+<h:form>
+	<p:menubar>
 
-            <p:menuitem value="Projeto" url="/projeto/index.xhtml"/> 
+		<p:submenu label="Usuários" icon="ui-icon-person">
+			<p:submenu label="Conta do Usuário" icon="ui-icon-person">
+				<p:menuitem value="Procurar" url="/conta/buscaConta.xhtml"
+					icon="ui-icon-search" />
+			</p:submenu>
+			<p:submenu label="Usuário do Projeto" icon="ui-icon-person">
+				<p:menuitem value="Procurar"
+					url="/usuarioProjeto/buscaUsuario.xhtml" icon="ui-icon-search" />
+			</p:submenu>
+
+		</p:submenu>
+		<p:submenu label="Produto">
+			<p:menuitem value="Produto" url="/produto/index.xhtml" />
+			<p:menuitem value="Itens do Produto" url="/itensProduto/index.xhtml" />
+		</p:submenu>
 
 
-            <p:submenu label="Chart Kankan">
+		<p:menuitem value="Projeto" url="/projeto/index.xhtml" />
 
-            </p:submenu>
 
-        </p:menubar>
-    </h:form>
+		<p:submenu label="Chart Kankan">
+
+		</p:submenu>
+
+	</p:menubar>
+</h:form>
 </html>

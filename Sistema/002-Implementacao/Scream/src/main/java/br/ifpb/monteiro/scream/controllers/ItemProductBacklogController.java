@@ -48,6 +48,7 @@ public class ItemProductBacklogController {
     
     public void create(){
     	gerarData();
+    	itemProductBacklog.setProduto(produto);
         itemProductBacklogService.create(itemProductBacklog);
     }
     
