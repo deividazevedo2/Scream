@@ -1,6 +1,8 @@
 package br.ifpb.monteiro.scream.util.jpa;
 
+import static br.ifpb.monteiro.scream.dao.GenericDAO.getLogger;
 import java.io.Serializable;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Priority;
 import javax.inject.Inject;
@@ -9,6 +11,7 @@ import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Transient;
 
 /**
  *
@@ -22,6 +25,7 @@ public class TransactionInterceptor implements Serializable {
     private static final long serialVersionUID = 1L;
     private static final Logger logger = Logger.getGlobal();
     
+    @Transient
     @Inject
     private EntityManager manager;
 
@@ -48,9 +52,9 @@ public class TransactionInterceptor implements Serializable {
 
             return context.proceed();
         } catch (Exception e) {
-            logger.info("Falha na Transação");
+            logger.log(Level.WARNING,"Falha na Transação" , e);
             if (transaction != null && owner) {
-                System.out.println("catch Rollback ");
+                logger.log(Level.INFO,"catch Rollback ");
                 transaction.rollback();
 
             }
@@ -59,7 +63,7 @@ public class TransactionInterceptor implements Serializable {
         } finally {
             if (transaction != null && transaction.isActive() && owner) {
                 transaction.commit();
-                System.out.println("Transação Commitada");
+                logger.log(Level.INFO,"Transação Commitada");
             }
         }
     }

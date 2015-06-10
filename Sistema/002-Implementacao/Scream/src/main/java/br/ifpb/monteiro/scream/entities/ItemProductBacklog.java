@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 /**
  *
@@ -62,6 +63,7 @@ public class ItemProductBacklog  implements Serializable{
     private Produto produto;
     
     //Um item de PB possui vários critérios de aceitação
+    @Transient
     @OneToMany(mappedBy="itemProductBacklog", cascade=CascadeType.ALL)
     private List<TesteAceitacao> listCriterioAceitacao;
 

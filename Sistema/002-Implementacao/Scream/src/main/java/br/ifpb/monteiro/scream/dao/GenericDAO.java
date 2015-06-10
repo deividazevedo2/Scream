@@ -11,6 +11,7 @@ import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
 
 import br.ifpb.monteiro.scream.util.jpa.Transactional;
+import javax.persistence.Transient;
 
 /**
  *
@@ -18,19 +19,20 @@ import br.ifpb.monteiro.scream.util.jpa.Transactional;
  * @param <T>
  */
 public class GenericDAO<T> implements Serializable {
-
+    
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-	private static final Logger logger = Logger.getGlobal();
-
+     *
+     */
+    private static final long serialVersionUID = 1L;
+    
+    private static final Logger logger = Logger.getGlobal();
+    
+    @Transient
     @Inject
     private EntityManager entityManager;
-
+    
     protected Class<T> entity;
-
+    
     /**
      * Construtor da classe que captura a entidade que chamar esta classe.
      *
@@ -39,7 +41,7 @@ public class GenericDAO<T> implements Serializable {
     public GenericDAO(Class<T> entityClass) {
         this.entity = entityClass;
     }
-
+    
     /**
      * Método get para a instância do EntityManager
      *
@@ -48,7 +50,7 @@ public class GenericDAO<T> implements Serializable {
     public EntityManager getEntityManager() {
         return entityManager;
     }
-
+    
     /**
      * Metodo utilizado para salvar um novo cadastro no banco de dados ou editar
      * um cadastro existente.
@@ -60,10 +62,10 @@ public class GenericDAO<T> implements Serializable {
         try {
             entityManager.merge(entity);
         } catch (Exception e) {
-            getLogger().log(Level.WARNING, entity.toString());
+            getLogger().log(Level.WARNING, entity.toString(), e);
             getLogger().log(Level.INFO, "Erro no DAO: {0}", e.getMessage());
         }
-
+        
     }
     
     /**
@@ -76,15 +78,15 @@ public class GenericDAO<T> implements Serializable {
         getLogger().info("DAO Create Acessado");
         
         try{
-        	entityManager.persist(entity);        	
+            entityManager.persist(entity);
         }catch(Exception e){
-        	getLogger().log(Level.WARNING, entity.toString());
-	        getLogger().log(Level.INFO, "Erro no DAO: {1}", e.getMessage());
-
+            getLogger().log(Level.WARNING, entity.toString(), e);
+            getLogger().log(Level.INFO, "Erro no DAO: {1}", e.getMessage());
+            
         }
-
+        
     }
-
+    
     /**
      * Método utilizado para remover um cadastro do banco de dados
      *
@@ -94,7 +96,7 @@ public class GenericDAO<T> implements Serializable {
     public void delete(T entity) {
         entityManager.remove(entity);
     }
-
+    
     /**
      * Método utilizado para retornar uma lista com todos os resultados
      * encontrados no banco de dados para a esntidade que a chamar. A consulta é
@@ -107,7 +109,7 @@ public class GenericDAO<T> implements Serializable {
         cq.select(cq.from(entity));
         return getEntityManager().createQuery(cq).getResultList();
     }
-
+    
     /**
      * Método utilizado para buscar um registro no banco de dados para
      * determinada entidade através da passagem do seu ID como parâmetro.
@@ -118,7 +120,7 @@ public class GenericDAO<T> implements Serializable {
     public T findById(Long id) {
         return entityManager.find(entity, id);
     }
-
+    
     /**
      *
      * @param range
@@ -132,7 +134,7 @@ public class GenericDAO<T> implements Serializable {
         q.setFirstResult(range[0]);
         return q.getResultList();
     }
-
+    
     /**
      *
      * @return
@@ -144,7 +146,7 @@ public class GenericDAO<T> implements Serializable {
         javax.persistence.Query q = getEntityManager().createQuery(cq);
         return ((Long) q.getSingleResult()).intValue();
     }
-
+    
     /**
      * Método get para a instância da entidade que usar esta classe
      *
@@ -153,7 +155,7 @@ public class GenericDAO<T> implements Serializable {
     public Class<T> getEntity() {
         return entity;
     }
-
+    
     /**
      * Método set para a instância da entidade que usar esta classe
      *
@@ -164,23 +166,23 @@ public class GenericDAO<T> implements Serializable {
     }
     
     public List<T> query(String query, Object... params) {
-    	List<T> result = null;
-    	Query q = entityManager.createQuery(query);
-    	int paramPos = 1;
-    	for (Object o : params) {
-    		q.setParameter(paramPos++, o);
-    	}
-    	result = q.getResultList();
-    	return result;
+        List<T> result = null;
+        Query q = entityManager.createQuery(query);
+        int paramPos = 1;
+        for (Object o : params) {
+            q.setParameter(paramPos++, o);
+        }
+        result = q.getResultList();
+        return result;
     }
-
-	public static Logger getLogger() {
-		return logger;
-	}
-	
-	
-
-	public void setEntityManager(EntityManager entityManager) {
-		this.entityManager = entityManager;
-	}
+    
+    public static Logger getLogger() {
+        return logger;
+    }
+    
+    
+    
+    public void setEntityManager(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
 }

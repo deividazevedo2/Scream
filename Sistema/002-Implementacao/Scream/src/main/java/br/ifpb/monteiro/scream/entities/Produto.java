@@ -16,6 +16,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 /**
  *
@@ -44,6 +45,7 @@ public class Produto implements Serializable{
     private Date dataTermino;
     
     //Um produto possui vários itens de PB
+    @Transient
     @OneToMany(mappedBy="produto", cascade=CascadeType.ALL)
     private List<ItemProductBacklog> listItensProduct;
     

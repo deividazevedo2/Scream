@@ -5,10 +5,12 @@
 */
 package br.ifpb.monteiro.scream.services;
 
+import static br.ifpb.monteiro.scream.dao.GenericDAO.getLogger;
 import br.ifpb.monteiro.scream.dao.ProjetoDAO;
 import br.ifpb.monteiro.scream.entities.Projeto;
 import br.ifpb.monteiro.scream.util.jpa.Transactional;
 import java.util.List;
+import java.util.logging.Level;
 import javax.inject.Inject;
 
 /**
@@ -32,7 +34,7 @@ public class ProjetoService {
             this.projetoDao.create(entity);
             return true;
         } catch (Exception e) {
-            System.err.println("Erro no Service: " + e.getMessage());
+            getLogger().log(Level.SEVERE, "Erro no ProjetoService ", e);
             return false;
         }
     }
@@ -56,8 +58,8 @@ public class ProjetoService {
     
     @Transactional
     public void update(Projeto entity){
-        this.projetoDao.update(entity); 
-    }    
+        this.projetoDao.update(entity);
+    }
     
     public ProjetoDAO getProjetoDao() {
         return projetoDao;
@@ -66,13 +68,13 @@ public class ProjetoService {
     public void setProjetoDao(ProjetoDAO projetoDao) {
         this.projetoDao = projetoDao;
     }
-
+    
     public DefinicaoDeProntoService getDefinicaoDeProntoService() {
         return definicaoDeProntoService;
     }
-
+    
     public void setDefinicaoDeProntoService(DefinicaoDeProntoService definicaoDeProntoService) {
         this.definicaoDeProntoService = definicaoDeProntoService;
     }
-
+    
 }

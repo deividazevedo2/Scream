@@ -6,11 +6,13 @@
 package br.ifpb.monteiro.scream.services;
 
 import br.ifpb.monteiro.scream.dao.DefinicaoDeProntoDAO;
+import static br.ifpb.monteiro.scream.dao.GenericDAO.getLogger;
 import br.ifpb.monteiro.scream.entities.DefinicaoDePronto;
 import br.ifpb.monteiro.scream.entities.Projeto;
 import br.ifpb.monteiro.scream.entities.enums.DefinicaoDeProntoEnum;
 import br.ifpb.monteiro.scream.util.jpa.Transactional;
 import java.util.List;
+import java.util.logging.Level;
 import javax.inject.Inject;
 
 /**
@@ -27,7 +29,7 @@ public class DefinicaoDeProntoService {
         try {
             this.definicaoDeProntoDAO.update(entity);
         } catch (Exception e) {
-            System.err.println("Erro no DefinicaoDeProntoService: " + e.getMessage());
+             getLogger().log(Level.SEVERE, "Erro no DefinicaoDeProntoService: ", e);
         }
     }
     
@@ -39,7 +41,7 @@ public class DefinicaoDeProntoService {
         try {
             this.definicaoDeProntoDAO.create(entity);
         } catch (Exception e) {
-            System.err.println("Erro no DefinicaoDeProntoService: " + e.getMessage());
+           getLogger().log(Level.SEVERE, "Erro no DefinicaoDeProntoService: ", e);
         }
     }
     
@@ -51,7 +53,7 @@ public class DefinicaoDeProntoService {
         try {
             this.definicaoDeProntoDAO.create(entity);
         } catch (Exception e) {
-            System.err.println("Erro no DefinicaoDeProntoService: " + e.getMessage());
+            getLogger().log(Level.SEVERE, "Erro no DefinicaoDeProntoService: ", e);
         }
     }
     
@@ -63,7 +65,7 @@ public class DefinicaoDeProntoService {
         try {
             this.definicaoDeProntoDAO.create(entity);
         } catch (Exception e) {
-            System.err.println("Erro no DefinicaoDeProntoService: " + e.getMessage());
+             getLogger().log(Level.SEVERE, "Erro no DefinicaoDeProntoService: ", e);
         }
     }
     
