@@ -23,64 +23,7 @@
                           style="font-size: 14px; position: relative; left: 280px"/>
                     
             </div>
-            <div id="kanban">
-                
-                <p:growl id="msgs" showDetail="true" />
-                <div id="conteudo-1">
-                    
-                    <p:fieldset legend="A fazer" id="fieldSetFormTitle" style="width: 200px">
-                        
-                        <p:dashboard id="fazerBoard" model="#{produtoController.model}">
-                            <p:panel id="fazer" header="Projeto 1">
-                                <h:outputText value="Descrição do Projeto 1" />
-                                <p:progressBar value="50" labelTemplate="{value}%" displayOnly="true"/>
-                                    
-                            </p:panel>
-                                
-                        </p:dashboard>
-                            
-                            
-                    </p:fieldset>
-                </div>
-                    
-                <!-- <div id="conteudo-2-1">
-                    <p:fieldset legend="Fazendo" id="fieldSetFormFazendo" style="width: 200px" >
-                        
-                        <p:dashboard id="fazendoBoard" model="#{produtoController.model}">
-                            <p:panel id="fazendo" header="Projeto">
-                                <h:outputText value="Descrição do Projeto" />
-                                <p:progressBar value="50" labelTemplate="{value}%" displayOnly="true"/>
-                                    
-                            </p:panel>
-                                
-                        </p:dashboard>
-                            
-                            
-                    </p:fieldset>
-                </div -->>
-                <!--<p:droppable for="fieldSetFormFazendo " tolerance="touch"
-                             activeStyleClass="ui-state-highlight" 
-                             >
-                                 
-                </p:droppable> -->
-                    
-                <!-- <div id="conteudo-2-2">
-                    <p:fieldset legend="Feito" id="fieldSetFormFeito" style="width: 200px" >
-                        
-                        <p:dashboard id="feitoBoard" model="#{produtoController.model}">
-                            <p:panel id="feito" header="Projeto">
-                                <h:outputText value="Descrição do Projeto" />
-                                <p:progressBar value="50" labelTemplate="{value}%" 
-                                               displayOnly="true" />
-                                                   
-                            </p:panel>
-                                
-                        </p:dashboard>
-                            
-                            
-                    </p:fieldset>
-                </div> -->
-            </div>
+               
         </h:form>
     </ui:define>
         

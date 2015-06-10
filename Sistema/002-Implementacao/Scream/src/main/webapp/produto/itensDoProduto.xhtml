@@ -17,13 +17,13 @@
 			style="float: left; left: 70%; text-align: center; width: 700px; padding: 10px;">
 			<h:form id="formItensDialog">
 				<p:outputLabel
-					value="Itens do #{itemProductBacklogController.selectItemProductBacklog.produto.nome}"
+					value="Itens do #{produtoController.produtoSelect.nome}"
 					style="float: none; position: relative; text-align: center; font-size: 18px; color: #0274A8" />
 				<p:dataTable id="datatableItensProduto"
-					value="#{itemProductBacklogController.listItensProductBacklog}"
+					value="#{produtoController.produtoSelect.listItensProduct}"
 					var="item" widgetVar="tabelaItemProduto"
 					paginatorAlwaysVisible="false" style="margin-top: 20px;" rows="10"
-					selectionMode="single" emptyMessage="Nenhum item encontrado"
+					selectionMode="single" emptyMessage="Vá em Itens de Produto e cadatre um tem para esse produto"
 					paginator="true" paginatorPosition="bottom"
 					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}  {PageLinks} 
                              {NextPageLink}  {LastPageLink}  {RowsPerPageDropdown}"

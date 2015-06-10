@@ -1,11 +1,14 @@
 package br.ifpb.monteiro.scream.controllers;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
@@ -34,6 +37,7 @@ import org.primefaces.model.DefaultDashboardModel;
 
 import com.sun.faces.application.ActionListenerImpl;
 
+import br.ifpb.monteiro.scream.entities.ItemProductBacklog;
 import br.ifpb.monteiro.scream.entities.Produto;
 import br.ifpb.monteiro.scream.services.ProdutoService;
 import br.ifpb.monteiro.scream.util.jsf.JsfUtil;
@@ -48,22 +52,14 @@ public class ProdutoController{
     
     @Inject
     private ProdutoService service;
-    
-    private final int numeroColunas=1;
-    
+        
     private Produto produto= new Produto();
-    
-    private List<Produto> listProduto;
     
     private Produto produtoSelect;
     
-    private DashboardModel model;
+    private List<Produto> listProduto;
     
-    private Dashboard dashboard;
-    
-    private CommandButton buttonEditar;
-    
-    private CommandButton buttonDelete;
+    private ItemProductBacklog itemProductBacklog;
         
     /**
      * Creates a new instance of ProdutoController
@@ -79,18 +75,13 @@ public class ProdutoController{
     }
     
     private void registrarData() {
-    	SimpleDateFormat dateFormat= new SimpleDateFormat("dd/MM/yyyy");
     	Calendar calendar = GregorianCalendar.getInstance();
+    	SimpleDateFormat dateFormat= new SimpleDateFormat("dd/MM/yyyy");
     	dateFormat.format(calendar.getTime());
-    	
-    	
+    	calendar = dateFormat.getCalendar();
     	produto.setDataInicio(calendar.getTime());	
     }
 
-/* public void update(){
-    	service.create(produto);
-    }*/
-    
     public void delete(){
     	service.remove(produtoSelect);
     	JsfUtil.addSuccessMessage("Produto Apagado com Sucesso");
@@ -102,69 +93,22 @@ public class ProdutoController{
 		
     }
     
+    public void verItens(){
+    	try { 		
+            FacesContext.getCurrentInstance().getExternalContext()
+                    .redirect("/Scream/itensProduto/index.xhtml");
+        } catch (IOException ex) {
+            JsfUtil.addErrorMessage(ex, "Pagina não encontrada");
+            Logger.getLogger(ContaController.class.getName()).log(Level.SEVERE,
+                    null, ex);
+        }
+    }
+    
     @PostConstruct
     public void init(){
+    	itemProductBacklog =new ItemProductBacklog();
     	produtoSelect= new Produto();
-        listProduto= service.findAll();        
-        /*FacesContext fc = FacesContext.getCurrentInstance();
-		Application application = fc.getApplication();
-		ActionListener listener = new ActionScream();
-		dashboard = (Dashboard) application.createComponent(fc, "org.primefaces.component.Dashboard", "org.primefaces.component.DashboardRenderer");
-		dashboard.setId("dashboard");
-
-		model = new DefaultDashboardModel();
-		for( int i = 0, n = getNumeroColunas(); i < n; i++ ) {
-			DashboardColumn column = new DefaultDashboardColumn();
-			model.addColumn(column);
-		}
-		dashboard.setModel(model);
-
-				
-		for( int i = 0, n = getListProduto().size(); i < n; i++ ) {
-			Panel panel = (Panel) application.createComponent(fc, "org.primefaces.component.Panel", "org.primefaces.component.PanelRenderer");
-			panel.setId("measure_" + i);
-			panel.setHeader(getListProduto().get(i).getNome());
-			
-			getDashboard().getChildren().add(panel);
-			DashboardColumn column = model.getColumn(i%getNumeroColunas());
-			column.addWidget(panel.getId());
-			HtmlOutputText text = new HtmlOutputText();
-			text.setValue(getListProduto().get(i).getDescricao()+"\n");
-
-			HtmlOutputText textLinha = new HtmlOutputText();
-			textLinha.setValue("                    ");
-			
-			Toolbar toolbar = new Toolbar();
-			toolbar.setId("toolbarProduto"+i);
-			
-			buttonEditar= new CommandButton();
-			buttonDelete= new CommandButton();
-			
-			buttonEditar.setValue("Editar");
-			//buttonEditar.addActionListener(listener);
-			buttonDelete.setValue("Apagar");
-			//buttonDelete.addActionListener(listener);
-
-			
-			
-			
-			ToolbarGroup toolbarGroupDelete= new ToolbarGroup();
-			ToolbarGroup toolbarGroupEdite= new ToolbarGroup();
-
-			toolbarGroupEdite.getChildren().add(buttonEditar);
-			toolbarGroupDelete.getChildren().add(buttonDelete);
-			toolbarGroupDelete.setAlign("right");
-			
-			toolbar.setStyle("float: none; position: static ; text-align: center");
-			toolbar.getChildren().add(toolbarGroupEdite);
-			toolbar.getChildren().add(toolbarGroupDelete);
-		
-			
-			panel.getChildren().add(text);
-			panel.getChildren().add(toolbar);*/
-
-		//}
-        
+        listProduto= service.findAll();                
         
     }
     
@@ -193,10 +137,7 @@ public class ProdutoController{
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
     
-    public DashboardModel getModel() {
-        return model;
-    }
-
+   
     public ProdutoService getService() {
         return service;
     }
@@ -212,23 +153,6 @@ public class ProdutoController{
     public void setProduto(Produto produto) {
         this.produto = produto;
     }
-
-	public Dashboard getDashboard() {
-		return dashboard;
-	}
-
-	public void setDashboard(Dashboard dashboard) {
-		this.dashboard = dashboard;
-	}
-
-	public void setModel(DashboardModel model) {
-		this.model = model;
-	}
-
-	public int getNumeroColunas() {
-		return numeroColunas;
-	}
-
 	
 	public List<Produto> getListProduto() {
 		return listProduto;
@@ -248,6 +172,14 @@ public class ProdutoController{
 	
 	public void produtoSelecionado(Produto produto){
 		this.produtoSelect= produto;
+	}
+
+	public ItemProductBacklog getItemProductBacklog() {
+		return itemProductBacklog;
+	}
+
+	public void setItemProductBacklog(ItemProductBacklog itemProductBacklog) {
+		this.itemProductBacklog = itemProductBacklog;
 	}
 	
      
