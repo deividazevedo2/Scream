@@ -23,14 +23,14 @@
 				<p:dataTable id="datatableProdutos"
 					value="#{produtoController.listProduto}" var="produto"
 					widgetVar="tabelaProduto" paginatorAlwaysVisible="false" rows="5"
-					selectionMode="single" emptyMessage="Nenhum produto encontrado"
-					paginator="true" paginatorPosition="bottom"
+					emptyMessage="Nenhum produto encontrado" paginator="true"
+					paginatorPosition="bottom"
 					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}  {PageLinks} 
                              {NextPageLink}  {LastPageLink}  {RowsPerPageDropdown}"
 					rowsPerPageTemplate="5,10,20, 50,100,200" rowKey="#{produto.id}"
 					selection="#{produtoController.produtoSelect}">
-					
-					
+
+
 					<f:facet name="header">
 						<p:outputPanel>
 							<h:outputText value="Busca Produto:" />
@@ -55,35 +55,47 @@
 					<p:column id="columnDataInicio" headerText="Data de Inicio"
 						filterBy="#{produto.dataInicio}" filterMatchMode="contains"
 						filterStyle="display:none">
-						<h:outputText value="#{produto.dataInicio}" />
+						<h:outputText value="#{produto.dataInicio}">
+							<f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-03:00" />
+						</h:outputText>
 					</p:column>
-					<p:column id="columnDataTermino" headerText="Data de Inicio"
+					<p:column id="columnDataTermino" headerText="Data de Término"
 						filterBy="#{produto.dataTermino}" filterMatchMode="contains"
 						filterStyle="display:none">
 						<h:outputText value="#{produto.dataTermino}" />
 					</p:column>
 
-					<f:facet name="footer">
-						<p:commandButton value="Editar" process="datatableProdutos"
-							update=":formProduto:produtoDetail" icon="ui-icon-pencil"
-							oncomplete="PF('produtoDialog').show()" />
-						<p:commandButton value="Deletar" process="datatableProdutos"
-							update="datatableProdutos" icon="ui-icon-circle-close"
-							actionListener="#{produtoController.delete}">
-							<p:confirm header="Confirmação"
-								message="Deseja excluir esse produto?" icon="ui-icon-alert" />
-						</p:commandButton>
-						<p:commandButton value="Ver Itens do Produto" process="datatableProdutos"
-							icon="ui-icon-carat-1-nw" action="#{produtoController.verItens}">
-							<f:setPropertyActionListener value="#{produto}" target="#{itemProductBacklogController.produto}" /> 
-						</p:commandButton>
-						<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-							<p:commandButton value="Sim" styleClass="ui-confirmdialog-yes"
-								icon="ui-icon-check" />
-							<p:commandButton value="Não" type="button"
-								styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-						</p:confirmDialog>
-					</f:facet>
+					<p:column id="columnAcao" headerText="Ações">
+						<p:panelGrid>
+							<p:commandButton value="Editar" process="datatableProdutos"
+								update=":formProduto:produtoDetail" icon="ui-icon-pencil"
+								oncomplete="PF('produtoDialog').show()" />
+							<p:commandButton value="Deletar" process="datatableProdutos"
+								update=":formProduto:datatableProdutos"
+								icon="ui-icon-circle-close"
+								actionListener="#{produtoController.delete}">
+								<p:confirm header="Confirmação"
+									message="Deseja excluir esse produto?" icon="ui-icon-alert" />
+							</p:commandButton>
+							<p:button value="Ver Itens do Produto" icon="ui-icon-carat-1-nw"
+								outcome="/itensProduto/index.xhtml">
+								<f:param name="id" value="#{produto.id}" />
+							</p:button>
+							<p:confirmDialog global="true" showEffect="fade"
+								hideEffect="fade">
+								<p:commandButton value="Sim" styleClass="ui-confirmdialog-yes"
+									icon="ui-icon-check">
+									<f:ajax execute="datatableProdutos" render="datatableProdutos" />
+
+								</p:commandButton>
+								<p:commandButton value="Não" type="button"
+									styleClass="ui-confirmdialog-no" icon="ui-icon-close">
+									<f:ajax render="@this" />
+
+								</p:commandButton>
+							</p:confirmDialog>
+						</p:panelGrid>
+					</p:column>
 
 				</p:dataTable>
 
@@ -114,6 +126,7 @@
 						oncomplete="PF('produtoDialog').hide()" />
 				</p:dialog>
 			</h:form>
+
 		</div>
 
 		<div id="divNovoProduto"
@@ -144,8 +157,8 @@
 				</p:panel>
 				<p:blockUI id="blockSalvar" block="panelSalvar"
 					trigger="buttonSalvar" />
-			</h:form>
 
+			</h:form>
 		</div>
 	</ui:define>
 

@@ -40,7 +40,7 @@
 					<p:selectOneMenu id="produto" style="width: 200px"
 						value="#{itemProductBacklogController.produto}" >
 						<f:selectItem itemLabel="Selecione Um" itemValue="" />
-						<f:selectItems value="#{produtoController.listProduto}" />
+						<f:selectItems value="#{itemProductBacklogController.listProduto}" var="produto" itemLabel="#{produto.nome}" />
 					</p:selectOneMenu>
 				</h:panelGrid>
 

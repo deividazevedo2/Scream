@@ -12,7 +12,11 @@
 	</h:head>
 
 	<ui:define name="content">
-		
+		<f:metadata>
+			<f:viewParam name="id"
+				value="#{itemProductBacklogController.idProduto}" />
+		</f:metadata>
+
 		<p:panel id="painelItensProduto"
 			style="float: left; left: 70%; text-align: center; width: 700px; padding: 10px;">
 			<h:form id="formItensDialog">
@@ -80,10 +84,11 @@
 							update=":formItensDialog" icon="ui-icon-pencil"
 							oncomplete="PF('itemDialog').show()" />
 						<p:commandButton value="Deletar" process="datatableItensProduto"
-							update="datatableItensProduto"
-							icon="ui-icon-circle-close"
-							actionListener="#{itemProductBacklogController.remove}" >
-							<p:confirm header="Confirmação" message="Deseja excluir esse item do produto?" icon="ui-icon-alert" />
+							update="datatableItensProduto" icon="ui-icon-circle-close"
+							actionListener="#{itemProductBacklogController.remove}">
+							<p:confirm header="Confirmação"
+								message="Deseja excluir esse item do produto?"
+								icon="ui-icon-alert" />
 						</p:commandButton>
 						<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
 							<p:commandButton value="Sim" styleClass="ui-confirmdialog-yes"
@@ -123,7 +128,8 @@
 							<p:selectBooleanCheckbox
 								value="#{itemProductBacklogController.selectItemProductBacklog.aceitoPO}" />
 							<p:outputLabel for="produto" value="Produto: " />
-							<p:selectOneMenu id="produto" value="#{itemProductBacklogController.selectItemProductBacklog.produto}">
+							<p:selectOneMenu id="produto"
+								value="#{itemProductBacklogController.selectItemProductBacklog.produto}">
 								<f:selectItem itemLabel="Selecione Um" itemValue="" />
 								<f:selectItems value="#{produtoController.listProduto}" />
 							</p:selectOneMenu>

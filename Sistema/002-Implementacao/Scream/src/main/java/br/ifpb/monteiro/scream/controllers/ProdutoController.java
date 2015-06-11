@@ -1,9 +1,8 @@
 package br.ifpb.monteiro.scream.controllers;
 
 import java.io.IOException;
-import java.sql.Date;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -12,30 +11,14 @@ import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.application.Application;
 import javax.faces.application.FacesMessage;
-import javax.faces.component.html.HtmlOutputText;
 import javax.faces.context.FacesContext;
-import javax.faces.event.AbortProcessingException;
-import javax.faces.event.ActionEvent;
-import javax.faces.event.ActionListener;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.primefaces.component.commandbutton.CommandButton;
-import org.primefaces.component.dashboard.Dashboard;
-import org.primefaces.component.panel.Panel;
-import org.primefaces.component.toolbar.Toolbar;
-import org.primefaces.component.toolbar.ToolbarGroup;
 import org.primefaces.event.CloseEvent;
 import org.primefaces.event.DashboardReorderEvent;
 import org.primefaces.event.ToggleEvent;
-import org.primefaces.model.DashboardColumn;
-import org.primefaces.model.DashboardModel;
-import org.primefaces.model.DefaultDashboardColumn;
-import org.primefaces.model.DefaultDashboardModel;
-
-import com.sun.faces.application.ActionListenerImpl;
 
 import br.ifpb.monteiro.scream.entities.ItemProductBacklog;
 import br.ifpb.monteiro.scream.entities.Produto;
@@ -48,9 +31,11 @@ import br.ifpb.monteiro.scream.util.jsf.JsfUtil;
  */
 @Named(value = "produtoController")
 @RequestScoped
-public class ProdutoController{
+public class ProdutoController implements Serializable{
     
-    @Inject
+	private static final long serialVersionUID = 1L;
+
+	@Inject
     private ProdutoService service;
         
     private Produto produto= new Produto();
@@ -70,7 +55,7 @@ public class ProdutoController{
     public void create(){
     	registrarData();
         service.create(produto); 
-        produto= new Produto();
+        this.produto= new Produto();
         JsfUtil.addSuccessMessage("Produto Criado com Sucesso");
     }
     
@@ -84,6 +69,7 @@ public class ProdutoController{
 
     public void delete(){
     	service.remove(produtoSelect);
+    	produtoSelect= new Produto();
     	JsfUtil.addSuccessMessage("Produto Apagado com Sucesso");
     }
     
@@ -93,9 +79,13 @@ public class ProdutoController{
 		
     }
     
-    public void verItens(){
-    	try { 		
-            FacesContext.getCurrentInstance().getExternalContext()
+    public void verItens(Produto produto){
+    	try {
+    		System.out.println("Produto: "+produto);
+    		FacesContext.getCurrentInstance().getExternalContext().getRequest();
+            FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
+    		
+    		FacesContext.getCurrentInstance().getExternalContext()
                     .redirect("/Scream/itensProduto/index.xhtml");
         } catch (IOException ex) {
             JsfUtil.addErrorMessage(ex, "Pagina não encontrada");

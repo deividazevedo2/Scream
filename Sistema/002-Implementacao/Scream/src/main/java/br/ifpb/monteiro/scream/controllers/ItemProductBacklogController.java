@@ -1,14 +1,6 @@
-/*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
-*/
 package br.ifpb.monteiro.scream.controllers;
 
-import br.ifpb.monteiro.scream.entities.ItemProductBacklog;
-import br.ifpb.monteiro.scream.entities.Produto;
-import br.ifpb.monteiro.scream.services.ItemProductBacklogService;
-
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -16,8 +8,15 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import br.ifpb.monteiro.scream.entities.ItemProductBacklog;
+import br.ifpb.monteiro.scream.entities.Produto;
+import br.ifpb.monteiro.scream.services.ItemProductBacklogService;
+import br.ifpb.monteiro.scream.services.ProdutoService;
 
 /**
  *
@@ -25,70 +24,105 @@ import javax.inject.Named;
  */
 @Named(value = "itemProductBacklogController")
 @RequestScoped
-public class ItemProductBacklogController {
-    
-    @Inject
-    private ItemProductBacklogService itemProductBacklogService;
-    
-    private Produto produto;
-    
-    private ItemProductBacklog itemProductBacklog;
-    
-    private ItemProductBacklog selectItemProductBacklog;
-    
-    private List<ItemProductBacklog> listItensProductBacklog;
-    
-    @PostConstruct
-    public void Init(){
-    	produto = new Produto();
-        itemProductBacklog = new ItemProductBacklog();
-        selectItemProductBacklog= new ItemProductBacklog();
-        setListItensProductBacklog(findAll());
-    }
-    
-    public void create(){
-    	gerarData();
-    	itemProductBacklog.setProduto(produto);
-        itemProductBacklogService.create(itemProductBacklog);
-    }
-    
-    private void gerarData() {
-    	Calendar calendar = GregorianCalendar.getInstance();
-    	SimpleDateFormat dateFormat= new SimpleDateFormat("dd/MM/yyyy");
-    	dateFormat.format(calendar.getTime());
-    	calendar = dateFormat.getCalendar();
-    	itemProductBacklog.setDataInicio(calendar.getTime());
-		
+public class ItemProductBacklogController implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	@Inject
+	private ItemProductBacklogService itemProductBacklogService;
+
+	@Inject
+	private ProdutoService produtoService;
+
+	private List<Produto> listProduto;
+
+	@ManagedProperty(value="#{param.id}")
+	private Long idProduto;
+
+	private Produto produtoSelecionado;
+
+	private ItemProductBacklog itemProductBacklog;
+
+	private ItemProductBacklog selectItemProductBacklog;
+
+	private List<ItemProductBacklog> listItensProductBacklog;
+
+	@PostConstruct
+	public void Init(){
+		produtoSelecionado = produtoService.find(buscaIdURL());
+		itemProductBacklog = new ItemProductBacklog();
+		selectItemProductBacklog= new ItemProductBacklog();
+		setListProduto(produtoService.findAll());
+		setListItensProductBacklog(findAll());
 	}
 
+	public void create(){
+		gerarData();
+		itemProductBacklog.setProduto(produtoSelecionado);
+		itemProductBacklogService.create(itemProductBacklog);
+	}
+
+
 	public void remove() {
-        this.itemProductBacklogService.remove(selectItemProductBacklog);
-    }
-    
-    public void update(){
-        this.itemProductBacklogService.update(selectItemProductBacklog);
-    }
-    
-    
-    //Pesquisas no Banco
-    
-    public int count() {
-        return itemProductBacklogService.count();
-    }
-    
-    public ItemProductBacklog find(Long id) {
-        return (ItemProductBacklog) itemProductBacklogService.find(id);
-    }
-    
-    
-    public List<ItemProductBacklog> findRange(int[] range) {
-        return itemProductBacklogService.findRange(range);
-    }
-    
-    public List<ItemProductBacklog> findAll(){
-        List<ItemProductBacklog> itemProductBacklogs = itemProductBacklogService.findAll();
-        return itemProductBacklogs;
-    }
+		this.itemProductBacklogService.remove(selectItemProductBacklog);
+	}
+
+	public void update(){
+		this.itemProductBacklogService.update(selectItemProductBacklog);
+	}
+
+	public void buscaProduto(){
+		find(idProduto);
+
+	}
+
+	private void gerarData() {
+		Calendar calendar = GregorianCalendar.getInstance();
+		SimpleDateFormat dateFormat= new SimpleDateFormat("dd/MM/yyyy");
+		dateFormat.format(calendar.getTime());
+		calendar = dateFormat.getCalendar();
+		itemProductBacklog.setDataInicio(calendar.getTime());
+
+	}
+
+
+	private Long buscaIdURL(){
+
+		FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		String idAux = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
+		Long convertID = Long.parseLong(idAux);
+
+		return convertID;
+	}
+	
+	private List<ItemProductBacklog> buscaItens(){
+		
+		
+		
+		return null;
+	}
+	
+
+
+	//Pesquisas no Banco
+
+	public int count() {
+		return itemProductBacklogService.count();
+	}
+
+	public ItemProductBacklog find(Long id) {
+		return (ItemProductBacklog) itemProductBacklogService.find(id);
+	}
+
+
+	public List<ItemProductBacklog> findRange(int[] range) {
+		return itemProductBacklogService.findRange(range);
+	}
+
+	public List<ItemProductBacklog> findAll(){
+		List<ItemProductBacklog> itemProductBacklogs = itemProductBacklogService.findAll();
+		return itemProductBacklogs;
+	}
 
 	public ItemProductBacklog getSelectItemProductBacklog() {
 		return selectItemProductBacklog;
@@ -115,11 +149,27 @@ public class ItemProductBacklogController {
 	}
 
 	public Produto getProduto() {
-		return produto;
+		return produtoSelecionado;
 	}
 
 	public void setProduto(Produto produto) {
-		this.produto = produto;
+		this.produtoSelecionado = produto;
+	}
+
+	public List<Produto> getListProduto() {
+		return listProduto;
+	}
+
+	public void setListProduto(List<Produto> listProduto) {
+		this.listProduto = listProduto;
+	}
+
+	public void setIdProduto(Long idProduto) {
+		this.idProduto = idProduto;
+	}
+
+	public Long getIdProduto() {
+		return idProduto;
 	}
 
 }
