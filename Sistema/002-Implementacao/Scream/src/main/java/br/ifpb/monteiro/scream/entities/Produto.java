@@ -45,7 +45,6 @@ public class Produto implements Serializable{
     private Date dataTermino;
     
     //Um produto possui vários itens de PB
-    @Transient
     @OneToMany(mappedBy="produto", cascade=CascadeType.ALL)
     private List<ItemProductBacklog> listItensProduct;
     

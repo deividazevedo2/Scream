@@ -49,7 +49,6 @@ public class Projeto implements Serializable{
 //    private List<UsuarioProjeto> listUsuarioProjeto;
     
 //    @ManyToOne
-    @Transient
     @OneToMany(mappedBy = "projeto")
     private List<DefinicaoDePronto> definicoesDePronto;
     
