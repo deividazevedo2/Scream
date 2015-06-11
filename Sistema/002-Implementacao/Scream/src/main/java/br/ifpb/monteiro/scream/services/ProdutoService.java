@@ -1,9 +1,11 @@
 package br.ifpb.monteiro.scream.services;
 
+import static br.ifpb.monteiro.scream.dao.GenericDAO.getLogger;
 import br.ifpb.monteiro.scream.dao.ProdutoDAO;
 import br.ifpb.monteiro.scream.entities.Produto;
 import br.ifpb.monteiro.scream.util.jpa.Transactional;
 import java.util.List;
+import java.util.logging.Level;
 import javax.inject.Inject;
 
 /**
@@ -18,26 +20,26 @@ public class ProdutoService {
     public int count() {
         return produtoDAO.count();
     }
-       
+    
     @Transactional
     public boolean create(Produto entity) {
         try {
             this.produtoDAO.create(entity);
             return true;
         } catch (Exception e) {
-            System.err.println("Erro no Service: " + e.getMessage());
+            getLogger().log(Level.SEVERE, "Erro no Service ", e);
             return false;
         }
     }
     
     @Transactional
     public boolean update(Produto entity){
-    	try{
-    		produtoDAO.update(entity);
-    		return true;
-    	}catch(Exception e){
-    		return false;
-    	}
+        try{
+            produtoDAO.update(entity);
+            return true;
+        }catch(Exception e){
+            return false;
+        }
     }
     
     public Produto find(Long id) {
@@ -56,11 +58,11 @@ public class ProdutoService {
     public void remove(Produto entity) {
         this.produtoDAO.delete(entity);
     }
-
+    
     public ProdutoDAO getProdutoDAO() {
         return produtoDAO;
     }
-
+    
     public void setProdutoDAO(ProdutoDAO produtoDAO) {
         this.produtoDAO = produtoDAO;
     }

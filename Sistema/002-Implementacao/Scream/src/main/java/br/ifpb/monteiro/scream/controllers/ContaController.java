@@ -93,11 +93,9 @@ public class ContaController {
         try {
             conta = ss.login(this.conta.getUsuario(), this.conta.getSenha(), true);
         } catch (Exception e) {
+            Logger.getLogger(ContaController.class.getName()).log(Level.SEVERE,"Erro na criação do Login", e);
             FacesContext
-                    .getCurrentInstance()
-                    .addMessage(
-                            null,
-                            new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    .getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
                                     "Falha no Login:",
                                     "O login e senha informados não possuem credencias de acesso"));
         }

@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 /**
  *
@@ -48,7 +49,6 @@ public class Projeto implements Serializable{
 //    private List<UsuarioProjeto> listUsuarioProjeto;
     
 //    @ManyToOne
-    
     @OneToMany(mappedBy = "projeto")
     private List<DefinicaoDePronto> definicoesDePronto;
     
