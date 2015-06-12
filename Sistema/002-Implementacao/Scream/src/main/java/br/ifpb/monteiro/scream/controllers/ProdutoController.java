@@ -67,9 +67,8 @@ public class ProdutoController implements Serializable{
     	produto.setDataInicio(calendar.getTime());	
     }
 
-    public void delete(){
+    public void delete(Produto produtoSelect){
     	service.remove(produtoSelect);
-    	produtoSelect= new Produto();
     	JsfUtil.addSuccessMessage("Produto Apagado com Sucesso");
     }
     

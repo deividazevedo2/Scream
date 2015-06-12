@@ -2,8 +2,6 @@ package br.ifpb.monteiro.scream.dao;
 
 import javax.persistence.Query;
 
-import org.apache.commons.logging.Log;
-
 import br.ifpb.monteiro.scream.entities.Produto;
 import br.ifpb.monteiro.scream.util.jpa.Transactional;
 
@@ -34,5 +32,5 @@ public class ProdutoDAO extends GenericDAO<Produto>{
 		Query queryProduto = getEntityManager().createNativeQuery("DELETE FROM produto WHERE id = " + entity.getId());
 		queryProduto.executeUpdate();
 	}
-
+	
 }

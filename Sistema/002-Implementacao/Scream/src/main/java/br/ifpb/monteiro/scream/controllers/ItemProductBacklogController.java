@@ -46,13 +46,16 @@ public class ItemProductBacklogController implements Serializable {
 	private ItemProductBacklog selectItemProductBacklog;
 
 	private List<ItemProductBacklog> listItensProductBacklog;
+	
+	private List<ItemProductBacklog> listItensProduto;
 
 	@PostConstruct
 	public void Init(){
 		produtoSelecionado = produtoService.find(buscaIdURL());
 		itemProductBacklog = new ItemProductBacklog();
 		selectItemProductBacklog= new ItemProductBacklog();
-		setListProduto(produtoService.findAll());
+		setListItensProduto(buscaItens());
+		//setListProduto(produtoService.findAll());
 		setListItensProductBacklog(findAll());
 	}
 
@@ -94,14 +97,12 @@ public class ItemProductBacklogController implements Serializable {
 
 		return convertID;
 	}
-	
+
 	private List<ItemProductBacklog> buscaItens(){
-		
-		
-		
-		return null;
+
+		return itemProductBacklogService.findItensProduto(buscaIdURL());
 	}
-	
+
 
 
 	//Pesquisas no Banco
@@ -170,6 +171,14 @@ public class ItemProductBacklogController implements Serializable {
 
 	public Long getIdProduto() {
 		return idProduto;
+	}
+
+	public List<ItemProductBacklog> getListItensProduto() {
+		return listItensProduto;
+	}
+
+	public void setListItensProduto(List<ItemProductBacklog> listItensProduto) {
+		this.listItensProduto = listItensProduto;
 	}
 
 }

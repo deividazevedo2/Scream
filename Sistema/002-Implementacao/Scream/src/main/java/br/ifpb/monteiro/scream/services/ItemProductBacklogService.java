@@ -70,5 +70,9 @@ public class ItemProductBacklogService {
         this.itemProductBacklogDAO = itemProductBacklogDAO;
     }
     
+    public List<ItemProductBacklog> findItensProduto(Long id) {
+    	return this.itemProductBacklogDAO.findItemProduto(id);
+		
+	}
     
 }
