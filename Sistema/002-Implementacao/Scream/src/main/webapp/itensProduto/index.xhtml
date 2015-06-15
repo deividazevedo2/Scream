@@ -12,27 +12,22 @@
 	</h:head>
 
 	<ui:define name="content">
-		<f:metadata>
-			<f:viewParam name="id"
-				value="#{itemProductBacklogController.idProduto}" />
-		</f:metadata>
 
-		<p:panel id="painelItensProduto"
-			style="float: left; left: 70%; text-align: center; width: 700px; padding: 10px;">
+		<div
+			style="margin-left: 10%; margin-right: 10%; text-align: center; width: 80%; padding: 10px;">
 			<h:form id="formItensDialog">
 				<p:outputLabel
 					value="Itens do #{itemProductBacklogController.selectItemProductBacklog.produto.nome}"
 					style="float: none; position: relative; text-align: center; font-size: 18px; color: #0274A8" />
 				<p:dataTable id="datatableItensProduto"
-					value="#{itemProductBacklogController.listItensProduto}"
-					var="item" widgetVar="tabelaItemProduto"
-					paginatorAlwaysVisible="false" style="margin-top: 20px;" rows="10"
-					selectionMode="single" emptyMessage="Nenhum item encontrado"
-					paginator="true" paginatorPosition="bottom"
+					value="#{itemProductBacklogController.listItensProduto}" var="item"
+					widgetVar="tabelaItemProduto" paginatorAlwaysVisible="false"
+					style="margin-top: 20px;" rows="10"
+					emptyMessage="Nenhum item encontrado" paginator="true"
+					paginatorPosition="bottom"
 					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}  {PageLinks} 
                              {NextPageLink}  {LastPageLink}  {RowsPerPageDropdown}"
-					rowsPerPageTemplate="10,20, 50,100,200" rowKey="#{item.id}"
-					selection="#{itemProductBacklogController.selectItemProductBacklog}">
+					rowsPerPageTemplate="10,20, 50,100,200">
 
 					<f:facet name="header">
 						<p:outputPanel>
@@ -40,6 +35,11 @@
 							<p:inputText id="globalFilter"
 								onkeyup="PF('tabelaProduto').filter()"
 								placeholder="Informe qualquer dado do item do produto" />
+
+
+							<p:commandButton value="Novo" process="datatableItensProduto"
+								update=":formItensDialog" icon="ui-icon-circle-plus"
+								oncomplete="PF('novoItemDialog').show()" />
 						</p:outputPanel>
 					</f:facet>
 
@@ -79,10 +79,27 @@
 						<h:outputText value="#{item.aceitoPO}" />
 					</p:column>
 
-					<f:facet name="footer">
+
+					<p:column id="columnAcao" headerText="Ações" style=" width:170px;">
+
+						<p:button value="Ver Teste de Aceitação"
+							process="datatableItensProduto"
+							 icon="ui-icon-pencil" outcome="/testeAceitacao/index.xhtml">
+
+							<f:param name="id" value="#{item.id}" />
+
+						</p:button>
+
 						<p:commandButton value="Editar" process="datatableItensProduto"
 							update=":formItensDialog" icon="ui-icon-pencil"
-							oncomplete="PF('itemDialog').show()" />
+							oncomplete="PF('itemDialog').show()">
+
+							<f:setPropertyActionListener value="item"
+								target="#{itemProductBacklogController.selectItemProductBacklog}"/>
+
+						</p:commandButton>
+
+
 						<p:commandButton value="Deletar" process="datatableItensProduto"
 							update="datatableItensProduto" icon="ui-icon-circle-close"
 							actionListener="#{itemProductBacklogController.remove}">
@@ -96,12 +113,11 @@
 							<p:commandButton value="Não" type="button"
 								styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
 						</p:confirmDialog>
-					</f:facet>
-
+					</p:column>
 				</p:dataTable>
 
 
-				<p:dialog id="itemDialog" header="Criar Novo Item"
+				<p:dialog id="itemDialog" header="Editar Item"
 					widgetVar="itemDialog" resizable="false" draggable="false"
 					showEffect="fade" hideEffect="fade" modal="true"
 					style="font-size: 12px">
@@ -122,7 +138,7 @@
 							<p:inputText maxlength="30" size="30"
 								value="#{itemProductBacklogController.selectItemProductBacklog.complexidade}" />
 							<h:outputLabel value="Prioridade: " />
-							<p:inputText id="selectPrioridade"
+							<p:inputText id="editarSelectPrioridade"
 								value="#{itemProductBacklogController.selectItemProductBacklog.prioridade}" />
 							<h:outputLabel value="Aceito pelo P.O. " />
 							<p:selectBooleanCheckbox
@@ -144,44 +160,44 @@
 					</p:outputPanel>
 				</p:dialog>
 
+				<p:dialog id="novoItemDialog" header="Criar Novo Item"
+					widgetVar="itemDialog" resizable="false" draggable="false"
+					showEffect="fade" hideEffect="fade" modal="true"
+					style="font-size: 12px">
+
+					<h:panelGrid columns="2" style="font-size: 12px;margin-top: 20px;">
+
+						<h:outputLabel value="Descrição: " />
+						<p:inputTextarea rows="5" cols="30"
+							value="#{itemProductBacklogController.itemProductBacklog.descricao}"
+							queryDelay="750" minQueryLength="4" />
+						<h:outputLabel value="Peso: " />
+						<p:inputText maxlength="30" size="30"
+							value="#{itemProductBacklogController.itemProductBacklog.peso}" />
+						<h:outputLabel value="Valor Ganho: " />
+						<p:inputText maxlength="30" size="30"
+							value="#{itemProductBacklogController.itemProductBacklog.valorGanho}" />
+						<h:outputLabel value="Complexidade: " />
+						<p:inputText maxlength="30" size="30"
+							value="#{itemProductBacklogController.itemProductBacklog.complexidade}" />
+						<h:outputLabel value="Prioridade: " />
+						<p:inputText id="selectPrioridade"
+							value="#{itemProductBacklogController.itemProductBacklog.prioridade}" />
+						<h:outputLabel value="Aceito pelo P.O. " />
+						<p:selectBooleanCheckbox
+							value="#{itemProductBacklogController.itemProductBacklog.aceitoPO}" />
+					</h:panelGrid>
+
+					<br />
+					<p:commandButton value="Salvar" icon="ui-icon-disk"
+						update=":formItensDialog"
+						actionListener="#{itemProductBacklogController.create}"
+						aoncomplete="PF('itemDialog').hide()" />
+
+				</p:dialog>
+
 			</h:form>
-		</p:panel>
-		<p:panel id="painelNovoItem"
-			style="float: left; right: 60%; text-align: center; width: 350px; padding: 10px;">
-			<h:form id="formNovoItem">
-				<p:outputLabel value="Novo Item"
-					style="float: none; position: relative; text-align: center; font-size: 18px; color: #0274A8" />
-				<h:panelGrid columns="2" style="font-size: 12px;margin-top: 20px;">
-
-					<h:outputLabel value="Descrição: " />
-					<p:inputTextarea rows="5" cols="30"
-						value="#{itemProductBacklogController.itemProductBacklog.descricao}"
-						queryDelay="750" minQueryLength="4" />
-					<h:outputLabel value="Peso: " />
-					<p:inputText maxlength="30" size="30"
-						value="#{itemProductBacklogController.itemProductBacklog.peso}" />
-					<h:outputLabel value="Valor Ganho: " />
-					<p:inputText maxlength="30" size="30"
-						value="#{itemProductBacklogController.itemProductBacklog.valorGanho}" />
-					<h:outputLabel value="Complexidade: " />
-					<p:inputText maxlength="30" size="30"
-						value="#{itemProductBacklogController.itemProductBacklog.complexidade}" />
-					<h:outputLabel value="Prioridade: " />
-					<p:inputText id="selectPrioridade"
-						value="#{itemProductBacklogController.itemProductBacklog.prioridade}" />
-					<h:outputLabel value="Aceito pelo P.O. " />
-					<p:selectBooleanCheckbox
-						value="#{itemProductBacklogController.itemProductBacklog.aceitoPO}" />
-				</h:panelGrid>
-
-				<br />
-				<p:commandButton value="Salvar" icon="ui-icon-disk"
-					update=":formNovoItem"
-					actionListener="#{itemProductBacklogController.create}"
-					aoncomplete="PF('itemDialog').hide()" />
-
-			</h:form>
-		</p:panel>
+		</div>
 
 	</ui:define>
 
