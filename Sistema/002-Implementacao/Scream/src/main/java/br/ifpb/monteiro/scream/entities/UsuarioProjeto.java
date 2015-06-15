@@ -3,6 +3,7 @@ package br.ifpb.monteiro.scream.entities;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import javax.management.relation.Role;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import br.ifpb.monteiro.scream.entities.enums.Roles;
 
 /**
  * Classe para modelar e comportar a entidade
@@ -38,11 +41,14 @@ public class UsuarioProjeto implements Serializable {
     @Column(nullable = false, length = 30, name = "administrador")
     private Boolean administrador;
 
-//    @ManyToOne
-//    private Conta id_conta;
-
-    @ManyToOne @JoinColumn(name="id_usuario_do_projeto")
+    @ManyToOne @JoinColumn(name="id_projeto")
     private Projeto projeto;
+    
+    @ManyToOne @JoinColumn(name="id_conta")
+    private Conta conta;
+    
+    @Column(nullable = false, name = "roles")
+    private Roles roles;
     
     public Long getId() {
         return id;
@@ -67,6 +73,25 @@ public class UsuarioProjeto implements Serializable {
     public void setAdministrador(Boolean administrador) {
         this.administrador = administrador;
     }
+    
+    public Projeto getProjeto() {
+		return projeto;
+	}
+    public void setProjeto(Projeto projeto) {
+		this.projeto = projeto;
+	}
+    public Conta getConta() {
+		return conta;
+	}
+    public void setConta(Conta conta) {
+		this.conta = conta;
+	}
+    public Roles getRoles() {
+		return roles;
+	}
+    public void setRoles(Roles roles) {
+		this.roles = roles;
+	}
 
 //    public Conta getId_conta() {
 //        return id_conta;

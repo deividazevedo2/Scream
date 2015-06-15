@@ -17,7 +17,7 @@ import javax.persistence.Table;
  * @author Mauricio
  */
 @Entity
-@Table(name = "criterio_aceitacao")
+@Table(name = "teste_aceitacao")
 public class TesteAceitacao implements Serializable{
     
     private static final long serialVersionUID = 1L;
@@ -29,8 +29,8 @@ public class TesteAceitacao implements Serializable{
     @Column(nullable = false, length = 30, name = "descricao")
     private String descricao;
     
-    @Column(nullable = false, length = 255, name = "estado_criterio")
-    private Boolean estadoDocriterio;
+    @Column(nullable = false, length = 255, name = "estado_teste")
+    private Boolean estadoTeste;
 
 //  
 //    @OneToMany(mappedBy = "unimplemented_yet")
@@ -56,12 +56,12 @@ public class TesteAceitacao implements Serializable{
         this.descricao = descricao;
     }
 
-    public Boolean getEstadoDocriterio() {
-        return estadoDocriterio;
+    public Boolean getEstadoTeste() {
+        return estadoTeste;
     }
 
-    public void setEstadoDocriterio(Boolean estadoDocriterio) {
-        this.estadoDocriterio = estadoDocriterio;
+    public void setEstadoTeste(Boolean estadoTeste) {
+        this.estadoTeste = estadoTeste;
     }
 
 //    public TesteAceitacao getCriterioAceitacao() {
