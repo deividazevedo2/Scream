@@ -73,8 +73,12 @@ public class ProdutoController implements Serializable{
     }
     
     public void editar(){
-    	service.update(produtoSelect);
-    	JsfUtil.addSuccessMessage("Produto Editado com Sucesso");
+    	if(produtoSelect.getId()==null){
+    		JsfUtil.addErrorMessage("Erro ao selecionar seu produto, por favor tente mais tarde");
+    	}else {
+    		service.update(produtoSelect);
+    		JsfUtil.addSuccessMessage("Produto atualizado com sucesso");
+		}
 		
     }
     
@@ -96,7 +100,7 @@ public class ProdutoController implements Serializable{
     @PostConstruct
     public void init(){
     	itemProductBacklog =new ItemProductBacklog();
-    	produtoSelect= new Produto();
+    	//produtoSelect= new Produto();
         listProduto= service.findAll();                
         
     }
@@ -157,10 +161,6 @@ public class ProdutoController implements Serializable{
 
 	public void setProdutoSelect(Produto produtoSelect) {
 		this.produtoSelect = produtoSelect;
-	}
-	
-	public void produtoSelecionado(Produto produto){
-		this.produtoSelect= produto;
 	}
 
 	public ItemProductBacklog getItemProductBacklog() {

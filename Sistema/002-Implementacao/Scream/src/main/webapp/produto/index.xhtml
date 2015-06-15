@@ -28,8 +28,7 @@
 						paginatorPosition="bottom"
 						paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}  {PageLinks} 
                              {NextPageLink}  {LastPageLink}  {RowsPerPageDropdown}"
-						rowsPerPageTemplate="5,10,20, 50,100,200" rowKey="#{produto.id}"
-						selection="#{produtoController.produtoSelect}">
+						rowsPerPageTemplate="5,10,20, 50,100,200" rowKey="#{produto.id}">
 
 						<f:facet name="header">
 
@@ -78,8 +77,11 @@
 
 								<p:commandButton style="font-size: 13px;" value="Editar"
 									process="datatableProdutos" update=":formProduto:produtoDetail"
-									icon="ui-icon-pencil" oncomplete="PF('produtoDialog').show()"
-									action="#{produtoController.setProdutoSelect(produto)}" />
+									icon="ui-icon-pencil" oncomplete="PF('produtoDialog').show()">
+									
+									<f:setPropertyActionListener value="#{produto}" target="#{produtoController.produtoSelect}"/>
+									
+								</p:commandButton>		
 
 								<p:commandButton style="font-size: 13px;" value="Deletar"
 									icon="ui-icon-circle-close"
@@ -87,7 +89,7 @@
 									<p:confirm header="Confirmação"
 										message="Deseja excluir esse produto?" icon="ui-icon-alert">
 
-									</p:confirm>
+									</p:confirm> 
 								</p:commandButton>
 
 								<p:button style="font-size: 13px;" value="Ver Itens do Produto"
@@ -99,7 +101,7 @@
 									hideEffect="fade">
 									<h:form prependId="false">
 										<p:commandButton value="Sim" styleClass="ui-confirmdialog-yes"
-											icon="ui-icon-check" update="@(form:datatableProdutos)">
+											icon="ui-icon-check" >
 
 										</p:commandButton>
 										<p:commandButton value="Não" type="button"
@@ -116,12 +118,12 @@
 				</h:panelGroup>
 				<p:dialog id="produtoDialog" header="Editar Produto"
 					widgetVar="produtoDialog" modal="true" showEffect="fade"
-					hideEffect="fade" resizable="false">
+					hideEffect="fade" resizable="false" >
 					<p:outputPanel id="produtoDetail" style="text-align:center;">
 						<p:panelGrid columns="2"
 							rendered="#{not empty produtoController.produtoSelect}"
 							columnClasses="label,value">
-
+														
 							<p:outputLabel value="Nome" for="nome" />
 							<p:inputText id="nome" maxlength="50"
 								placeholder="Nome do Produto"
@@ -136,9 +138,9 @@
 					</p:outputPanel>
 
 					<p:commandButton id="editarProduto" value="Salvar"
-						update="@(form:datatableProdutos)" icon="ui-icon-disk"
-						actionListener="#{produtoController.editar}"
-						oncomplete="PF('produtoDialog').hide()" />
+						icon="ui-icon-disk" 
+						action="#{produtoController.editar}"
+						ondblclick="PF('produtoDialog').hide()" />
 				</p:dialog>
 
 				<p:dialog id="novoProdutoDialog" header="Novo Produto"
