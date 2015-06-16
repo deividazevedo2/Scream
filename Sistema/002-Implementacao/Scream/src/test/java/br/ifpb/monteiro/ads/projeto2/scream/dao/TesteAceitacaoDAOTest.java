@@ -231,7 +231,7 @@ public class TesteAceitacaoDAOTest {
         
         TesteAceitacao p = new TesteAceitacao();
         p.setDescricao(descricao);
-        p.setEstadoDocriterio(false);
+        p.setEstadoTeste(false);
         p.setItemProductBacklog(criaItemProductBacklog("Um Item Aqui", 10));
         
         criterioAceitacaoDAO.getEntityManager().getTransaction().begin();
