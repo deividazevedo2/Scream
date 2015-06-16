@@ -38,6 +38,14 @@ public class SecurityService {
 		generatePassword(conta, plainTextPassword);
 		contaDao.update(conta);
 	}
+	
+	public boolean isAuthorized(String roleIdentifier){
+		org.apache.shiro.subject.Subject currentUser = SecurityUtils.getSubject();
+		if (currentUser.hasRole(roleIdentifier)) {
+			System.out.println("##########################################################");
+		}
+		return false;
+	}
 
 	public Conta login(String username, String password, Boolean rememberMe) {
 		// get the currently executing user:

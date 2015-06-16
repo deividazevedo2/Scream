@@ -23,6 +23,7 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
 import br.ifpb.monteiro.scream.entities.Conta;
+import br.ifpb.monteiro.scream.entities.UsuarioProjeto;
 import br.ifpb.monteiro.scream.services.SecurityService;
 
 public class ScreamRealm extends AuthorizingRealm {
@@ -74,8 +75,6 @@ public class ScreamRealm extends AuthorizingRealm {
 		String username = (String) principal.getPrimaryPrincipal();
 		Set<String> roles = new HashSet<String>();; // Isso n sairia null???
 		SimpleAuthorizationInfo authorization = new SimpleAuthorizationInfo();
-		SecurityService ss = new SecurityService();
-		Conta conta = ss.getConta(username);
 	  //authorization.addStringPermission(IdeenProprietaPermissions.READ_WRITE.toString());
 		authorization.setRoles(roles);
 		//resgatar da base de dados as permissões e verificar se ele tem acesso ao recurso
@@ -86,14 +85,15 @@ public class ScreamRealm extends AuthorizingRealm {
 		 * Depois precisamos adicionar projeto aqui. Pq cada conta pode 
 		 * ter permissões diferentes para cada projeto
 		 */
-		Query q = em.createQuery("select usuario_projeto.roles from Conta conta, UsuarioProjeto usuario_projeto "
-				+ "where conta.usuario = ?1 AND conta.id = usuario_projeto.id_conta");
+		Query q = em.createQuery("select up from UsuarioProjeto up "
+				+ "where up.conta.usuario=?1");
 		q.setParameter(1, username);
 		
-		List<String> role = q.getResultList();
-		List<String> rol = (List<String>) authorization.getRoles();
+		List<UsuarioProjeto> user = q.getResultList();
+		Set<String> rol = authorization.getRoles();
+		System.out.println(rol+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		
-		if (role.get(0).equals(rol.get(0))) {
+		if (user.get(0).getRoles().equals(rol)) {
 			return authorization;
 		}
 		

@@ -16,6 +16,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.primefaces.event.CloseEvent;
 import org.primefaces.event.DashboardReorderEvent;
 import org.primefaces.event.ToggleEvent;
@@ -23,6 +24,7 @@ import org.primefaces.event.ToggleEvent;
 import br.ifpb.monteiro.scream.entities.ItemProductBacklog;
 import br.ifpb.monteiro.scream.entities.Produto;
 import br.ifpb.monteiro.scream.services.ProdutoService;
+import br.ifpb.monteiro.scream.services.SecurityService;
 import br.ifpb.monteiro.scream.util.jsf.JsfUtil;
 
 /**
@@ -37,6 +39,9 @@ public class ProdutoController implements Serializable{
 
 	@Inject
     private ProdutoService service;
+	
+	@Inject
+	private SecurityService ss;
         
     private Produto produto= new Produto();
     
@@ -67,7 +72,11 @@ public class ProdutoController implements Serializable{
     	produto.setDataInicio(calendar.getTime());	
     }
 
+    
     public void delete(Produto produtoSelect){
+    	if (ss.isAuthorized("scientist")) {
+			System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		}
     	service.remove(produtoSelect);
     	JsfUtil.addSuccessMessage("Produto Apagado com Sucesso");
     }
