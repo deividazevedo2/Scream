@@ -38,6 +38,7 @@ public class ProdutoService {
             produtoDAO.update(entity);
             return true;
         }catch(Exception e){
+            getLogger().log(Level.SEVERE, "Erro no Service ", e);
             return false;
         }
     }

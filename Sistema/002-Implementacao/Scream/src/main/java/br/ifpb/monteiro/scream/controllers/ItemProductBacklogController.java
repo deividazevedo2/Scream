@@ -8,7 +8,6 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -36,8 +35,6 @@ public class ItemProductBacklogController implements Serializable {
 
 	private List<Produto> listProduto;
 
-	@ManagedProperty(value="#{param.id}")
-	private Long idProduto;
 
 	private Produto produtoSelecionado;
 
@@ -54,7 +51,7 @@ public class ItemProductBacklogController implements Serializable {
 		produtoSelecionado = produtoService.find(buscaIdURL());
 		itemProductBacklog = new ItemProductBacklog();
 		selectItemProductBacklog= new ItemProductBacklog();
-		setListItensProduto(buscaItens());
+		listItensProduto= itemProductBacklogService.findItensProduto(buscaIdURL());
 		//setListProduto(produtoService.findAll());
 		setListItensProductBacklog(findAll());
 	}
@@ -74,10 +71,7 @@ public class ItemProductBacklogController implements Serializable {
 		this.itemProductBacklogService.update(selectItemProductBacklog);
 	}
 
-	public void buscaProduto(){
-		find(idProduto);
 
-	}
 
 	private void gerarData() {
 		Calendar calendar = GregorianCalendar.getInstance();
@@ -98,13 +92,7 @@ public class ItemProductBacklogController implements Serializable {
 		return convertID;
 	}
 
-	private List<ItemProductBacklog> buscaItens(){
-
-		return itemProductBacklogService.findItensProduto(buscaIdURL());
-	}
-
-
-
+	
 	//Pesquisas no Banco
 
 	public int count() {
@@ -165,14 +153,7 @@ public class ItemProductBacklogController implements Serializable {
 		this.listProduto = listProduto;
 	}
 
-	public void setIdProduto(Long idProduto) {
-		this.idProduto = idProduto;
-	}
-
-	public Long getIdProduto() {
-		return idProduto;
-	}
-
+	
 	public List<ItemProductBacklog> getListItensProduto() {
 		return listItensProduto;
 	}
