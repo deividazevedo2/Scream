@@ -43,6 +43,7 @@ public class SecurityService {
 		org.apache.shiro.subject.Subject currentUser = SecurityUtils.getSubject();
 		if (currentUser.hasRole(roleIdentifier)) {
 			System.out.println("##########################################################");
+			return true;
 		}
 		return false;
 	}

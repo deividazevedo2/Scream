@@ -12,8 +12,10 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.ifpb.monteiro.scream.entities.Conta;
+import br.ifpb.monteiro.scream.entities.UsuarioProjeto;
 import br.ifpb.monteiro.scream.services.ContaService;
 import br.ifpb.monteiro.scream.services.SecurityService;
+import br.ifpb.monteiro.scream.services.UsuarioProjetoService;
 import br.ifpb.monteiro.scream.util.jsf.JsfUtil;
 
 /**
@@ -79,6 +81,7 @@ public class ContaController {
     //	public void setSenha(String senha) {
     //		this.senha = senha;
     //	}
+    
     
     public ContaService getContaService() {
         return contaService;

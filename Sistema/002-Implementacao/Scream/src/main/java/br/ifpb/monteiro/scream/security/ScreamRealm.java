@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EnumType;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
@@ -24,6 +25,7 @@ import org.apache.shiro.subject.PrincipalCollection;
 
 import br.ifpb.monteiro.scream.entities.Conta;
 import br.ifpb.monteiro.scream.entities.UsuarioProjeto;
+import br.ifpb.monteiro.scream.entities.enums.Roles;
 import br.ifpb.monteiro.scream.services.SecurityService;
 
 public class ScreamRealm extends AuthorizingRealm {
@@ -75,8 +77,7 @@ public class ScreamRealm extends AuthorizingRealm {
 		String username = (String) principal.getPrimaryPrincipal();
 		Set<String> roles = new HashSet<String>();; // Isso n sairia null???
 		SimpleAuthorizationInfo authorization = new SimpleAuthorizationInfo();
-	  //authorization.addStringPermission(IdeenProprietaPermissions.READ_WRITE.toString());
-		authorization.setRoles(roles);
+		
 		//resgatar da base de dados as permissões e verificar se ele tem acesso ao recurso
 		
 		//Isso deveria retornar as roles do usuário referente a conta.
@@ -88,16 +89,27 @@ public class ScreamRealm extends AuthorizingRealm {
 		Query q = em.createQuery("select up from UsuarioProjeto up "
 				+ "where up.conta.usuario=?1");
 		q.setParameter(1, username);
+
+		UsuarioProjeto individuo = (UsuarioProjeto) q.getResultList().get(0);
+//		System.out.println(individuo.getRoles().toString()+"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+		System.out.println(individuo.getRoles()+"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+		if (individuo.getRoles() == Roles.ADM) {
+			roles.add("ADM");
+		}
 		
-		List<UsuarioProjeto> user = q.getResultList();
-		Set<String> rol = authorization.getRoles();
+		
+	  //authorization.addStringPermission(IdeenProprietaPermissions.READ_WRITE.toString());
+		authorization.setRoles(roles);
+
+		Set<String> rol = authorization.getRoles(); 
 		System.out.println(rol+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		
-		if (user.get(0).getRoles().equals(rol)) {
+		if (roles.isEmpty()) {
+			return null;
+		}else{
 			return authorization;
 		}
 		
-		return null;
 	}
 	
 //    @Override

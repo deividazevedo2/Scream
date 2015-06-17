@@ -3,7 +3,7 @@ package br.ifpb.monteiro.scream.entities.enums;
 public enum Roles {
 	
 	ADM,
-	PRODUC_TOWNER,
+	PRODUCT_OWNER,
 	TEAM,
 	SCRUM_MASTER
 	

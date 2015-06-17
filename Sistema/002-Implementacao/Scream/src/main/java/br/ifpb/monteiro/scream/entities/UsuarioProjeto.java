@@ -34,7 +34,7 @@ public class UsuarioProjeto implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 30, name = "horario")
+    @Column(nullable = true, length = 30, name = "horario")
     private Timestamp horario;
 
     //GALERA ESSE ATRIBUTO ESTAVA admin MAS É UMA PALAVRA RESERVADA DO SQL E PODERIA DAR PROBLEMA
@@ -47,7 +47,7 @@ public class UsuarioProjeto implements Serializable {
     @ManyToOne @JoinColumn(name="id_conta")
     private Conta conta;
     
-    @Column(nullable = false, name = "roles")
+    @Column(nullable = true, name = "roles")
     private Roles roles;
     
     public Long getId() {

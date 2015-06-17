@@ -74,11 +74,14 @@ public class ProdutoController implements Serializable{
 
     
     public void delete(Produto produtoSelect){
-    	if (ss.isAuthorized("scientist")) {
+    	if (ss.isAuthorized("ADM")) {
 			System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+			service.remove(produtoSelect);
+	    	JsfUtil.addSuccessMessage("Produto Apagado com Sucesso");
+		}else{
+			JsfUtil.addErrorMessage("Você não tem permissão para apagar o produto");
 		}
-    	service.remove(produtoSelect);
-    	JsfUtil.addSuccessMessage("Produto Apagado com Sucesso");
+    	
     }
     
     public void editar(){
