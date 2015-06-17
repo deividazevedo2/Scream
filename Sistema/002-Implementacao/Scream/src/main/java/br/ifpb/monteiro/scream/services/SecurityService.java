@@ -16,11 +16,14 @@ import org.apache.shiro.crypto.hash.Sha256Hash;
 
 import br.ifpb.monteiro.scream.dao.ContaDAO;
 import br.ifpb.monteiro.scream.entities.Conta;
+import br.ifpb.monteiro.scream.entities.UsuarioProjeto;
 
 public class SecurityService {
 	
 	@Inject
 	private ContaDAO contaDao;
+	
+	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("Scream"); 
 	
 	private void generatePassword(Conta conta, String plainTextPassword) {
 		RandomNumberGenerator rng = new SecureRandomNumberGenerator();
@@ -38,6 +41,7 @@ public class SecurityService {
 		generatePassword(conta, plainTextPassword);
 		contaDao.update(conta);
 	}
+
 	
 	public boolean isAuthorized(String roleIdentifier){
 		org.apache.shiro.subject.Subject currentUser = SecurityUtils.getSubject();

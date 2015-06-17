@@ -95,6 +95,12 @@ public class ScreamRealm extends AuthorizingRealm {
 		System.out.println(individuo.getRoles()+"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 		if (individuo.getRoles() == Roles.ADM) {
 			roles.add("ADM");
+		}else if(individuo.getRoles() == Roles.PRODUCT_OWNER){
+			roles.add("PRODUCT_OWNER");
+		}else if (individuo.getRoles() == Roles.SCRUM_MASTER) {
+			roles.add("SCRUM_MASTER");
+		}else if (individuo.getRoles() == Roles.TEAM) {
+			roles.add("TEAM");
 		}
 		
 		

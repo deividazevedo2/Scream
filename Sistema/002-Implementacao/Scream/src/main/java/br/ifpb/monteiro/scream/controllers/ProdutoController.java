@@ -23,6 +23,7 @@ import org.primefaces.event.ToggleEvent;
 
 import br.ifpb.monteiro.scream.entities.ItemProductBacklog;
 import br.ifpb.monteiro.scream.entities.Produto;
+import br.ifpb.monteiro.scream.entities.enums.Roles;
 import br.ifpb.monteiro.scream.services.ProdutoService;
 import br.ifpb.monteiro.scream.services.SecurityService;
 import br.ifpb.monteiro.scream.util.jsf.JsfUtil;
@@ -74,7 +75,7 @@ public class ProdutoController implements Serializable{
 
     
     public void delete(Produto produtoSelect){
-    	if (ss.isAuthorized("ADM")) {
+    	if (ss.isAuthorized("PRODUCT_OWNER")) {
 			System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 			service.remove(produtoSelect);
 	    	JsfUtil.addSuccessMessage("Produto Apagado com Sucesso");
