@@ -27,7 +27,7 @@ public class AceitacaoProduto {
     public static void setUpBeforeClass() throws Exception{
         driver = new FirefoxDriver();
         driver.get("localhost:8080/scream/");
-        driver.findElement(By.id("formularioLogin:username")).sendKeys("MAB");
+        driver.findElement(By.id("formularioLogin:username")).sendKeys("adm");
         driver.findElement(By.id("formularioLogin:senha")).sendKeys("123");
         driver.findElement(By.id("formularioLogin:botaoEntrar")).click();
         driver.get("localhost:8080/scream/produto/index.xhtml");

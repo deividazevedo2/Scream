@@ -59,10 +59,15 @@ public class ProdutoController implements Serializable{
     }
     
     public void create(){
-    	registrarData();
-        service.create(produto); 
-        this.produto= new Produto();
-        JsfUtil.addSuccessMessage("Produto Criado com Sucesso");
+    	if (ss.isAuthorized("SM")){
+    		registrarData();
+            service.create(produto); 
+            this.produto= new Produto();
+            JsfUtil.addSuccessMessage("Produto Criado com Sucesso");
+    	}else{
+			JsfUtil.addErrorMessage("Você não tem permissão para apagar o produto");
+		}
+    	
     }
     
     private void registrarData() {
