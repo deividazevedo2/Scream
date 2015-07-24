@@ -1,0 +1,183 @@
+/* 
+    Created on : 18/04/2015, 18:23:36
+    Author     : Markus
+*/
+
+html, body{height: 100%;}
+
+body {
+    background-color: #ffffff;
+    font-size: 12px;
+    font-family: Frutlger,Verdana, "Verdana CE",  Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+    color: #000000;  
+    margin: 0px;
+}
+
+h1 {
+    font-family: Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+    font-size:  16px;
+    font-weight: bold;
+    margin: 0px;
+    padding: 0px;
+}
+
+a:link, a:visited {
+    color: #045491;
+    //color: #045491;
+    font-weight : bold;
+    text-decoration: none;
+}
+
+a:link:hover, a:visited:hover  {
+    color: #045491;
+    font-weight : bold;
+    text-decoration : underline;
+}
+
+header{
+    position: relative;
+    height: 60px; 
+    /*background-color: #036fab;*/
+    color: white;
+    padding: 1px;
+    margin: 0px 0px 0px 0px;
+    background: #0274A8; /* Old browsers */
+   
+}
+
+footer {
+    padding: 0px;
+    margin: 0px 0px 0px 0px;
+    position:fixed; 
+    width: 100%;
+    bottom:0; 
+    /*z-index:999999;*/
+    background-color: #0274A8;
+}
+
+.grid-login{
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-top: 8px;
+}
+
+#lostPassword{
+    font-size: 11px;
+    float: right;
+}
+
+.logo{
+    width: 200px; 
+    height: 55px; 
+    margin-top: 3px;
+    padding-left: 10px;
+}
+
+#logged-user-top-message{
+
+    float: left; 
+    margin-top: 15px; 
+    height: 30px; 
+    line-height: 30px; 
+    margin-right: 20px;
+}
+
+#systemName{
+    color: white;
+    float: left;
+    position: relative;
+    padding: 5px;
+    margin: 0px 0px 0px 0px;
+}
+
+#copyright{
+    float: right;
+    color: white;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+    text-align: right;
+    padding: 5px;
+    right: 0px;
+}
+
+#left {
+    float: left;
+    background-color: #ece3a5;
+    padding: 5px;
+    width: 150px;
+}
+
+#right {
+    float: right;
+    background-color: #ece3a5;
+    padding: 5px;
+    width: 150px;
+}
+
+#content {
+    position: relative;
+    padding: 5px;
+    margin: 10px 10px 0px 10px;
+    padding-bottom: 30px;
+    text-align: justify;
+}
+
+.left_content {
+    background-color: #dddddd;
+    padding: 5px;
+    margin-left: 170px;
+}
+
+.right_content {
+    background-color: #dddddd;
+    padding: 5px;
+    margin: 0px 170px 0px 170px;
+}
+
+
+/* Menu of top for logged user */
+.user-top-menu {
+    border: 0px !important;
+    padding: 0px !important;
+    background: none !important;
+}
+
+.user-top-menu .ui-menu-parent > a .ui-menuitem-text, .user-top-menu > .ui-menu-list > .ui-menuitem > a > .ui-menuitem-text {
+    color: #ffffff !important;
+}
+
+#conteudo-1 {
+    float:left;
+    left: 50%;
+    width:210px;
+    padding:10px;
+}
+#conteudo-2-1 {
+    float:left;
+    width:210px;
+    left: 50%;
+    padding:10px;
+}
+#conteudo-2-2 {
+    float:left;
+    left: 50%;
+    width:210px;
+    padding:10px;
+}  
+#kanban{
+    width:800px; /* Tamanho da Largura da Div */
+    position:absolute; 
+    //top:50%; 
+    margin-top:20px; /* ou seja ele pega 50% da altura tela e sobe metade do valor da altura no caso 100 */
+    left:50%;
+    margin-left:-350px; /* ou seja ele pega 50% da largura tela e diminui  metade do valor da largura no caso 250 */
+}
+#todo{
+    //width:900px; /* Tamanho da Largura da Div */
+    position:absolute; 
+    //top:50%; 
+   // margin-top:20px; /* ou seja ele pega 50% da altura tela e sobe metade do valor da altura no caso 100 */
+  //  left:50%;
+   // margin-left:-350px; /* ou seja ele pega 50% da largura tela e diminui  metade do valor da largura no caso 250 */
+}
