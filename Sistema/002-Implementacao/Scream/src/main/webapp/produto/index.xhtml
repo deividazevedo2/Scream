@@ -1,0 +1,176 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	template="/WEB-INF/template/template.xhtml">
+
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	</h:head>
+
+	<ui:define name="content">
+
+		<div
+			style="margin-left: 10%; margin-right: 10%; text-align: center; width: 80%; padding: 10px;">
+			<h:form id="formProduto">
+				<p:growl id="mensagem" showDetail="false" autoUpdate="true" />
+				<p:outputLabel value="Produtos"
+					style="float: none; position: relative; text-align: center; font-size: 18px; color: #0274A8" />
+				<h1></h1>
+				<h:panelGroup id="teste">
+					<p:dataTable id="datatableProdutos"
+						value="#{produtoController.listProduto}" var="produto"
+						widgetVar="tabelaProduto" paginatorAlwaysVisible="false" rows="5"
+						emptyMessage="Nenhum produto encontrado" paginator="true"
+						paginatorPosition="bottom"
+						paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}  {PageLinks} 
+                             {NextPageLink}  {LastPageLink}  {RowsPerPageDropdown}"
+						rowsPerPageTemplate="5,10,20, 50,100,200" rowKey="#{produto.id}">
+
+						<f:facet name="header">
+
+							<p:outputPanel>
+								<h:outputText value="Busca Produto:" />
+								<p:inputText id="globalFilter"
+									onkeyup="PF('tabelaProduto').filter()"
+									placeholder="Informe qualquer dado de produto"
+									style="width: 400px" />
+								<p:commandButton style="font-size: 13px;" value="Novo"
+									process="datatableProdutos" icon="ui-icon-circle-plus"
+									oncomplete="PF('novoProdutoDialog').show()">
+
+								</p:commandButton>
+								
+							</p:outputPanel>
+
+						</f:facet>
+
+						<p:column id="columnNome" headerText="Nome"
+							filterBy="#{produto.nome}" filterMatchMode="contains"
+							filterStyle="display:none">
+							<h:outputText value="#{produto.nome}" />
+						</p:column>
+
+						<p:column id="columnDescricao" headerText="Descrição"
+							filterBy="#{produto.descricao}" filterMatchMode="contains"
+							filterStyle="display:none" style=" width:300px">
+							<h:outputText value="#{produto.descricao}" />
+						</p:column>
+						<p:column id="columnDataInicio" headerText="Data de Inicio"
+							filterBy="#{produto.dataInicio}" filterMatchMode="contains"
+							filterStyle="display:none">
+							<h:outputText value="#{produto.dataInicio}">
+								<f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-03:00" />
+							</h:outputText>
+						</p:column>
+						<p:column id="columnDataTermino" headerText="Data de Término"
+							filterBy="#{produto.dataTermino}" filterMatchMode="contains"
+							filterStyle="display:none">
+							<h:outputText value="#{produto.dataTermino}" />
+						</p:column>
+
+						<p:column id="columnAcao" headerText="Ações" style=" width:170px;">
+							<p:panelGrid>
+
+								<p:commandButton style="font-size: 13px;" value="Editar"
+									process="datatableProdutos" update=":formProduto:produtoDetail"
+									icon="ui-icon-pencil" oncomplete="PF('produtoDialog').show()">
+									
+									<f:setPropertyActionListener value="#{produto}" target="#{produtoController.produtoSelect}"/>
+									
+								</p:commandButton>		
+
+								<p:commandButton style="font-size: 13px;" value="Deletar"
+									icon="ui-icon-circle-close"
+									action="#{produtoController.delete(produto)}">
+									<p:confirm header="Confirmação"
+										message="Deseja excluir esse produto?" icon="ui-icon-alert">
+
+									</p:confirm> 
+								</p:commandButton>
+
+								<p:button style="font-size: 13px;" value="Ver Itens do Produto"
+									icon="ui-icon-carat-1-nw" outcome="/itensProduto/index.xhtml">
+									<f:param name="id" value="#{produto.id}" />
+								</p:button>
+
+								<p:confirmDialog global="true" showEffect="fade"
+									hideEffect="fade">
+									<h:form prependId="false">
+										<p:commandButton value="Sim" styleClass="ui-confirmdialog-yes"
+											icon="ui-icon-check" >
+
+										</p:commandButton>
+										<p:commandButton value="Não" type="button"
+											styleClass="ui-confirmdialog-no" icon="ui-icon-close">
+
+										</p:commandButton>
+									</h:form>
+								</p:confirmDialog>
+
+							</p:panelGrid>
+						</p:column>
+
+					</p:dataTable>
+				</h:panelGroup>
+				<p:dialog id="produtoDialog" header="Editar Produto"
+					widgetVar="produtoDialog" modal="true" showEffect="fade"
+					hideEffect="fade" resizable="false" >
+					<p:outputPanel id="produtoDetail" style="text-align:center;">
+						<p:panelGrid columns="2"
+							rendered="#{not empty produtoController.produtoSelect}"
+							columnClasses="label,value">
+														
+							<p:outputLabel value="Nome" for="nome" />
+							<p:inputText id="nome" maxlength="50"
+								placeholder="Nome do Produto"
+								value="#{produtoController.produtoSelect.nome}" />
+
+							<p:outputLabel value="Descrição" />
+							<p:inputTextarea rows="5" cols="30"
+								value="#{produtoController.produtoSelect.descricao}"
+								queryDelay="750" minQueryLength="4" />
+
+						</p:panelGrid>
+					</p:outputPanel>
+
+					<p:commandButton id="editarProduto" value="Salvar"
+						icon="ui-icon-disk" 
+						action="#{produtoController.editar}"
+						ondblclick="PF('produtoDialog').hide()" />
+				</p:dialog>
+
+				<p:dialog id="novoProdutoDialog" header="Novo Produto"
+					widgetVar="novoProdutoDialog" modal="true" showEffect="fade"
+					hideEffect="fade" resizable="false">
+					<p:panelGrid columns="2">
+
+						<p:outputLabel value="Nome" for="novoNome" />
+						<p:inputText id="novoNome" maxlength="50"
+							placeholder="Nome do Produto"
+							value="#{produtoController.produto.nome}" />
+
+						<p:outputLabel id="novaDescricao" value="Descrição" />
+						<p:inputTextarea rows="5" cols="30"
+							value="#{produtoController.produto.descricao}" queryDelay="750"
+							minQueryLength="4" />
+
+					</p:panelGrid>
+
+					<p:commandButton id="novoProduto" value="Salvar"
+						icon="ui-icon-disk" update="@(form:datatableProdutos)"
+						action="#{produtoController.create}"
+						oncomplete="PF('novoProdutoDialog').hide()">
+
+					</p:commandButton>
+				</p:dialog>
+			</h:form>
+		</div>
+
+
+	</ui:define>
+
+</ui:composition>

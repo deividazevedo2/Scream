@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14316038967850" configfile="/Scream/src/main/webapp/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="login.xhtml" x="76" y="63" id="pf14316176952640" outlinks="pf14316178307972" path="/login.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="home.xhtml" x="238" y="145" id="pf14316176952641" inlinks="pf14316178307972" path="/home.xhtml"/>
+  <links id="pf14316178307972" target="pf14316176952641" source="pf14316176952640" outcome="success" redirect="true"/>
+</pageflow:Pageflow>

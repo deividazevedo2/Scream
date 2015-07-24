@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"> 
+    
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet library="css" name="style.css"/>
+        <title><ui:insert name="title">Scream</ui:insert></title>
+    </h:head>
+
+    <h:body>
+ 
+        <header>
+            <div style="float: left;">
+                <h:link outcome="/app.xhtml">
+                    <h:graphicImage library="imagens" name="LogoScream1.png" styleClass="logo"/>
+                </h:link>
+            </div>
+
+            <div style="float: right;" >
+                <span id="logged-user-top-message">Olá #{contaController.usuarioLogado().nome}!</span>
+                
+                <h:link outcome="/login">
+                    <p:commandButton style="float: right; margin: 15px;" value="Sair" actionListener="#{contaController.voltaTelaLogin()}" />
+                </h:link>
+            </div>
+        </header>
+
+        <ui:include src="/WEB-INF/template/menuTemplate.xhtml"/>
+
+        <div id="content"> <ui:insert name="content"/> </div>
+
+        <footer>
+            <div id="copyright">Desenvolvimento: Equipe Scream</div>
+            <div id="systemName">Scream</div>
+        </footer>
+        
+    </h:body>
+</html>
