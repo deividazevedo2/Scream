@@ -4,10 +4,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EnumType;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
@@ -26,7 +24,6 @@ import org.apache.shiro.subject.PrincipalCollection;
 import br.ifpb.monteiro.scream.entities.Conta;
 import br.ifpb.monteiro.scream.entities.UsuarioProjeto;
 import br.ifpb.monteiro.scream.entities.enums.Roles;
-import br.ifpb.monteiro.scream.services.SecurityService;
 
 public class ScreamRealm extends AuthorizingRealm {
 

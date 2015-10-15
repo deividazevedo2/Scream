@@ -16,14 +16,12 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.primefaces.event.CloseEvent;
 import org.primefaces.event.DashboardReorderEvent;
 import org.primefaces.event.ToggleEvent;
 
 import br.ifpb.monteiro.scream.entities.ItemProductBacklog;
 import br.ifpb.monteiro.scream.entities.Produto;
-import br.ifpb.monteiro.scream.entities.enums.Roles;
 import br.ifpb.monteiro.scream.services.ProdutoService;
 import br.ifpb.monteiro.scream.services.SecurityService;
 import br.ifpb.monteiro.scream.util.jsf.JsfUtil;
@@ -59,13 +57,19 @@ public class ProdutoController implements Serializable{
     }
     
     public void create(){
-    	if (ss.isAuthorized("SM")){
+    	if (ss.isAuthorized("SCRUM_MASTER")){
     		registrarData();
             service.create(produto); 
             this.produto= new Produto();
             JsfUtil.addSuccessMessage("Produto Criado com Sucesso");
+            try {		//Redirect para atualização das informações
+				FacesContext.getCurrentInstance().getExternalContext()
+				.redirect("/Scream/produto/index.xhtml");
+			} catch (IOException e) {
+				JsfUtil.addErrorMessage("Aconteceu algo inesperado ao criar este produto");
+			}
     	}else{
-			JsfUtil.addErrorMessage("Você não tem permissão para apagar o produto");
+			JsfUtil.addErrorMessage("Você não tem permissão para criar um produto");
 		}
     	
     }
@@ -80,10 +84,16 @@ public class ProdutoController implements Serializable{
 
     
     public void delete(Produto produtoSelect){
-    	if (ss.isAuthorized("PRODUCT_OWNER")) {
+    	if (ss.isAuthorized("SCRUM_MASTER")) {
 			System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+			JsfUtil.addSuccessMessage("Produto Apagado com Sucesso");
 			service.remove(produtoSelect);
-	    	JsfUtil.addSuccessMessage("Produto Apagado com Sucesso");
+			try {//Redirect para atualização das informações
+				FacesContext.getCurrentInstance().getExternalContext()
+				.redirect("/Scream/produto/index.xhtml");
+			} catch (IOException e) {				
+				JsfUtil.addErrorMessage("Aconteceu algo inesperado ao apagar este produto");
+			}
 		}else{
 			JsfUtil.addErrorMessage("Você não tem permissão para apagar o produto");
 		}
