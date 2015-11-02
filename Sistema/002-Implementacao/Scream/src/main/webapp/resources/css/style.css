@@ -16,7 +16,7 @@ body {
 h1 {
     font-family: Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
     font-size:  16px;
-    font-weight: bold;
+    font-weight: normal;
     margin: 0px;
     padding: 0px;
 }
@@ -36,12 +36,12 @@ a:link:hover, a:visited:hover  {
 
 header{
     position: relative;
-    height: 60px; 
+    height: 115px; 
     /*background-color: #036fab;*/
     color: white;
     padding: 1px;
     margin: 0px 0px 0px 0px;
-    background: #0274A8; /* Old browsers */
+    background: #a6a6a6; /* Old browsers */
    
 }
 
@@ -50,9 +50,10 @@ footer {
     margin: 0px 0px 0px 0px;
     position:fixed; 
     width: 100%;
+    float: right;
     bottom:0; 
     /*z-index:999999;*/
-    background-color: #0274A8;
+    background-color: #ffffff;
 }
 
 .grid-login{
@@ -94,11 +95,23 @@ footer {
 #copyright{
     float: right;
     color: white;
-    position: relative;
+    position: fixed;
     margin: 0px 0px 0px 0px;
     text-align: right;
-    padding: 5px;
-    right: 0px;
+    padding: 0px;
+    right: 3px;
+    bottom: 3px;
+}
+
+#margin-left {
+    float: left;
+    padding-top: 0px;
+    background-color: #cacaca;
+}
+
+#margin-center-left {
+    float: left;
+    padding: 10px;
 }
 
 #left {
