@@ -6,7 +6,6 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 
-
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<h:outputStylesheet library="css" name="style.css" />
@@ -16,87 +15,98 @@
 <h:body>
 
 	<header>
-	<div id="margin-center-left" style="float: left;">
-		<h1>
-			<h:outputText value="Projetos" />
-		</h1>
-
-		<div>
-			<p:selectOneMenu id="projetos" value="#{selectOneMenuView.console}"
-				style="width:175px">
-				<f:selectItem itemLabel="Projeto 1" itemValue="pj1" />
-				<f:selectItem itemLabel="Projeto 2" itemValue="pj2" />
-				<f:selectItem itemLabel="Projeto 3" itemValue="pj3" />
-			</p:selectOneMenu>
-			<p:spacer height="5" />
-			<h:graphicImage library="imagens" name="edit-icon.png" height="16"
-				width="16" />
-			<p:spacer height="5" />
-			<h:graphicImage library="imagens" name="plus-icon.png" height="16"
-				width="16" />
-			<p:spacer height="5" />
-			<h:graphicImage library="imagens" name="less-icon.png" height="16"
-				width="16" />
-		</div>
-		<h1>
-			<h:outputText value="Produtos" />
-		</h1>
-		<div>
-			<p:selectOneMenu id="produtos" value="#{selectOneMenuView.console}"
-				style="width:175px">
-				<f:selectItem itemLabel="Produto 1" itemValue="pd1" />
-				<f:selectItem itemLabel="Produto 2" itemValue="pd2" />
-				<f:selectItem itemLabel="Produto 3" itemValue="pd3" />
-			</p:selectOneMenu>
-			<p:spacer height="5" />
-			<h:graphicImage library="imagens" name="edit-icon.png" height="16"
-				width="16" />
-			<p:spacer height="5" />
-			<h:graphicImage library="imagens" name="plus-icon.png" height="16"
-				width="16" />
-			<p:spacer height="5" />
-			<h:graphicImage library="imagens" name="less-icon.png" height="16"
-				width="16" />
-		</div>
+	<div id="margin-center-left">
+		<h:graphicImage library="imagens" name="ScreamLogo.png" height="70"
+			width="60" />
 	</div>
-
 	<div id="margin-left" style="float: left;">
+		<h1>
+			<h:outputText value="PRODUCT" />
+		</h1>
+
 		<div>
-			<h:graphicImage library="imagens" name="logout.jpg" height="65"
-				width="75" />
-			<h:graphicImage library="imagens" name="logout.jpg" height="65"
-				width="75" />
-			<h:graphicImage library="imagens" name="logout.jpg" height="65"
-				width="75" />
-			<h:graphicImage library="imagens" name="logout.jpg" height="65"
-				width="75" />
+			<p:selectOneMenu id="product" value="#{selectOneMenuView.console}"
+				style="width:175px">
+				<f:selectItem itemLabel="Product 1" itemValue="pdt1" />
+				<f:selectItem itemLabel="Product 2" itemValue="pdt2" />
+				<f:selectItem itemLabel="Product 3" itemValue="pdt3" />
+			</p:selectOneMenu>
 		</div>
+
+		<p:spacer height="5" />
+
+		<h1>
+			<h:outputText value="PROJECT" />
+		</h1>
 		<div>
-			<h:graphicImage library="imagens" name="list-icon.png" height="50"
-				width="60" />
-			<h:graphicImage library="imagens" name="logout.jpg" height="50"
-				width="60" />
-			<h:graphicImage library="imagens" name="logout.jpg" height="50"
-				width="60" />
-			<h:graphicImage library="imagens" name="abort-icon.png" height="50"
-				width="60" />
-			<h:graphicImage library="imagens" name="medal-icon.png" height="50"
-				width="60" />
+			<p:selectOneMenu id="project" value="#{selectOneMenuView.console}"
+				style="width:175px">
+				<f:selectItem itemLabel="Project 1" itemValue="pj1" />
+				<f:selectItem itemLabel="Project 2" itemValue="pj2" />
+				<f:selectItem itemLabel="Project 3" itemValue="pj3" />
+			</p:selectOneMenu>
 		</div>
 	</div>
 
-	<div id="margin-center-left" style="float: left;">
-		<h1>
-			<h:outputText value="PALAVRA: 100%" />
-			<br />
-			<h:outputText value="PALAVRA: 100%" />
-			<br />
-			<h:outputText value="PALAVRA: 100%" />
-			<br />
-			<h:outputText value="PALAVRA: 100%" />
-			<br />
-			<h:outputText value="PALAVRA: 100%" />
-		</h1>
+	<div id="margin-left">
+		<div id="table-padding">
+			<table id="table">
+				<tr id="tr">
+					<td id="td"><h:graphicImage library="imagens"
+							name="edit-icon.png" height="10" width="10" /></td>
+					<td id="td"><h:graphicImage library="imagens"
+							name="plus-icon.png" height="10" width="10" /></td>
+					<td id="td"><h:graphicImage library="imagens"
+							name="less-icon.png" height="10" width="10" /></td>
+				</tr>
+			</table>
+		</div>
+		<p:spacer height="5px" />
+		<div id="table-padding">
+			<table id="table">
+				<tr id="tr">
+					<td id="td"><h:graphicImage library="imagens"
+							name="edit-icon.png" height="10" width="10" /></td>
+					<td id="td"><h:graphicImage library="imagens"
+							name="plus-icon.png" height="10" width="10" /></td>
+					<td id="td"><h:graphicImage library="imagens"
+							name="less-icon.png" height="10" width="10" /></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div id="margin-left" style="float: left">
+		<p:spacer height="11px" />
+		<div>
+			<table id="table">
+				<tr id="tr">
+					<td id="td"><h:graphicImage library="imagens"
+							name="list-icon.png" height="60" width="60" /></td>
+					<td id="td"><h:graphicImage library="imagens"
+							name="list-icon.png" height="60" width="60" /></td>
+					<td id="td"><h:graphicImage library="imagens"
+							name="list-icon.png" height="60" width="60" /></td>
+					<td id="td"><h:graphicImage library="imagens"
+							name="list-icon.png" height="60" width="60" /></td>
+					<td id="td"><h:graphicImage library="imagens"
+							name="list-icon.png" height="60" width="60" /></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+	<div id="margin-center-left" style="float: left; text-align: right" >
+		<h2>COLABORATION</h2>
+		<h2>PROACTIVITY</h2>
+		<h2>COMMUNICABILITY</h2>
+		<h2>EFFICIENCY</h2>
+	</div>
+	
+	<div id="margin-center-left" style="float: left; text-align: right; padding-left: 0px;">
+		<h1>100%</h1>
+		<h1>100%</h1>
+		<h1>100%</h1>
+		<h1>100%</h1>
 	</div>
 
 	<div style="float: right;">
@@ -111,10 +121,6 @@
 	<div id="content">
 		<ui:insert name="content" />
 
-		<div id="copyright">
-			<h:graphicImage library="imagens" name="ScreamLogo.png" height="70"
-				width="60" />
-		</div>
 	</div>
 
 

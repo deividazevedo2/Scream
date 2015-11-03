@@ -19,6 +19,15 @@ h1 {
     font-weight: normal;
     margin: 0px;
     padding: 0px;
+    font-weight: bold;
+}
+
+h2 {
+    font-family: Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+    font-size:  14px;
+    font-weight: normal;
+    margin: 0px;
+	padding-bottom: 2px;
 }
 
 a:link, a:visited {
@@ -36,12 +45,12 @@ a:link:hover, a:visited:hover  {
 
 header{
     position: relative;
-    height: 115px; 
+    height: 120px; 
     /*background-color: #036fab;*/
-    color: white;
+    color: black;
     padding: 1px;
     margin: 0px 0px 0px 0px;
-    background: #a6a6a6; /* Old browsers */
+    background: #CCCCCC; /* Old browsers */
    
 }
 
@@ -103,15 +112,79 @@ footer {
     bottom: 3px;
 }
 
+#table-padding {
+	padding-top: 12px;
+}
+
 #margin-left {
     float: left;
-    padding-top: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 5px;
+    padding-right: 5px; 
     background-color: #cacaca;
 }
 
 #margin-center-left {
     float: left;
-    padding: 10px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    padding-left: 10px;
+    padding-right: 5px;
+}
+
+#img-1 {
+	height:50px;
+	width:60px;
+	float:left;
+	position:relative;
+	padding:0;
+}
+
+#ntf1, #ntf2, #ntf3, #ntf4, #ntf5 {
+	position: absolute; 
+	width: 15px; 
+	height: 15px; 
+	top: 0; 
+	left: 45; 
+	display: block; 
+	background-color: #ff0000;
+	text-align: center;
+	border-radius: 6px;
+}
+
+#img-2 {
+	height:15px;
+	width:15px;
+	text-align:center;
+	background-color: #ff0000;
+	position: absolute;
+	top: 0;
+	left: 45;
+	border-radius: 6px;
+	padding:0;
+}
+
+#table {
+	border-collapse: collapse;
+	border:1px solid gray;
+	float:right;
+	height: 30px;
+	width: 30px;
+}
+
+#td {
+	border:1px solid gray;
+	height: 30px;
+	width: 30px;
+	padding: 9.5px;
+}
+
+#tr {
+	border:1px solid gray;
+	height: 30px;
+	width: 30px;
+	padding: 9.5px;
 }
 
 #left {
