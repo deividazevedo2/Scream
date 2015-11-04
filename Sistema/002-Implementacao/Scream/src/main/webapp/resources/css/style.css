@@ -30,6 +30,14 @@ h2 {
 	padding-bottom: 2px;
 }
 
+h3 {
+    font-family: Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+    font-size:  12px;
+    font-weight: bold;
+    margin: 0px;
+	padding-bottom: 0px;
+}
+
 a:link, a:visited {
     color: #045491;
     //color: #045491;
@@ -129,7 +137,15 @@ footer {
     float: left;
     padding-top: 25px;
     padding-bottom: 25px;
-    padding-left: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+#margin-left-center {
+    float: left;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    padding-left: 5px;
     padding-right: 5px;
 }
 
@@ -169,22 +185,16 @@ footer {
 	border-collapse: collapse;
 	border:1px solid gray;
 	float:right;
-	height: 30px;
-	width: 30px;
 }
 
 #td {
 	border:1px solid gray;
-	height: 30px;
-	width: 30px;
-	padding: 9.5px;
+	padding: 7px;
 }
 
 #tr {
 	border:1px solid gray;
-	height: 30px;
-	width: 30px;
-	padding: 9.5px;
+	padding: 7px;
 }
 
 #left {
