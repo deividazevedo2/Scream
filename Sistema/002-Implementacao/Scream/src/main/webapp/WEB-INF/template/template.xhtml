@@ -14,18 +14,17 @@
 
 <h:body>
 
-	<header>
-	<div id="margin-center-left">
+	<header> <!-- <div id="margin-center-left">
 		<h:graphicImage library="imagens" name="scream-icon.png" />
-	</div>
-	<div id="margin-left" style="float: left;">
+	</div> -->
+	<div id="margin-left" style="float: left; padding-left: 10px">
 		<h1>
 			<h:outputText value="PRODUCT" />
 		</h1>
 
 		<div>
 			<p:selectOneMenu id="product" value="#{selectOneMenuView.console}"
-				style="width:175px">
+				style="width:145px">
 				<f:selectItem itemLabel="Product 1" itemValue="pdt1" />
 				<f:selectItem itemLabel="Product 2" itemValue="pdt2" />
 				<f:selectItem itemLabel="Product 3" itemValue="pdt3" />
@@ -39,7 +38,7 @@
 		</h1>
 		<div>
 			<p:selectOneMenu id="project" value="#{selectOneMenuView.console}"
-				style="width:175px">
+				style="width:145px">
 				<f:selectItem itemLabel="Project 1" itemValue="pj1" />
 				<f:selectItem itemLabel="Project 2" itemValue="pj2" />
 				<f:selectItem itemLabel="Project 3" itemValue="pj3" />
@@ -47,7 +46,7 @@
 		</div>
 	</div>
 
-	<div id="margin-left-center">
+	<div id="margin-left-center" style="padding-left: 0px">
 		<div id="table-padding">
 			<table id="table">
 				<tr id="tr">
@@ -100,18 +99,18 @@
 			<table id="table"
 				style="background-color: black; color: white; text-align: center; font-size: 10px">
 				<tr id="tr">
-					<td id="td" style="width: 60px"><h3>
+					<td id="td" style="width: 55px"><h3>
 							DAILY<br />SCRUM
 						</h3>UNDONE</td>
-					<td id="td" style="width: 60px"><h3>
+					<td id="td" style="width: 55px"><h3>
 							REVIEW<br />ACTIVITY
 						</h3>11 DAYS</td>
 				</tr>
 				<tr id="tr">
-					<td id="td" style="width: 60px"><h3>
+					<td id="td" style="width: 55px"><h3>
 							SPRINT<br />REVIEW
 						</h3>11 DAYS</td>
-					<td id="td" style="width: 60px"><h3>
+					<td id="td" style="width: 55px"><h3>
 							SPRINT<br />RETRO
 						</h3>11 DAYS</td>
 				</tr>
@@ -164,13 +163,31 @@
 		<h1>100%</h1>
 	</div>
 
-	<div style="float: right;">
-		<span id="logged-user-top-message">Olá
-			#{contaController.usuarioLogado().nome}!</span>
-
-		<h:graphicImage library="imagens" name="logout.jpg" height="115"
-			width="60" />
+	<div
+		style="float: right; background-color: #DDDDDD; height: 120px">
+		<div style="float: right;">
+			<div style="padding-top: 15;padding-right: 10">
+				<h:graphicImage library="imagens" name="user-icon.jpg" height="60"
+					width="60" />
+			</div>
+			<div style="padding-right: 10">
+				<h:graphicImage library="imagens" name="exit-icon.png" height="30"
+					width="60" />
+			</div>
+		</div>
+		<div style="float: right;">
+			<div style="padding-top: 15; padding-left: 10; padding-right: 10">
+				<span><h:graphicImage library="imagens" name="sono-icon.png"
+						height="30" width="30" /></span> <span><h:graphicImage
+						library="imagens" name="anjo-icon.png" height="30" width="30" /></span>
+			</div>
+			<div style="padding-left: 10; padding-right: 10">
+				<h:graphicImage library="imagens" name="sm-icon.png" height="60"
+					width="60" />
+			</div>
+		</div>
 	</div>
+
 	</header>
 
 	<div id="content">
