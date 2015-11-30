@@ -20,7 +20,7 @@ import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import br.ifpb.monteiro.scream.dao.ContaDAO;
-import br.ifpb.monteiro.scream.entities.Conta;
+import br.ifpb.monteiro.scream.entities.UserAccount;
 import br.ifpb.monteiro.scream.services.ContaService;
 import br.ifpb.monteiro.scream.services.SecurityService;
 import br.ifpb.monteiro.scream.util.jpa.EntityManagerProducer;
@@ -33,7 +33,7 @@ import br.ifpb.monteiro.scream.util.jpa.EntityManagerProducer;
 public class ContaControllerTest {
 
 
-	private  Conta conta;
+	private  UserAccount userAccount;
 
 	private static SecurityService securityService;
 
@@ -68,12 +68,12 @@ public class ContaControllerTest {
 	public void setUp() {
 		Mockito.doCallRealMethod().when(contaDAO).setEntityManager(em);
 		contaDAO.setEntityManager(em);
-		conta= new Conta();
-		conta.setNome("Marcus Patriota");
-		conta.setEmail("marcuspatriota@gmail.com");
-		conta.setUsuario("marcuspatriota");
-		conta.setSenha("123");
-		contaService.create(conta);
+		userAccount= new UserAccount();
+		userAccount.setNome("Marcus Patriota");
+		userAccount.setEmail("marcuspatriota@gmail.com");
+		userAccount.setUsuario("marcuspatriota");
+		userAccount.setSenha("123");
+		contaService.create(userAccount);
 	}
 
 	@After
@@ -82,15 +82,15 @@ public class ContaControllerTest {
 
 	@Test
 	public void testCreate() {
-		conta= new Conta();
-		conta.setNome("Scream");
-		conta.setEmail("screm@gmail.com");
-		conta.setUsuario("scream");
-		conta.setSenha("scream");		
+		userAccount= new UserAccount();
+		userAccount.setNome("Scream");
+		userAccount.setEmail("screm@gmail.com");
+		userAccount.setUsuario("scream");
+		userAccount.setSenha("scream");		
 		
-		Mockito.when(contaService.create(conta)).thenReturn(true);
+		Mockito.when(contaService.create(userAccount)).thenReturn(true);
 		
-		assertEquals(true, contaService.create(conta));
+		assertEquals(true, contaService.create(userAccount));
 
 	}
 

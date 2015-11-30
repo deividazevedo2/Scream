@@ -9,6 +9,8 @@ import static br.ifpb.monteiro.scream.dao.GenericDAO.getLogger;
 import br.ifpb.monteiro.scream.dao.ProjetoDAO;
 import br.ifpb.monteiro.scream.entities.Projeto;
 import br.ifpb.monteiro.scream.util.jpa.Transactional;
+
+import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
 import javax.inject.Inject;
@@ -17,9 +19,12 @@ import javax.inject.Inject;
  *
  * @author Mauricio
  */
-public class ProjetoService {
-    
-    @Inject
+public class ProjetoService implements Serializable{
+	
+
+	private static final long serialVersionUID = 86260219930941320L;
+
+	@Inject
     private ProjetoDAO projetoDao;
     
     @Inject

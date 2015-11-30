@@ -1,6 +1,7 @@
-package br.ifpb.monteiro.scream.entities;
+package br.edu.ifpb.scream.core;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,9 +16,9 @@ import javax.persistence.Table;
  * @author Mauricio
  */
 @Entity
-@Table(name = "conta")
+@Table(name = "user_account")
 //@PrimaryKeyJoinColumn(name = "id")
-public class Conta implements Serializable {
+public class UserAccount implements Serializable {
 
     /**
 	 * 
@@ -41,6 +42,9 @@ public class Conta implements Serializable {
     private String email;
     
     private String salt;
+    
+    @Column(nullable = true, length = 40, name = "user_authorization_Item")
+    private List<UserAuthorizationItem> userAuthorizationItem;
 
     //@OneToMany(mappedBy = "id_usuario_do_projeto")
     // List<UsuarioProjeto> listUsuarioProjeto;

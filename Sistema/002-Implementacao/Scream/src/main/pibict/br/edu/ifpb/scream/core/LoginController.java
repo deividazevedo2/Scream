@@ -1,6 +1,7 @@
-package br.ifpb.monteiro.scream.controllers;
+package br.edu.ifpb.scream.core;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -11,11 +12,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import br.ifpb.monteiro.scream.entities.Conta;
-import br.ifpb.monteiro.scream.entities.UsuarioProjeto;
-import br.ifpb.monteiro.scream.services.ContaService;
-import br.ifpb.monteiro.scream.services.SecurityService;
-import br.ifpb.monteiro.scream.services.UsuarioProjetoService;
+import br.edu.ifpb.scream.security.SecurityService;
 import br.ifpb.monteiro.scream.util.jsf.JsfUtil;
 
 /**
@@ -25,79 +22,69 @@ import br.ifpb.monteiro.scream.util.jsf.JsfUtil;
 @Named
 @RequestScoped
 //@Model
-public class ContaController {
-    
-    @Inject
-    private ContaService contaService;
+public class LoginController implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
+
+	@Inject
+    private CoreService coreService;
     
     @Inject
     private SecurityService ss;
     
-    private Conta usuarioLogado;
+    private UserAccount usuarioLogado;
     
-    private Conta conta;
+    private UserAccount userAccount;
 
     
     @PostConstruct
     public void Init(){
-        this.conta = new Conta();
+        this.userAccount = new UserAccount();
         
     }
     
-    public Conta getConta() {
-        return conta;
+    public UserAccount getUserAccount() {
+        return userAccount;
     }
     
-    public void setConta(Conta userAccount) {
-        this.conta = userAccount;
+    public void setUserAccount(UserAccount userAccount) {
+        this.userAccount = userAccount;
     }
     
     public void create() {
-        //		System.out.println(contaService);
-        contaService.create(conta);
+        //		System.out.println(coreService);
+        coreService.createUserAccount(userAccount);
         JsfUtil.addSuccessMessage("UserAccount adicionada com sucesso!");
         //voltaTelaLogin();
-    }
-    
-    
-    
-    public ContaService getContaService() {
-        return contaService;
-    }
-    
-    public void setContaService(ContaService contaService) {
-        this.contaService = contaService;
-    }
-    
+    }    
     
     public String fazerLogin() {
-    	Conta userAccount  = null;
+    	UserAccount userAccount  = null;
         try {
-            userAccount = ss.login(this.conta.getUsuario(), this.conta.getSenha(), true);
+            userAccount = ss.login(this.userAccount.getUsuario(), this.userAccount.getSenha(), true);
         } catch (Exception e) {
-            Logger.getLogger(ContaController.class.getName()).log(Level.SEVERE,"Erro na criação do Login", e);
+            Logger.getLogger(UserAccountController.class.getName()).log(Level.SEVERE,"Erro na criação do Login", e);
             FacesContext
                     .getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
                                     "Falha no Login:",
                                     "O login e senha informados não possuem credencias de acesso"));
         }
-        return (userAccount != null)? "success" : null;
-        
+        return (userAccount != null)? "success" : null; 
     }
     
-    public void voltaTelaLogin() {
+    public void voltarTelaLogin() {
         try {
             ss.logout();
             FacesContext.getCurrentInstance().getExternalContext()
                     .redirect("/Scream/login.xhtml");
         } catch (IOException ex) {
             JsfUtil.addErrorMessage(ex, "Pagina não encontrada");
-            Logger.getLogger(ContaController.class.getName()).log(Level.SEVERE,
+            Logger.getLogger(UserAccountController.class.getName()).log(Level.SEVERE,
                     null, ex);
         }
     }
     
-    public Conta usuarioLogado(){
+    public UserAccount usuarioLogado(){
         return usuarioLogado=ss.getCurrentUser();
     }
     public SecurityService getSs() {
@@ -109,7 +96,7 @@ public class ContaController {
     }
     
     public void edicao(){
-        setConta(usuarioLogado());
+        setUserAccount(usuarioLogado());
     }
     
 }

@@ -34,11 +34,11 @@ public class ContaService {
     
     private boolean validarEmail(Conta entity){
         
-        List<Conta> contas = contaDao.query("select conta from Conta conta "
+        List<Conta> userAccounts = contaDao.query("select conta from Conta conta "
                 + "where conta.email = ?1",
                 entity.getEmail());
         
-        if (contas.size() > 0) {
+        if (userAccounts.size() > 0) {
             return false;
         }
         return true;
@@ -46,11 +46,11 @@ public class ContaService {
     
     private boolean validarUsuario(Conta entity){
         
-        List<Conta> contas = contaDao.query("select conta from Conta conta "
+        List<Conta> userAccounts = contaDao.query("select conta from Conta conta "
                 + "where conta.usuario = ?1",
                 entity.getUsuario());
         
-        if (contas.size() > 0) {
+        if (userAccounts.size() > 0) {
             return false;
         }
         return true;

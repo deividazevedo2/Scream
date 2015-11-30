@@ -1,4 +1,4 @@
-package br.ifpb.monteiro.scream.services;
+package br.edu.ifpb.scream.security;
 
 import java.util.List;
 
@@ -14,18 +14,18 @@ import org.apache.shiro.crypto.RandomNumberGenerator;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.Sha256Hash;
 
-import br.ifpb.monteiro.scream.dao.ContaDAO;
-import br.ifpb.monteiro.scream.entities.Conta;
-import br.ifpb.monteiro.scream.entities.UsuarioProjeto;
+import br.edu.ifpb.scream.core.UserAccount;
+import br.edu.ifpb.scream.core.dao.UserAccountDAO;
+
 
 public class SecurityService {
 	
 	@Inject
-	private ContaDAO contaDao;
+	private UserAccountDAO userAccountDao;
 	
 	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("Scream"); 
 	
-	private void generatePassword(Conta conta, String plainTextPassword) {
+	private void generatePassword(UserAccount userAccount, String plainTextPassword) {
 		RandomNumberGenerator rng = new SecureRandomNumberGenerator();
 		Object salt = rng.nextBytes();
 
@@ -33,13 +33,13 @@ public class SecurityService {
 		// iterations and then Base64-encode the value (requires less space than Hex):
 		String hashedPasswordBase64 = new Sha256Hash(plainTextPassword, salt, 1024).toBase64();
 
-		conta.setSenha(hashedPasswordBase64);
-		conta.setSalt(salt.toString());
+		userAccount.setSenha(hashedPasswordBase64);
+		userAccount.setSalt(salt.toString());
 	}
 
-	public void registrar(Conta conta, String plainTextPassword) {
-		generatePassword(conta, plainTextPassword);
-		contaDao.update(conta);
+	public void registrar(UserAccount userAccount, String plainTextPassword) {
+		generatePassword(userAccount, plainTextPassword);
+		userAccountDao.update(userAccount);
 	}
 
 	
@@ -52,7 +52,7 @@ public class SecurityService {
 		return false;
 	}
 
-	public Conta login(String username, String password, Boolean rememberMe) {
+	public UserAccount login(String username, String password, Boolean rememberMe) {
 		// get the currently executing user:
 		org.apache.shiro.subject.Subject currentUser = SecurityUtils.getSubject();
 
@@ -67,35 +67,35 @@ public class SecurityService {
 
 			// save current username in the session, so we have access to our User model
 //			currentUser.getSession().setAttribute("login", username);
-			Conta conta = getCurrentUser(); 
-			return conta;
+			UserAccount userAccount = getCurrentUser(); 
+			return userAccount;
 		}
 		return null;
 	}
 
-	public Conta getConta(String username){
-		List<Conta> contas = contaDao.query("select conta from Conta conta "
-				+ "where conta.usuario = ?1", 
+	public UserAccount getUserAccount(String username){
+		List<UserAccount> userAccounts = userAccountDao.query("select userAccount from UserAccount userAccount "
+				+ "where userAccount.usuario = ?1", 
 				username);
-		Conta conta = null;
-		if (contas.size() == 1) {
-			conta = contas.get(0);
+		UserAccount userAccount = null;
+		if (userAccounts.size() == 1) {
+			userAccount = userAccounts.get(0);
 		}
-		return conta;
+		return userAccount;
 	}
 
-	public Conta getCurrentUser() {
-		Conta conta = null;
+	public UserAccount getCurrentUser() {
+		UserAccount userAccount = null;
 		org.apache.shiro.subject.Subject currentUser = SecurityUtils.getSubject();
 		if (currentUser.isAuthenticated()) {
 			String login = (String) currentUser.getPrincipal();
-			List<Conta> contas = contaDao.query("select conta from Conta conta "
-					+ "where conta.usuario = ?1", login);
-			if (contas.size() == 1) {
-				conta = contas.get(0);
+			List<UserAccount> userAccounts = userAccountDao.query("select userAccount from UserAccount userAccount "
+					+ "where userAccount.usuario = ?1", login);
+			if (userAccounts.size() == 1) {
+				userAccount = userAccounts.get(0);
 			}
 		}
-		return conta;
+		return userAccount;
 	}
 
 	public void logout() {

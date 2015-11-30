@@ -12,10 +12,10 @@
 //public class ContaDAOTest {
 //    //ContaDAO contaDAO = lookupContaDAOBean();
 //
-//    private final Conta conta;
+//    private final UserAccount conta;
 //
 //    public ContaDAOTest() {
-//        conta = new Conta();
+//        conta = new UserAccount();
 //        conta.setNome("Hugo Correia");
 //        conta.setEmail("hugo@gmail.com");
 //        conta.setSenha("123");

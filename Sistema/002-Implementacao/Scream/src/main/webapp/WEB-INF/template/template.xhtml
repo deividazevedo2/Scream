@@ -23,12 +23,12 @@
 		</h1>
 
 		<div>
-			<p:selectOneMenu id="product" value="#{selectOneMenuView.console}"
+			<!--  <p:selectOneMenu id="project" value="#{selectOneMenuView.console}"
 				style="width:145px">
-				<f:selectItem itemLabel="Product 1" itemValue="pdt1" />
-				<f:selectItem itemLabel="Product 2" itemValue="pdt2" />
-				<f:selectItem itemLabel="Product 3" itemValue="pdt3" />
-			</p:selectOneMenu>
+				<f:selectItem itemLabel="Project 1" itemValue="pj1" />
+				<f:selectItem itemLabel="Project 2" itemValue="pj2" />
+				<f:selectItem itemLabel="Project 3" itemValue="pj3" />
+			</p:selectOneMenu>-->
 		</div>
 
 		<p:spacer height="5" />
@@ -37,41 +37,84 @@
 			<h:outputText value="PROJECT" />
 		</h1>
 		<div>
-			<p:selectOneMenu id="project" value="#{selectOneMenuView.console}"
-				style="width:145px">
-				<f:selectItem itemLabel="Project 1" itemValue="pj1" />
-				<f:selectItem itemLabel="Project 2" itemValue="pj2" />
-				<f:selectItem itemLabel="Project 3" itemValue="pj3" />
+			<p:selectOneMenu id="projeto" process="@this"
+				value="#{projetoController.projetoSelecionado}" style="width:145px"
+				converter="simpleIndexConverter">
+				<f:selectItem itemLabel="Selecione um produto" itemValue="" />
+				<f:selectItems value="#{projetoController.projetos}" var="projeto"
+					itemLabel="#{projeto.nome}" itemValue="projeto" process="@this">
+				</f:selectItems>
 			</p:selectOneMenu>
+			<h:message for="projeto" errorStyle="color:darkred;font-size:11px;"></h:message>
 		</div>
 	</div>
 
 	<div id="margin-left-center" style="padding-left: 0px">
-		<div id="table-padding">
-			<table id="table">
-				<tr id="tr">
-					<td id="td"><h:graphicImage library="imagens"
-							name="edit-icon.png" height="10" width="10" /></td>
-					<td id="td"><h:graphicImage library="imagens"
-							name="plus-icon.png" height="10" width="10" /></td>
-					<td id="td"><h:graphicImage library="imagens"
-							name="less-icon.png" height="10" width="10" /></td>
-				</tr>
-			</table>
-		</div>
-		<p:spacer height="9px" />
-		<div id="table-padding">
-			<table id="table">
-				<tr id="tr">
-					<td id="td"><h:graphicImage library="imagens"
-							name="edit-icon.png" height="10" width="10" /></td>
-					<td id="td"><h:graphicImage library="imagens"
-							name="plus-icon.png" height="10" width="10" /></td>
-					<td id="td"><h:graphicImage library="imagens"
-							name="less-icon.png" height="10" width="10" /></td>
-				</tr>
-			</table>
-		</div>
+		<h:form id="formProdProj">
+			<div id="table-padding">
+				<table id="table">
+					<tr id="tr">
+						<td id="td"><h:graphicImage library="imagens"
+								name="edit-icon.png" height="10" width="10" /></td>
+						<td id="td"><p:commandButton icon="ui-icon-disk"
+								style="height:10; width:10"
+								oncomplete="PF('novoProjetoDialog').show()" /> <!--  <h:graphicImage library="imagens"
+								name="plus-icon.png" height="10" width="10" />--></td>
+						<td id="td"><p:commandButton icon="ui-icon-trash"
+								style="height:10; width:10" action="#{projetoController.printa}" /></td>
+					</tr>
+				</table>
+
+				<p:dialog id="novoProjetoDialog" header="Criar Projeto"
+					widgetVar="novoProjetoDialog" resizable="false" draggable="false"
+					showEffect="fade" hideEffect="fade" modal="true"
+					style="font-size: 12px">
+
+					<h:panelGrid columns="2" style="font-size: 12px;margin-top: 20px;">
+
+						<h:outputLabel value="Nome: " />
+						<p:inputText value="#{projetoController.projeto.nome}" />
+
+						<p:outputLabel for="dataInicio" value="Data de Inicio" />
+						<p:calendar id="dataInicio"
+							value="#{projetoController.projeto.dataInicio}"
+							pattern="dd-MM-yyyy" mask="true" />
+
+						<!--  
+						<h:outputLabel value="Duração da Sprint " />
+						<p:inputText maxlength="2" size="2"
+							value="#{projetoController.projeto.sprintDuration}" />
+						<h:outputLabel value="Terminado" />
+						<p:selectBooleanCheckbox
+							value="#{projetoController.projeto.isCompleted}" />
+						-->
+					</h:panelGrid>
+
+					<br />
+					<p:commandButton id="buttonSalvar" value="Salvar"
+						update="formProdProj" icon="ui-icon-disk"
+						action="#{projetoController.create}"
+						oncomplete="PF('novoProjetoDialog').hide()" />
+
+				</p:dialog>
+
+
+
+			</div>
+			<p:spacer height="9px" />
+			<div id="table-padding">
+				<table id="table">
+					<tr id="tr">
+						<td id="td"><h:graphicImage library="imagens"
+								name="edit-icon.png" height="10" width="10" /></td>
+						<td id="td"><h:graphicImage library="imagens"
+								name="plus-icon.png" height="10" width="10" /></td>
+						<td id="td"><h:graphicImage library="imagens"
+								name="less-icon.png" height="10" width="10" /></td>
+					</tr>
+				</table>
+			</div>
+		</h:form>
 	</div>
 	<div id="margin-left" style="float: left">
 		<p:spacer height="20px" />
@@ -163,16 +206,18 @@
 		<h1>100%</h1>
 	</div>
 
-	<div
-		style="float: right; background-color: #DDDDDD; height: 120px">
+	<div style="float: right; background-color: #DDDDDD; height: 120px">
 		<div style="float: right;">
-			<div style="padding-top: 15;padding-right: 10">
+			<div style="padding-top: 15; padding-right: 10">
 				<h:graphicImage library="imagens" name="user-icon.jpg" height="60"
 					width="60" />
 			</div>
 			<div style="padding-right: 10">
-				<h:graphicImage library="imagens" name="exit-icon.png" height="30"
-					width="60" />
+				<p:commandButton value="Sair"
+					style="height:10; width:10; font-size:20px;"
+					action="#{loginController.voltarTelaLogin()}" />
+				<!--  <h:graphicImage library="imagens" name="exit-icon.png" height="30"
+					width="60" />-->
 			</div>
 		</div>
 		<div style="float: right;">

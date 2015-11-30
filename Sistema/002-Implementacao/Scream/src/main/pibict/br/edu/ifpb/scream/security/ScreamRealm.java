@@ -1,4 +1,4 @@
-package br.ifpb.monteiro.scream.security;
+package br.edu.ifpb.scream.security;
 
 import java.util.HashSet;
 import java.util.List;
@@ -21,10 +21,9 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
-import br.edu.ifpb.scream.security.ScreamSaltedAuthenticationInfo;
-import br.ifpb.monteiro.scream.entities.Conta;
-import br.ifpb.monteiro.scream.entities.UsuarioProjeto;
-import br.ifpb.monteiro.scream.entities.enums.Roles;
+import br.edu.ifpb.scream.core.UserAccount;
+import br.edu.ifpb.scream.team.Roles;
+import br.edu.ifpb.scream.team.TeamMember;;
 
 public class ScreamRealm extends AuthorizingRealm {
 
@@ -49,21 +48,21 @@ public class ScreamRealm extends AuthorizingRealm {
 		}
 
 		//		SecurityService ss = new SecurityService();
-		Conta conta = null;
+		UserAccount userAccount = null;
 
 		EntityManager em = emf.createEntityManager();
-		Query q = em.createQuery("select conta from Conta conta "
+		Query q = em.createQuery("select conta from UserAccount conta "
 				+ "where conta.usuario = ?1 ");
 		q.setParameter(1, username);
 		
 		@SuppressWarnings("unchecked")
-		List<Conta> contas = q.getResultList();
-		if (contas.size() == 1) {
-			conta = contas.get(0);
+		List<UserAccount> userAccounts = q.getResultList();
+		if (userAccounts.size() == 1) {
+			userAccount = userAccounts.get(0);
 		}
 		em.close();
-		if (conta != null) {
-			info = new ScreamSaltedAuthenticationInfo(conta.getUsuario(), conta.getSenha(), conta.getSalt());
+		if (userAccount != null) {
+			info = new ScreamSaltedAuthenticationInfo(userAccount.getUsuario(), userAccount.getSenha(), userAccount.getSalt());
 		}
 		return info;
 	}
@@ -84,11 +83,11 @@ public class ScreamRealm extends AuthorizingRealm {
 		 * Depois precisamos adicionar projeto aqui. Pq cada conta pode 
 		 * ter permissões diferentes para cada projeto
 		 */
-		Query q = em.createQuery("select up from UsuarioProjeto up "
-				+ "where up.conta.usuario=?1");
+		Query q = em.createQuery("select up from TeamMember up "
+				+ "where up.userAccount.usuario=?1");
 		q.setParameter(1, username);
 
-		UsuarioProjeto individuo = (UsuarioProjeto) q.getResultList().get(0);
+		TeamMember individuo = (TeamMember) q.getResultList().get(0);
 //		System.out.println(individuo.getRoles().toString()+"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 		System.out.println(individuo.getRoles()+"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 		if (individuo.getRoles() == Roles.ADM) {
@@ -118,7 +117,7 @@ public class ScreamRealm extends AuthorizingRealm {
 	
 //    @Override
 //    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-//    	Conta conta = (Conta) principalCollection.fromRealm(getName()).iterator().next();
+//    	UserAccount conta = (UserAccount) principalCollection.fromRealm(getName()).iterator().next();
 //        // find user by login name
 //        Long uid = conta.getId();
 //        try {
