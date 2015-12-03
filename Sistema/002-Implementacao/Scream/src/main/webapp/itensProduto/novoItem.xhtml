@@ -12,47 +12,87 @@
 	</h:head>
 
 	<ui:define name="content">
+		<div>
+			<div id="novo-item-produto">
+				<h:form>
+					<p:button id="button-novo-item" value="Novo Item"
+						style="margin-bottom: 7px; float:right; left:2%;" />
+					<p:dataTable var="atendimentos" value="#{dtFilterView.cars}"
+						widgetVar="carsTable" emptyMessage="Nenhum registro encontrado"
+						filteredValue="#{dtFilterView.filteredCars}" rows="10"
+						paginator="true" rowsPerPageTemplate="5,10,15"
+						style="position:absolute; margin-top: 5%">
 
-		<p:fieldset legend="Novo Item de Produto" style="float: left; left: 50%; width: 400px; padding: 10px;">
-			<h:form id="formNovoItem">
-				<h:panelGrid columns="2">
+						<p:column filterBy="#{data.a}" headerText="Título">
+							<h:outputText value="titulo" />
+						</p:column>
 
-					<h:outputLabel value="Descrição: " />
-					<p:inputTextarea rows="5" cols="30"
-						value="#{itemProductBacklogController.itemProductBacklog.descricao}"
-						queryDelay="750" minQueryLength="4" />
-					<h:outputLabel value="Peso: " />
-					<p:inputText maxlength="30" size="30"
-						value="#{itemProductBacklogController.itemProductBacklog.peso}" />
-					<h:outputLabel value="Valor Ganho: " />
-					<p:inputText maxlength="30" size="30"
-						value="#{itemProductBacklogController.itemProductBacklog.valorGanho}" />
-					<h:outputLabel value="Complexidade: " />
-					<p:inputText maxlength="30" size="30"
-						value="#{itemProductBacklogController.itemProductBacklog.complexidade}" />
-					<h:outputLabel value="Prioridade: " />
-					<p:inputText id="selectPrioridade"
-						value="#{itemProductBacklogController.itemProductBacklog.prioridade}" />
-					<h:outputLabel value="Aceito pelo P.O. " />
-					<p:selectBooleanCheckbox
-						value="#{itemProductBacklogController.itemProductBacklog.aceitoPO}" />
-					<h:outputLabel value="Produto: "/>
-					<p:selectOneMenu id="produto" style="width: 200px"
-						value="#{itemProductBacklogController.produto}" >
-						<f:selectItem itemLabel="Selecione Um" itemValue="" />
-						<f:selectItems value="#{itemProductBacklogController.listProduto}" var="produto" itemLabel="#{produto.nome}" />
-					</p:selectOneMenu>
-				</h:panelGrid>
+						<p:column filterBy="#{data.a}" headerText="Status">
+							<h:outputText value="status" />
+						</p:column>
 
-				<br />
-				<p:commandButton value="Salvar" icon="ui-icon-disk"
-					update=":formNovoItem"
-					actionListener="#{itemProductBacklogController.create}"
-					aoncomplete="PF('itemDialog').hide()" />
+						<p:column filterBy="#{data.a}" headerText="Sprint's">
+							<h:outputText value="sprints" />
+						</p:column>
 
-			</h:form>
-		</p:fieldset>
+						<p:column filterBy="#{data.a}" headerText="Aprovado?">
+							<h:outputText value="aprovado" />
+						</p:column>
 
+					</p:dataTable>
+				</h:form>
+			</div>
+			<div id="novo-item-produto2">
+				<h:form id="formNovoItem2">
+					<p:commandButton value="Cancelar" icon="ui-icon-disk"
+						actionListener="#" aoncomplete="PF('itemDialog').hide()"
+						style="margin-bottom: 6px; float:right; left:4.5%" />
+					<p:commandButton value="Salvar" icon="ui-icon-disk"
+						actionListener="#" aoncomplete="PF('itemDialog').hide()"
+						style="margin-bottom: 6px; float:right; left:4.5%" />
+					<p:separator style="height: 15px; width: 104%; background: #ccc" />
+					<h:panelGrid columns="2">
+						<h:panelGroup>
+							<h:outputLabel for="titulo" value="Título: " />
+							<p:inputText id="titulo" maxlength="30" size="30" />
+							<h:outputLabel for="status-kanban" value="Status Kanban " />
+							<p:selectOneMenu id="status-kanban" style="width: 200px">
+								<f:selectItem itemLabel="Selecione Um" itemValue="" />
+								<f:selectItems value="#" var="produto" itemLabel="#" />
+							</p:selectOneMenu>
+						</h:panelGroup>
+						<h:panelGroup>
+							<h:outputLabel value="Descrição: " />
+							<p:inputTextarea rows="4" cols="30" queryDelay="750"
+								minQueryLength="4" />
+						</h:panelGroup>
+					</h:panelGrid>
+					<p:separator style="height: 15px; width: 104%; background: #ccc" />
+					<h:panelGrid columns="2">
+						<h:panelGroup>
+							<h:outputLabel value="Aprovado " />
+							<p:selectBooleanCheckbox />
+						</h:panelGroup>
+						<h:panelGroup>
+							<h:outputLabel value="Data Realização: " />
+							<p:inputText maxlength="30" size="32" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<h:outputLabel value="Comentários: " />
+							<p:inputTextarea rows="4" cols="28" queryDelay="750"
+								minQueryLength="4" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<h:outputLabel value="Feedback: " />
+							<p:inputTextarea rows="4" cols="30" queryDelay="750"
+								minQueryLength="4" />
+						</h:panelGroup>
+					</h:panelGrid>
+
+					<br />
+				</h:form>
+			</div>
+		</div>
 	</ui:define>
 
 </ui:composition>
