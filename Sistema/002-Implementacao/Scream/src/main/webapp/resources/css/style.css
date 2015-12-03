@@ -277,3 +277,8 @@ footer {
   //  left:50%;
    // margin-left:-350px; /* ou seja ele pega 50% da largura tela e diminui  metade do valor da largura no caso 250 */
 }
+
+div#botoes-de-navegacao {
+	margin-left: -1.1%;
+	margin-top: 13%;
+}

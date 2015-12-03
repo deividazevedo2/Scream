@@ -14,9 +14,7 @@
 
 <h:body>
 
-	<header> <!-- <div id="margin-center-left">
-		<h:graphicImage library="imagens" name="scream-icon.png" />
-	</div> -->
+	<header>
 	<div id="margin-left" style="float: left; padding-left: 10px">
 		<h1>
 			<h:outputText value="PRODUCT" />
@@ -98,8 +96,6 @@
 
 				</p:dialog>
 
-
-
 			</div>
 			<p:spacer height="9px" />
 			<div id="table-padding">
@@ -115,25 +111,6 @@
 				</table>
 			</div>
 		</h:form>
-	</div>
-	<div id="margin-left" style="float: left">
-		<p:spacer height="20px" />
-		<div>
-			<table id="table">
-				<tr id="tr">
-					<td id="td"><h:graphicImage library="imagens"
-							name="list-icon.png" height="40" width="40" /></td>
-					<td id="td"><h:graphicImage library="imagens"
-							name="abort-icon.png" height="40" width="40" /></td>
-					<td id="td"><h:graphicImage library="imagens"
-							name="note-icon.png" height="40" width="40" /></td>
-					<td id="td"><h:graphicImage library="imagens"
-							name="calendar-icon.png" height="40" width="40" /></td>
-					<td id="td"><h:graphicImage library="imagens"
-							name="medal-icon.png" height="40" width="40" /></td>
-				</tr>
-			</table>
-		</div>
 	</div>
 
 	<div id="margin-left"
@@ -237,9 +214,31 @@
 
 	<div id="content">
 		<ui:insert name="content" />
-
+		<div class="halign" id="botoes-de-navegacao">
+			<table id="botoes-laterais">
+				<tr id="tr">
+					<td id="td"><h:graphicImage library="imagens"
+							name="list-icon.png" height="40" width="40" /></td>
+				</tr>
+				<tr id="tr">
+					<td id="td"><h:graphicImage library="imagens"
+							name="abort-icon.png" height="40" width="40" /></td>
+				</tr>
+				<tr id="tr">
+					<td id="td"><h:graphicImage library="imagens"
+							name="note-icon.png" height="40" width="40" /></td>
+				</tr>
+				<tr id="tr">
+					<td id="td"><h:graphicImage library="imagens"
+							name="calendar-icon.png" height="40" width="40" /></td>
+				</tr>
+				<tr id="tr">
+					<td id="td"><h:graphicImage library="imagens"
+							name="medal-icon.png" height="40" width="40" /></td>
+				</tr>
+			</table>
+		</div>
 	</div>
-
 
 </h:body>
 </html>
