@@ -1,43 +1,100 @@
-/* 
-    Created on : 20/04/2015, 21:56:07
-    Author     : Markus
-*/
-
-
-body{
-    background-color: #0274A8;
-    font-size: 12px;
-    font-family: Frutlger,Verdana, "Verdana CE",  Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
-    color: #000000;  
-    margin: 0px;
+body {
+	background-color: #EEEEEE;
+	font-size: 12px;
+	font-family: Frutlger, Verdana, "Verdana CE", Arial, "Arial CE",
+		"Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+	color: #000000;
+	margin: 0px;
 }
 
-.dialogBorder{
-    border-radius: 15px;
-    -moz-border-radius:15px;
-    -webkit-border-radius:15px;
+#text-login a {
+	color: white;
+	font-weight: bold;
+	text-decoration: none;
 }
-
-#logo-login{
-    float: bottom; 
-    padding-top: 50px; position: relative; text-align: center;
-}
-
-#text-login a{
-    color: white;
-    font-weight : bold;
-    text-decoration: none;
-}
-
 
 #text-login a:link, #text-login a:visited {
-    color: white;
-    font-weight : bold;
-    text-decoration: none;
+	color: white;
+	font-weight: bold;
+	text-decoration: none;
 }
 
-#text-login a:link:hover, #text-login a:visited:hover  {
-    color: black;
-    font-weight : bold;
-    text-decoration : underline;
+#text-login a:link:hover, #text-login a:visited:hover {
+	color: black;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+center {
+	margin-top: 15%;
+}
+
+div#posicaoLogo {
+	position: absolute;
+	width: 100px;
+	height: 100px;
+	float: right;
+	margin-bottom: 0;
+	position: absolute;
+	right: 0px;
+	bottom: 0;
+}
+
+.panelgrid {
+	height: 10px;
+	width: 30px;
+	background-color: #ccc;
+}
+
+hr {
+	margin-top: -2px;
+}
+
+.logo {
+	height: 75px;
+	width: 75px;
+	position: absolute;
+}
+
+.ui-outputlabel, .ui-widget {
+	font-size: 1.0em;
+}
+
+.ui-inputfield {
+	width: 95%;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default,
+	.ui-widget-header .ui-state-default {
+	color: #000;
+}
+
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover,
+	.ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus
+	{
+	border: 1px solid #bbb;
+	color: #000;
+	background-color: #f9f9f9;
+	background: #f9f9f9;
+}
+
+.ui-inputfield .ui-inputtext {
+	border: 0px;
+	color: #000000;
+}
+
+.pglink a {
+	font-size: 10px;
+	margin-left: 0px;
+	margin-right: 40px;
+	float: left;
+	text-align: left;
+	position: relative;
+	float: left;
+}
+
+.pgregistro {
+	float: right;
+	font-size: 12px;
+	font-size-adjust: inherit;
 }
