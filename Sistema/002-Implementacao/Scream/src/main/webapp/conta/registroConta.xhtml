@@ -1,44 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html" 
-      xmlns:p="http://primefaces.org/ui"> 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 
-    <h:head>
-        <h:outputStylesheet library="css" name="login.css"/>
-        <title>Scream - Login</title>
-    </h:head>
+<h:head>
+	<h:outputStylesheet library="css" name="login.css" />
+	<title>Scream - Login</title>
+</h:head>
 
-    <h:form>
+<h:form>
 
-        <p:growl id="mensagens" autoUpdate="true" showDetail="true"/>
+	<p:growl id="mensagens" autoUpdate="true" showDetail="true" />
 
-        <div style="float: none; padding-top: 20px; position: relative; text-align: center;">
-            <p:graphicImage id="logo" library="imagens" name="LogoScream.png" height="150" width="150"/>
-        </div>
+	<div id="posicaoLogo">
+		<p:graphicImage styleClass="logo" library="imagens"
+			name="LogoScream.png" />
+	</div>
 
-        <p:dialog id="loginDialog" header="Entre com seus dados de acesso" visible="true" closable="false" 
-                  draggable="false" resizable="false" width="auto" styleClass="dialogBorder" > 
+	<center> <h:panelGrid columns="1" cellpadding="1">
 
-            <h:panelGrid columns="2" cellpadding="5">
+		<p:outputLabel for="nome" value="Name" />
+		<p:inputText id="nome" required="true"
+			size="35" value="#{loginController.userAccount.nome}" />
 
-                <p:outputLabel for="nome" value="Nome:"/> 
-                <p:inputText id="nome" required="true" size="35" value="#{loginController.userAccount.nome}"/>
+		<p:outputLabel for="email" value="E-mail" />
+		<p:inputText id="email" required="true" size="35"
+			value="#{loginController.userAccount.email}" />
 
-                <p:outputLabel for="usuario" value="Usuário:" /> 
-                <p:inputText id="usuario" required="true" size="35" value="#{loginController.userAccount.usuario}"/>
+		<p:outputLabel for="usuario" value="Login" />
+		<p:inputText id="usuario" required="true" size="35"
+			value="#{loginController.userAccount.usuario}" />
 
-                <p:outputLabel for="senha" value="Senha:" />
-                <p:password id="senha" required="true" size="35" value="#{loginController.userAccount.senha}"/>
+		<p:outputLabel for="senha" value="Password" />
+		<p:password id="senha" required="true" size="35"
+			value="#{loginController.userAccount.senha}" />
 
-                <p:outputLabel for="email" value="E-mail:" /> 
-                <p:inputText id="email" required="true" size="35" value="#{loginController.userAccount.email}" />
+		<p:outputLabel for="confirmarsenha" value="Confirm Password" />
+		<p:password id="confirmarsenha" required="true" size="35"
+			value="#{loginController.userAccount.senha}" />
 
-                <p:commandButton id="salvar" value="Salvar" style="font-size: 14px;" ajax="false"  action="#{loginController.create}"/>
-                <p:button value="Cancelar" style="font-size: 14px;" outcome="/login" />
-
-            </h:panelGrid>
-
-        </p:dialog>
-    </h:form>
+		<h:panelGrid styleClass="pgregistro" columns="2">
+			<p:commandButton id="salvar" value="Confirm" ajax="false"
+				action="#{loginController.create}" />
+			<p:button value="Cancel" outcome="/login" />
+		</h:panelGrid>
+	</h:panelGrid> </center>
+</h:form>
 </html>
