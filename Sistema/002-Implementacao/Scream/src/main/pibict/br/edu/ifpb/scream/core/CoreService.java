@@ -54,6 +54,13 @@ public class CoreService {
 		}
 		return true;
 	}
+	
+	private boolean validarPass(UserAccount entity, String confirPass){
+		if (entity.getSenha().equals(confirPass))
+			return true;
+		
+		return false;
+	}
 
 	public int count() {
 		return userAccountDAO.count();
@@ -62,19 +69,27 @@ public class CoreService {
 	//UserAccount Services
 
 	@Transactional
-	public boolean createUserAccount(UserAccount entity) {
-		if(!validado(entity)){
-			if (!validarEmail(entity)) {
+	public boolean createUserAccount(UserAccount entity, String confirPass) {
+		
+		if(!validado(entity, confirPass)){
+			
+			if (!validarPass(entity, confirPass)){
+				FacesContext.getCurrentInstance().addMessage(null,
+						new FacesMessage(FacesMessage.SEVERITY_WARN,
+								"Falha no Registro:",
+								"Password não confirmado!"));
+			}if (!validarEmail(entity)) {
 				FacesContext.getCurrentInstance().addMessage(null,
 						new FacesMessage(FacesMessage.SEVERITY_WARN,
 								"Falha no Registro:",
 								"Ja existe uma userAccount com esse Email"));
-			}if (!validarUsuario(entity)) {
+			
+			} if (!validarUsuario(entity)) {
 				FacesContext.getCurrentInstance().addMessage(null,
 						new FacesMessage(FacesMessage.SEVERITY_WARN,
 								"Falha no Registro:",
 								"Ja existe uma userAccount com esse Username"));
-			}
+			} 
 			return false;
 		}else{
 
@@ -90,8 +105,8 @@ public class CoreService {
 		this.userAccountDAO.delete(entity);
 	}
 	
-	public boolean validado(UserAccount entity){
-		return validarEmail(entity) && validarUsuario(entity);
+	public boolean validado(UserAccount entity, String confirPass){
+		return validarEmail(entity) && validarUsuario(entity) && validarPass(entity, confirPass);
 	}
 
 	public UserAccount findUserAccount(Long id) {

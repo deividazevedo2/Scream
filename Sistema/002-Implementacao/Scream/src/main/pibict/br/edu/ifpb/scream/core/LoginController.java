@@ -35,9 +35,10 @@ public class LoginController implements Serializable{
     private UserAccount usuarioLogado;
     
     private UserAccount userAccount;
-
     
-    @PostConstruct
+    private String confirPass;
+
+	@PostConstruct
     public void Init(){
         this.userAccount = new UserAccount();
         
@@ -53,8 +54,8 @@ public class LoginController implements Serializable{
     
     public void create() {
         //		System.out.println(coreService);
-        coreService.createUserAccount(userAccount);
-        JsfUtil.addSuccessMessage("UserAccount adicionada com sucesso!");
+        if (coreService.createUserAccount(userAccount, confirPass))
+        	JsfUtil.addSuccessMessage("UserAccount adicionada com sucesso!");
         //voltaTelaLogin();
     }    
     
@@ -94,6 +95,15 @@ public class LoginController implements Serializable{
     public void setSs(SecurityService ss) {
         this.ss = ss;
     }
+    
+    
+	public String getConfirPass() {
+		return confirPass;
+	}
+
+	public void setConfirPass(String confirPass) {
+		this.confirPass = confirPass;
+	}
     
     public void edicao(){
         setUserAccount(usuarioLogado());
