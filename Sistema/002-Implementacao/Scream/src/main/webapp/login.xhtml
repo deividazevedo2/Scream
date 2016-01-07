@@ -5,42 +5,41 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html">
 
 <h:head>
-	<h:outputStylesheet library="css" name="login.css" />
-	<title>Scream - Login</title>
+	<h:outputStylesheet library="css" name="style.css" />
+	<title>SCREAM - SIGN IN</title>
 </h:head>
 
 <h:body>
-	<h:form id="formularioLogin">
-		<p:growl showDetail="true" sticky="true" life="5000" />
-
-		<div id="posicaoLogo">
-			<p:graphicImage styleClass="logo" library="imagens"
-				name="LogoScream.png" />
-		</div>
-		<center> <h:panelGrid styleClass="panelGrid" columns="1">
-			<p:outputLabel id="enter" value="Enter" />
-			<hr></hr>
-			<p:outputLabel id="usuario" for="username" value="login" />
-			<p:inputText id="username" required="true"
-				requiredMessage="O usuário deve ser informado"
-				value="#{loginController.userAccount.usuario}" />
-			<p:outputLabel id="senha" for="password" value="password" />
-			<p:password id="password" required="true"
-				requiredMessage="A senha deve ser informada"
-				value="#{loginController.userAccount.senha}" />
-			<h:panelGrid columns="2">
-				<h:panelGrid columns="1" styleClass="pglink">
-					<a href="conta/registroConta.xhtml">CREATE AN ACCOUNT</a>
-					<br />
-					<a href="#">RECOVER CREDENTIALS</a>
+	<p:growl showDetail="true" sticky="true" life="5000" />
+	
+	<!-- BEGIN OF SIGN IN  -->
+	<h:form id="formularioLogin" styleClass="center-hv">
+		<fieldset>
+			<legend>SIGN IN</legend>
+			<h:panelGrid columns="1">
+				<p:outputLabel id="usuario" for="username" value="login" />
+				<p:inputText id="username" required="true"
+					requiredMessage="O usuário deve ser informado"
+					value="#{loginController.userAccount.usuario}" />
+				<p:outputLabel id="senha" for="password" value="password" />
+				<p:password id="password" required="true"
+					requiredMessage="A senha deve ser informada"
+					value="#{loginController.userAccount.senha}" />
+				<h:panelGrid columns="1" style="float:right; text-align: right">
+					<p:commandButton id="botaoEntrar" value="ENTER"
+						ajax="false" process="@this" update="growl"
+						action="#{loginController.fazerLogin}" />
+					<p:link href="conta/registroConta.xhtml" value="CREATE AN ACCOUNT" />
+					<p:link href="#" value="CREDENTIALS RECOVERY" />
 				</h:panelGrid>
-				<p:commandButton id="botaoEntrar" value="ENTER"
-					style="margin-top: 15px; float : right; margin-left:10px"
-					ajax="false" process="@this" update="growl"
-					action="#{loginController.fazerLogin}" />
 			</h:panelGrid>
-		</h:panelGrid> </center>
+		</fieldset>
 	</h:form>
+	<!-- END OF SIGN IN  -->
+	
+	<!-- BEGIN OF LOGO -->
+	<p:graphicImage id="logo" library="icons" name="LogoScream.png" />
+	<!-- END OF LOGO -->
 </h:body>
 
 </html>

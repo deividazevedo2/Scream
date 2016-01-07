@@ -73,6 +73,7 @@ public class LoginController implements Serializable{
         return (userAccount != null)? "success" : null; 
     }
     
+    //NÃO É VOLTAR TELA DE LOGIN É LOGOFF MESMO!
     public void voltarTelaLogin() {
         try {
             ss.logout();

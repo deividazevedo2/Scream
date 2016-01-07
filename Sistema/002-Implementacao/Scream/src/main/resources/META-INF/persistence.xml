@@ -8,9 +8,9 @@
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
-			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/Scream" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/scream" />
 			<property name="javax.persistence.jdbc.user" value="postgres" />
-			<property name="javax.persistence.jdbc.password" value="postgres" />
+			<property name="javax.persistence.jdbc.password" value="root" />
 			<property name="eclipselink.ddl-generation" value="create-or-extend-tables" />
 			<property name="eclipselink.ddl-generation.output-mode"
 				value="database" />
@@ -23,7 +23,6 @@
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<properties>
-			
 			<property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:mem:db" />
 			<property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver" />
 			<property name="javax.persistence.jdbc.user" value="sa" />

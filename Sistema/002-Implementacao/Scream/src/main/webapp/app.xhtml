@@ -1,18 +1,33 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:p="http://primefaces.org/ui"
-                xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
-                template="/WEB-INF/template/template.xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-    <h:head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    </h:head>
+<h:head>
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputStylesheet library="css" name="icons.css" />
+	<title><ui:insert name="header-title" /></title>
+</h:head>
 
-    <ui:define name="content">
-        
-    </ui:define>
+<h:body>
+	<p:growl showDetail="true" sticky="true" life="5000" />
 
-</ui:composition>
+	<!-- DASHBOARD INSERTION -->
+	<div id="dashboard">
+		<ui:insert name="dashboard">
+			<ui:include src="/compositions/dashboard.xhtml" />
+		</ui:insert>
+	</div>
+	<!-- MENU INSERTION -->
+	<ui:insert name="menu">
+		<!-- <ui:include src="/compositions/menu.xhtml" />  -->
+	</ui:insert>
+
+	<!-- CONTENT INSERTION: see /example.xhtml of how to use this app.xhtml as a template -->
+	<div id="content">
+		<ui:insert name="content" />
+	</div>
+</h:body>
+</html>
