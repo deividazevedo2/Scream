@@ -1,6 +1,6 @@
 package br.ifpb.monteiro.scream.util.jpa;
 
-import static br.ifpb.monteiro.scream.dao.GenericDAO.getLogger;
+import static br.edu.ifpb.scream.generic.GenericDAO.getLogger;
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;

@@ -1,6 +1,6 @@
 package br.ifpb.monteiro.scream.util.cdi;
 
-import static br.ifpb.monteiro.scream.dao.GenericDAO.getLogger;
+import static br.edu.ifpb.scream.generic.GenericDAO.getLogger;
 import java.util.Set;
 import java.util.logging.Level;
 
