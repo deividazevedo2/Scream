@@ -1,0 +1,16 @@
+.icon-plus {
+	background: url('../resources/icons/icon-plus.png')!important;	
+	background-size: cover;
+}
+.icon-edit {
+	background: url('../resources/icons/icon-edit.png')!important;
+	background-size: cover;	
+}
+
+.icon-less {
+	background: url('../resources/icons/icon-less.png')!important;
+	background-size: cover;	
+}
+
+
+
