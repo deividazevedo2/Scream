@@ -1,98 +1,108 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	template="/WEB-INF/template/template.xhtml">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-	<h:head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	</h:head>
+<h:head>
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
 
-	<ui:define name="content">
-		<div>
-			<div id="novo-item-produto">
-				<h:form>
-					<p:button id="button-novo-item" value="Novo Item"
-						style="margin-bottom: 7px; float:right; left:2%;" />
-					<p:dataTable var="atendimentos" value="#{dtFilterView.cars}"
-						widgetVar="carsTable" emptyMessage="Nenhum registro encontrado"
-						filteredValue="#{dtFilterView.filteredCars}" rows="10"
-						paginator="true" rowsPerPageTemplate="5,10,15"
-						style="position:absolute; margin-top: 5%">
+<h:body>
+	<ui:composition template="/app.xhtml">
+		<ui:define name="header-title">
+			SCREAM - NEW ITEM
+		</ui:define>
+		<ui:define name="content">
+			<p:growl id="mensagens" autoUpdate="true" showDetail="true" />
+			<h:form id="formularioNewItem" styleClass="center-hv">
+				<fieldset>
+					<legend>NEW ITEM</legend>
+					<h:panelGrid columns="2" cellpadding="1">
 
-						<p:column filterBy="#{data.a}" headerText="Título">
-							<h:outputText value="titulo" />
-						</p:column>
+						<!-- BEGIN OF DATATABLE OF ITENS BACKLOG RECORDED-->
+						<h:panelGrid columns="1" cellpadding="1">
 
-						<p:column filterBy="#{data.a}" headerText="Status">
-							<h:outputText value="status" />
-						</p:column>
+							<p:dataTable var="itensBacklog" widgetVar="itensTable"
+								emptyMessage="No registration found." rows="10" paginator="true"
+								rowsPerPageTemplate="5,10,15" style="width: 450px">
 
-						<p:column filterBy="#{data.a}" headerText="Sprint's">
-							<h:outputText value="sprints" />
-						</p:column>
+								<p:column headerText="Title">
+									<h:outputText value="title" />
+								</p:column>
 
-						<p:column filterBy="#{data.a}" headerText="Aprovado?">
-							<h:outputText value="aprovado" />
-						</p:column>
+								<p:column headerText="Status">
+									<h:outputText value="status" />
+								</p:column>
 
-					</p:dataTable>
-				</h:form>
-			</div>
-			<div id="novo-item-produto2">
-				<h:form id="formNovoItem2">
-					<p:commandButton value="Cancelar" icon="ui-icon-disk"
-						actionListener="#" aoncomplete="PF('itemDialog').hide()"
-						style="margin-bottom: 6px; float:right; left:4.5%" />
-					<p:commandButton value="Salvar" icon="ui-icon-disk"
-						actionListener="#" aoncomplete="PF('itemDialog').hide()"
-						style="margin-bottom: 6px; float:right; left:4.5%" />
-					<p:separator style="height: 15px; width: 104%; background: #ccc" />
-					<h:panelGrid columns="2">
-						<h:panelGroup>
-							<h:outputLabel for="titulo" value="Título: " />
-							<p:inputText id="titulo" maxlength="30" size="30" />
-							<h:outputLabel for="status-kanban" value="Status Kanban " />
-							<p:selectOneMenu id="status-kanban" style="width: 200px">
-								<f:selectItem itemLabel="Selecione Um" itemValue="" />
-								<f:selectItems value="#" var="produto" itemLabel="#" />
-							</p:selectOneMenu>
-						</h:panelGroup>
-						<h:panelGroup>
-							<h:outputLabel value="Descrição: " />
-							<p:inputTextarea rows="4" cols="30" queryDelay="750"
-								minQueryLength="4" />
-						</h:panelGroup>
+								<p:column headerText="Sprint's">
+									<h:outputText value="sprints" />
+								</p:column>
+
+								<p:column headerText="Approved?">
+									<h:outputText value="approved" />
+								</p:column>
+
+							</p:dataTable>
+
+						</h:panelGrid>
+						<!-- END OF DATATABLE OF ITENS BACKLOG -->
+
+						<!-- BEGIN OF NEW ITEM BACKLOG FIELDS -->
+						<h:panelGrid columns="1" cellpadding="1">
+
+							<h:panelGrid columns="2" cellpadding="1">
+
+								<h:panelGrid columns="1" cellpadding="1">
+
+									<h:outputLabel for="titulo" value="Title: " />
+									<p:inputText id="titulo" maxlength="38" size="38" />
+
+									<h:outputLabel for="status-kanban" value="Status Kanban: " />
+									<p:selectOneMenu id="status-kanban" style="width: 120px">
+										<f:selectItem itemLabel="select status" itemValue="" />
+										<f:selectItems value="#" var="produto" itemLabel="#" />
+									</p:selectOneMenu>
+
+									<h:outputLabel value="Approved: " />
+									<p:selectBooleanCheckbox />
+
+									<h:outputLabel value="Comments: " />
+									<p:inputTextarea rows="5" cols="35" queryDelay="750"
+										minQueryLength="4" />
+								</h:panelGrid>
+
+								<h:panelGrid columns="1" cellpadding="1">
+
+									<h:outputLabel value="Description: " />
+									<p:inputTextarea rows="5" cols="35" queryDelay="750"
+										minQueryLength="4" />
+
+									<h:outputLabel value="Realization Date: " />
+									<p:inputText maxlength="38" size="38" />
+
+									<h:outputLabel value="Feedback: " />
+									<p:inputTextarea rows="5" cols="35" queryDelay="750"
+										minQueryLength="4" />
+
+								</h:panelGrid>
+
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="pgregistro" columns="2"
+								style="float: right">
+								<p:commandButton id="save" value="Save" ajax="false" />
+								<p:button value="Cancel" />
+							</h:panelGrid>
+						</h:panelGrid>
+						<!-- END OF NEW ITEM BACKLOG FIELDS -->
+
 					</h:panelGrid>
-					<p:separator style="height: 15px; width: 104%; background: #ccc" />
-					<h:panelGrid columns="2">
-						<h:panelGroup>
-							<h:outputLabel value="Aprovado " />
-							<p:selectBooleanCheckbox />
-						</h:panelGroup>
-						<h:panelGroup>
-							<h:outputLabel value="Data Realização: " />
-							<p:inputText maxlength="30" size="32" />
-						</h:panelGroup>
-						<h:panelGroup>
-							<h:outputLabel value="Comentários: " />
-							<p:inputTextarea rows="4" cols="28" queryDelay="750"
-								minQueryLength="4" />
-						</h:panelGroup>
-						<h:panelGroup>
-							<h:outputLabel value="Feedback: " />
-							<p:inputTextarea rows="4" cols="30" queryDelay="750"
-								minQueryLength="4" />
-						</h:panelGroup>
-					</h:panelGrid>
-
-					<br />
-				</h:form>
-			</div>
-		</div>
-	</ui:define>
-
-</ui:composition>
+				</fieldset>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
