@@ -14,17 +14,16 @@ import br.ifpb.monteiro.scream.util.jpa.Transactional;
 import javax.persistence.Transient;
 
 /**
- *
+ * Class is a generic DAO that provides the basis
+ * for the implementation of all DAOs (superclass), 
+ * which contains basic operations with the database.
  * @author Mauricio
  * @param <T>
  */
 public class GenericDAO<T> implements Serializable {
     
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
-    
+	
     private static final Logger logger = Logger.getGlobal();
     
     @Transient
@@ -34,8 +33,7 @@ public class GenericDAO<T> implements Serializable {
     protected Class<T> entity;
     
     /**
-     * Construtor da classe que captura a entidade que chamar esta classe.
-     *
+     * Class constructor that captures the entity that call this class.
      * @param entityClass
      */
     public GenericDAO(Class<T> entityClass) {
@@ -43,17 +41,7 @@ public class GenericDAO<T> implements Serializable {
     }
     
     /**
-     * Método get para a instância do EntityManager
-     *
-     * @return
-     */
-    public EntityManager getEntityManager() {
-        return entityManager;
-    }
-    
-    /**
-     * Metodo utilizado para salvar um novo cadastro no banco de dados ou editar
-     * um cadastro existente.
+     * Method used to save a new account on database or edit an existing registration.
      *
      * @param entity
      */
@@ -69,8 +57,7 @@ public class GenericDAO<T> implements Serializable {
     }
     
     /**
-     * Metodo utilizado para salvar um novo cadastro no banco de dados ou editar
-     * um cadastro existente.
+     * Method used to save a new account on database.
      *
      * @param entity
      */
@@ -88,7 +75,7 @@ public class GenericDAO<T> implements Serializable {
     }
     
     /**
-     * Método utilizado para remover um cadastro do banco de dados
+     * Method used to remove an account on database.
      *
      * @param entity
      */
@@ -98,11 +85,11 @@ public class GenericDAO<T> implements Serializable {
     }
     
     /**
-     * Método utilizado para retornar uma lista com todos os resultados
-     * encontrados no banco de dados para a esntidade que a chamar. A consulta é
-     * feita através de Criteria
+	 * Method to return a list of all the results found in the database
+	 * for the entity that call. 
+	 * The query is made through Criteria.
      *
-     * @return
+     * @return List<T>
      */
     public List<T> findAll() {
         CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
@@ -111,20 +98,21 @@ public class GenericDAO<T> implements Serializable {
     }
     
     /**
-     * Método utilizado para buscar um registro no banco de dados para
-     * determinada entidade através da passagem do seu ID como parâmetro.
+     * Method used to fetch a record in the database
+	 * for a certain entity (T) by passing its ID as a parameter.
      *
      * @param id
-     * @return
+     * @return T object;
      */
     public T findById(Long id) {
         return entityManager.find(entity, id);
     }
     
     /**
-     *
+     * Method used to get a list in a certain range
+	 * in the database record of a specific (T) entity.
      * @param range
-     * @return
+     * @return List<T>
      */
     public List<T> findRange(int[] range) {
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
@@ -136,8 +124,8 @@ public class GenericDAO<T> implements Serializable {
     }
     
     /**
-     *
-     * @return
+     *	Method used to return the size of a specific (T) entity.
+     * @return int
      */
     public int count() {
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
@@ -146,25 +134,11 @@ public class GenericDAO<T> implements Serializable {
         javax.persistence.Query q = getEntityManager().createQuery(cq);
         return ((Long) q.getSingleResult()).intValue();
     }
-    
-    /**
-     * Método get para a instância da entidade que usar esta classe
-     *
-     * @return
+
+	/**
+     *	Method used to provides a query search on the database.
+     * @return List<T>
      */
-    public Class<T> getEntity() {
-        return entity;
-    }
-    
-    /**
-     * Método set para a instância da entidade que usar esta classe
-     *
-     * @param entity
-     */
-    public void setEntity(Class<T> entity) {
-        this.entity = entity;
-    }
-    
     public List<T> query(String query, Object... params) {
         List<T> result = null;
         Query q = entityManager.createQuery(query);
@@ -175,12 +149,24 @@ public class GenericDAO<T> implements Serializable {
         result = q.getResultList();
         return result;
     }
+	
+	//Getters and Setters
+	
+	public EntityManager getEntityManager() {
+        return entityManager;
+    }
     
     public static Logger getLogger() {
         return logger;
     }
     
+    public Class<T> getEntity() {
+        return entity;
+    }
     
+    public void setEntity(Class<T> entity) {
+        this.entity = entity;
+    }
     
     public void setEntityManager(EntityManager entityManager) {
         this.entityManager = entityManager;

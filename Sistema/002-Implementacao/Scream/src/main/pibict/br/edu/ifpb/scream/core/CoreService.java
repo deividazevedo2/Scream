@@ -94,7 +94,7 @@ public class CoreService {
 		}else{
 
 			this.userAccountDAO.create(entity);
-			this.securityService.registrar(entity, entity.getSenha());
+			this.securityService.register(entity, entity.getSenha());
 			voltaTelaLogin();
 			return true;
 		}

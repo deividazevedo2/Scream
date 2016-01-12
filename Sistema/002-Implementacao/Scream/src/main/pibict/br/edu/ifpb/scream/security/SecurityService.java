@@ -17,7 +17,11 @@ import org.apache.shiro.crypto.hash.Sha256Hash;
 import br.edu.ifpb.scream.core.UserAccount;
 import br.edu.ifpb.scream.core.dao.UserAccountDAO;
 
-
+/**
+ * Classe responsável pelo acesso à segurança 
+ * @author Hugo Correia
+ *
+ */
 public class SecurityService {
 	
 	@Inject
@@ -25,6 +29,11 @@ public class SecurityService {
 	
 	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("Scream"); 
 	
+	/**
+	 * Recebe o usuário atual e a senha indicada no cadastro
+	 * @param userAccount
+	 * @param plainTextPassword
+	 */
 	private void generatePassword(UserAccount userAccount, String plainTextPassword) {
 		RandomNumberGenerator rng = new SecureRandomNumberGenerator();
 		Object salt = rng.nextBytes();
@@ -37,7 +46,7 @@ public class SecurityService {
 		userAccount.setSalt(salt.toString());
 	}
 
-	public void registrar(UserAccount userAccount, String plainTextPassword) {
+	public void register(UserAccount userAccount, String plainTextPassword) {
 		generatePassword(userAccount, plainTextPassword);
 		userAccountDao.update(userAccount);
 	}

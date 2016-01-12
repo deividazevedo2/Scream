@@ -14,7 +14,8 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Transient;
 
 /**
- *
+ * This class controls transactions requested
+ * from services and DAO classes 
  * @author Mauricio
  */
 @Priority(Interceptor.Priority.APPLICATION)
@@ -29,6 +30,11 @@ public class TransactionInterceptor implements Serializable {
     @Inject
     private EntityManager manager;
 
+	/**
+	* This method is responsible to create and validate,
+	* updates and deletes from database requested from DAO and services.
+	* @param InvocationContext context
+	*/
     @AroundInvoke
     public Object invoke(InvocationContext context) throws Exception {
         logger.info("Transação Obtida");

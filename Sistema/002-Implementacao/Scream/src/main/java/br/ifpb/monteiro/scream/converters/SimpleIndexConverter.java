@@ -16,13 +16,21 @@ import javax.faces.model.SelectItem;
 import javax.faces.model.SelectItemGroup;
 
 
+/**
+* Class is responsible to Convert a Object on SelectedItem
+* type to in order to be used in the manipulation of one or
+* multiple items in the selectOneMenu JSF, using index for handling the values.
+*/
 @FacesConverter(value= "simpleIndexConverter")
 public class SimpleIndexConverter implements Converter {  
 	  
     private int index = -1;  
   
-    /* (non-Javadoc) 
-     * @see javax.faces.convert.Converter#getAsObject(javax.faces.context.FacesContext, javax.faces.component.UIComponent, java.lang.String) 
+    /** 
+     * Method get a key on a String value, recovery the Object correspondent
+	 * from UIComponent and return a Object on SelectItem type
+	 *
+	 *@return selectedItem
      */  
     public Object getAsObject(FacesContext ctx, UIComponent component, String value) {  
   
@@ -34,8 +42,8 @@ public class SimpleIndexConverter implements Converter {
         return null;  
     }  
   
-    /* (non-Javadoc) 
-     * @see javax.faces.convert.Converter#getAsString(javax.faces.context.FacesContext, javax.faces.component.UIComponent, java.lang.Object) 
+    /** 
+     * Method get a key on a Object value and return a String correspondent of this object.
      */  
     public String getAsString(FacesContext ctx, UIComponent component, Object value) {  
         index++;  
@@ -43,7 +51,7 @@ public class SimpleIndexConverter implements Converter {
     }  
   
     /** 
-     * Obtem o SelectItem de acordo com a opção selecionada pelo usuário 
+     * Method get SelectItem according to the option selected by the user
      */  
     protected SelectItem getSelectedItemByIndex(UIComponent component, int index) {  
   
@@ -58,6 +66,9 @@ public class SimpleIndexConverter implements Converter {
         return null;  
     }  
   
+	/** 
+     * Method return a list of SelectItem from a list of Object contained on UIComponent
+     */
     protected List<SelectItem> getSelectItems(UIComponent component) {  
   
         List<SelectItem> items = new ArrayList<SelectItem>();  
@@ -78,6 +89,9 @@ public class SimpleIndexConverter implements Converter {
         return items;  
     }  
   
+	/** 
+     * Method adds a selectItem to a List<SelectItem> from getSelectItems method 
+     */
     protected void addSelectItem(UISelectItem uiItem, List<SelectItem> items) {  
   
         boolean isRendered = uiItem.isRendered();  
@@ -104,6 +118,9 @@ public class SimpleIndexConverter implements Converter {
         items.add(item);  
     }  
   
+  	/** 
+     * Method adds a selectItem to a List<SelectItem> from getSelectItems method 
+     */
     @SuppressWarnings("unchecked")  
     protected void addSelectItems(UISelectItems uiItems, List<SelectItem> items) {  
   
@@ -153,6 +170,9 @@ public class SimpleIndexConverter implements Converter {
         }  
     }  
   
+	/** 
+     * Method add a item to a method before solve 
+     */
     protected void resolveAndAddItems(SelectItemGroup group, List<SelectItem> items) {  
         for (SelectItem item : group.getSelectItems()) {  
             if (item instanceof SelectItemGroup) {  
