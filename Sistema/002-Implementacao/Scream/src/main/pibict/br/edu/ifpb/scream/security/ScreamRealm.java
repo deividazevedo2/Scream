@@ -28,46 +28,14 @@ import br.edu.ifpb.scream.team.TeamMember;;
 public class ScreamRealm extends AuthorizingRealm {
 
 	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("Scream"); 
-
-	@Override
-	protected AuthenticationInfo doGetAuthenticationInfo(
-			AuthenticationToken token) throws AuthenticationException {
-
-		SaltedAuthenticationInfo info = null;
-		UsernamePasswordToken upToken = (UsernamePasswordToken) token;
-		String username = upToken.getUsername();
-		String passwd = new String(upToken.getPassword());
-
-		// Null username is invalid
-		if (username == null) {
-			throw new AccountException();
-		}
-
-		if (passwd == null || passwd.isEmpty()) {
-			throw new UnknownAccountException();
-		}
-
-		//		SecurityService ss = new SecurityService();
-		UserAccount userAccount = null;
-
-		EntityManager em = emf.createEntityManager();
-		Query q = em.createQuery("select conta from UserAccount conta "
-				+ "where conta.usuario = ?1 ");
-		q.setParameter(1, username);
-		
-		@SuppressWarnings("unchecked")
-		List<UserAccount> userAccounts = q.getResultList();
-		if (userAccounts.size() == 1) {
-			userAccount = userAccounts.get(0);
-		}
-		em.close();
-		if (userAccount != null) {
-			info = new ScreamSaltedAuthenticationInfo(userAccount.getUsuario(), userAccount.getSenha(), userAccount.getSalt());
-		}
-		return info;
-	}
-
-	// Não sei se roda 0.0
+	
+	/**
+	 * search from the user database and check the roles, by setting the corresponding session for returning
+	 * a collection of all user roles for authorization checking for a determined feature   
+	 * @param PrincipalCollection principal
+	 * @return SimpleAuthorizationInfo authorization
+	 * 
+	 */
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principal) {
 		EntityManager em = emf.createEntityManager();
@@ -88,8 +56,6 @@ public class ScreamRealm extends AuthorizingRealm {
 		q.setParameter(1, username);
 
 		TeamMember individuo = (TeamMember) q.getResultList().get(0);
-//		System.out.println(individuo.getRoles().toString()+"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-		System.out.println(individuo.getRoles()+"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 		if (individuo.getRoles() == Roles.ADM) {
 			roles.add("ADM");
 		}else if(individuo.getRoles() == Roles.PRODUCT_OWNER){
@@ -100,12 +66,9 @@ public class ScreamRealm extends AuthorizingRealm {
 			roles.add("TEAM");
 		}
 		
-		
-	  //authorization.addStringPermission(IdeenProprietaPermissions.READ_WRITE.toString());
 		authorization.setRoles(roles);
 
 		Set<String> rol = authorization.getRoles(); 
-		System.out.println(rol+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		
 		if (roles.isEmpty()) {
 			return null;
@@ -114,6 +77,46 @@ public class ScreamRealm extends AuthorizingRealm {
 		}
 		
 	}
+
+	@Override
+	protected AuthenticationInfo doGetAuthenticationInfo(
+			AuthenticationToken token) throws AuthenticationException {
+
+		SaltedAuthenticationInfo info = null;
+		UsernamePasswordToken upToken = (UsernamePasswordToken) token;
+		String username = upToken.getUsername();
+		String passwd = new String(upToken.getPassword());
+
+		// Null username is invalid
+		if (username == null) {
+			throw new AccountException();
+		}
+
+		if (passwd == null || passwd.isEmpty()) {
+			throw new UnknownAccountException();
+		}
+
+		UserAccount userAccount = null;
+
+		EntityManager em = emf.createEntityManager();
+		Query q = em.createQuery("select conta from UserAccount conta "
+				+ "where conta.usuario = ?1 ");
+		q.setParameter(1, username);
+		
+		@SuppressWarnings("unchecked")
+		List<UserAccount> userAccounts = q.getResultList();
+		if (userAccounts.size() == 1) {
+			userAccount = userAccounts.get(0);
+		}
+		
+		em.close();
+		if (userAccount != null) {
+			info = new ScreamSaltedAuthenticationInfo(userAccount.getUsuario(), userAccount.getSenha(), userAccount.getSalt());
+		}
+		return info;
+	}
+
+	
 	
 //    @Override
 //    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {

@@ -18,7 +18,7 @@ import br.edu.ifpb.scream.core.UserAccount;
 import br.edu.ifpb.scream.core.dao.UserAccountDAO;
 
 /**
- * Classe responsável pelo acesso à segurança 
+ * Class responsible for access to security system
  * @author Hugo Correia
  *
  */
@@ -30,7 +30,8 @@ public class SecurityService {
 	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("Scream"); 
 	
 	/**
-	 * Recebe o usuário atual e a senha indicada no cadastro
+	 * Receives the current user and password specified in the register, 
+	 * apply encryption and add the key (salt) in the user's account
 	 * @param userAccount
 	 * @param plainTextPassword
 	 */
@@ -46,21 +47,39 @@ public class SecurityService {
 		userAccount.setSalt(salt.toString());
 	}
 
+	/**
+	 * Adds the already encrypted password and sends it to the DAO to be added to the database
+	 * @param userAccount
+	 * @param plainTextPassword
+	 */
 	public void register(UserAccount userAccount, String plainTextPassword) {
 		generatePassword(userAccount, plainTextPassword);
 		userAccountDao.update(userAccount);
 	}
 
-	
+	/**
+	 * Checks if the current user has the indicated role as a parameter and 
+	 * returns a Boolean value according to the search result  
+	 * @param roleIdentifier
+	 * @return boolean 
+	 */
 	public boolean isAuthorized(String roleIdentifier){
 		org.apache.shiro.subject.Subject currentUser = SecurityUtils.getSubject();
 		if (currentUser.hasRole(roleIdentifier)) {
-			System.out.println("##########################################################");
 			return true;
 		}
 		return false;
 	}
 
+	/**
+	 * Responsible for logging the user on the system by checking the isAuthenticated method
+	 * if return are true enables the login process by setting the user in the session.
+	 * Returning the current user
+	 * @param username
+	 * @param password
+	 * @param rememberMe
+	 * @return userAccount
+	 */
 	public UserAccount login(String username, String password, Boolean rememberMe) {
 		// get the currently executing user:
 		org.apache.shiro.subject.Subject currentUser = SecurityUtils.getSubject();
@@ -81,7 +100,12 @@ public class SecurityService {
 		}
 		return null;
 	}
-
+	
+	/**
+	 * Search in the database and returns the account for the usermande indicated as a parameter
+	 * @param username
+	 * @return userAccount
+	 */
 	public UserAccount getUserAccount(String username){
 		List<UserAccount> userAccounts = userAccountDao.query("select userAccount from UserAccount userAccount "
 				+ "where userAccount.usuario = ?1", 
@@ -93,6 +117,10 @@ public class SecurityService {
 		return userAccount;
 	}
 
+	/**
+	 * It returns the taken user of database if he has authenticated
+	 * @return userAccount
+	 */
 	public UserAccount getCurrentUser() {
 		UserAccount userAccount = null;
 		org.apache.shiro.subject.Subject currentUser = SecurityUtils.getSubject();
@@ -107,6 +135,9 @@ public class SecurityService {
 		return userAccount;
 	}
 
+	/**
+	 * Do the log out of the current user
+	 */
 	public void logout() {
 		org.apache.shiro.subject.Subject currentUser = SecurityUtils.getSubject();
 		currentUser.logout();
