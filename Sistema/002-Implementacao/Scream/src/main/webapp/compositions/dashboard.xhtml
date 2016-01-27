@@ -20,7 +20,7 @@
 					<!-- BEGIN OF PRODUCT SELECTORS -->
 					<h:outputText value="PRODUCT" />
 					<h:outputText />
-					<p:selectOneMenu id="product" value="#{selectOneMenuView.console}"
+					<p:selectOneMenu id="product" 
 						style="width:145px">
 						<f:selectItem itemLabel="Product 1" itemValue="pj1" />
 						<f:selectItem itemLabel="Product 2" itemValue="pj2" />
@@ -136,7 +136,7 @@
 
 			<!-- BEGIN OF PRODUCT DIALOG -->
 			<p:dialog id="novoProdutoDialog" header="Novo Produto"
-				widgetVar="novoProdutoDialog" modal="false" resizable="false" draggable="false" appendToBody="true">
+				widgetVar="novoProdutoDialog" modal="true" resizable="false" draggable="true" appendToBody="true" >
 				<p:panelGrid columns="2">
 
 					<p:outputLabel value="Nome" for="novoNome" />
@@ -154,10 +154,10 @@
 				<p:commandButton id="novoProduto" value="Salvar" icon="ui-icon-disk"
 					action="#{produtoController.create}"
 					oncomplete="PF('novoProdutoDialog').hide()">
-
 				</p:commandButton>
 			</p:dialog>
 			<!-- END OF PRODUCT DIALOG -->
+			
 		</h:form>
 	</ui:composition>
 	<!-- END DASHBOARD COMPOSITION  -->
