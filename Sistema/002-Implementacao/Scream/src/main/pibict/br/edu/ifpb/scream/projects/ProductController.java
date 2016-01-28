@@ -43,7 +43,7 @@ public class ProductController implements Serializable {
 	@Inject
 	private SecurityService ss;
 
-	private Product produto = new Product();
+	private Product product = new Product();
 
 	private Product produtoSelect;
 
@@ -63,16 +63,16 @@ public class ProductController implements Serializable {
 	public void init() {
 //		itemProductBacklog = new ItemProductBacklog();
 		listProduto = service.findAll();
-		produtoSelect = (Product) contexto.getExternalContext().getSessionMap().get("produto");
+		produtoSelect = (Product) contexto.getExternalContext().getSessionMap().get("product");
 
 	}
 
 	public void create() {
 		//if (ss.isAuthorized("SCRUM_MASTER")) {
-		if(validarProduto(produto)){
+		if(validarProduto(product)){
 //			registrarData();
-			service.create(produto);
-			this.produto = new Product();
+			service.create(product);
+			this.product = new Product();
 			JsfUtil.addSuccessMessage("Product Criado com Sucesso");
 			redirect();
 		}
@@ -92,13 +92,13 @@ public class ProductController implements Serializable {
 
 
 		if (produtoSelect.getId() == null) {
-			JsfUtil.addErrorMessage("Erro ao selecionar seu produto, por favor tente mais tarde");
+			JsfUtil.addErrorMessage("Erro ao selecionar seu product, por favor tente mais tarde");
 
 		} else {
 			if (validarProduto(produtoSelect)){
 				service.update(produtoSelect);
 				JsfUtil.addSuccessMessage("Product atualizado com sucesso");
-				redirect();
+				//redirect();
 
 			}
 		}
@@ -112,9 +112,9 @@ public class ProductController implements Serializable {
 		return true;
 	}
 
-//	public void verItens(Product produto) {
+//	public void verItens(Product product) {
 //		try {
-//			System.out.println("Product: " + produto);
+//			System.out.println("Product: " + product);
 //			FacesContext.getCurrentInstance().getExternalContext().getRequest();
 //			FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
 //
@@ -152,9 +152,9 @@ public class ProductController implements Serializable {
 	public void redirect(){
 		try {//Redirect para atualização das informações
 			FacesContext.getCurrentInstance().getExternalContext()
-			.redirect("/Scream/produto/index.xhtml");
+			.redirect("/Scream/app.xhtml");
 		} catch (IOException e) {
-			JsfUtil.addErrorMessage("Aconteceu algo inesperado ao apagar este produto");
+			JsfUtil.addErrorMessage("Aconteceu algo inesperado ao apagar este product");
 		}
 	}
 
@@ -171,11 +171,11 @@ public class ProductController implements Serializable {
 	}
 
 	public Product getProduto() {
-		return produto;
+		return product;
 	}
 
 	public void setProduto(Product produto) {
-		this.produto = produto;
+		this.product = produto;
 	}
 
 	public List<Product> getListProduto() {
@@ -203,7 +203,7 @@ public class ProductController implements Serializable {
 //	}
 
 	public void manterProduto() {
-		contexto.getExternalContext().getSessionMap().put("produto", produtoSelect);
+		contexto.getExternalContext().getSessionMap().put("product", produtoSelect);
 	}
 
 }

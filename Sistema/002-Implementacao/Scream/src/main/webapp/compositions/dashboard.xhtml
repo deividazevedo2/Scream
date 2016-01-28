@@ -39,6 +39,8 @@
 					<!-- BEGIN OF PROJECT SELECTORS -->
 					<h:outputText value="PROJECT" />
 					<h:outputText />
+					
+					<!--
 					<p:selectOneMenu id="projeto" process="@this"
 						value="#{projetoController.projetoSelecionado}"
 						style="width:145px" converter="simpleIndexConverter">
@@ -47,6 +49,8 @@
 							itemLabel="#{projeto.nome}" itemValue="projeto" process="@this">
 						</f:selectItems>
 					</p:selectOneMenu>
+					-->
+					
 					<h:panelGrid columns="3">
 						<p:commandButton icon="icon-plus"
 							oncomplete="PF('novoProjetoDialog').show()" />
@@ -142,17 +146,17 @@
 					<p:outputLabel value="Nome" for="novoNome" />
 					<p:inputText id="novoNome" maxlength="50"
 						placeholder="Nome do Produto"
-						value="#{produtoController.produto.nome}" />
+						value="#{productController.produto.name}" />
 
 					<p:outputLabel id="novaDescricao" value="Descrição" />
 					<p:inputTextarea rows="5" cols="30"
-						value="#{produtoController.produto.descricao}" queryDelay="750"
+						value="#{productController.produto.descricao}" queryDelay="750"
 						minQueryLength="4" />
 
 				</p:panelGrid>
 
 				<p:commandButton id="novoProduto" value="Salvar" icon="ui-icon-disk"
-					action="#{produtoController.create}"
+					action="#{productController.create}"
 					oncomplete="PF('novoProdutoDialog').hide()">
 				</p:commandButton>
 			</p:dialog>
