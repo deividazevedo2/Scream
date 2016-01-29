@@ -193,6 +193,8 @@ public class ProductController implements Serializable {
 	public void setProdutoSelect(Product produtoSelect) {
 		this.produtoSelect = produtoSelect;
 	}
+	
+	
 
 //	public ItemProductBacklog getItemProductBacklog() {
 //		return itemProductBacklog;
@@ -201,6 +203,14 @@ public class ProductController implements Serializable {
 //	public void setItemProductBacklog(ItemProductBacklog itemProductBacklog) {
 //		this.itemProductBacklog = itemProductBacklog;
 //	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
 
 	public void manterProduto() {
 		contexto.getExternalContext().getSessionMap().put("product", produtoSelect);

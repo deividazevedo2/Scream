@@ -20,12 +20,12 @@
 					<!-- BEGIN OF PRODUCT SELECTORS -->
 					<h:outputText value="PRODUCT" />
 					<h:outputText />
-					<p:selectOneMenu id="product" 
+					<h:selectOneMenu id="product" value="#{productController.product.id}"
 						style="width:145px">
-						<f:selectItem itemLabel="Product 1" itemValue="pj1" />
-						<f:selectItem itemLabel="Product 2" itemValue="pj2" />
-						<f:selectItem itemLabel="Product 3" itemValue="pj3" />
-					</p:selectOneMenu>
+						<f:selectItem itemLabel="Selecione um produto" itemValue="#{null}" noSelectionOption="true"/>
+						<f:selectItems value="#{productController.listProduto}" var="produtos"
+						 itemValue="#{produtos.id}" itemLabel="#{produtos.name}"/>
+					</h:selectOneMenu>
 					<h:panelGrid columns="3">
 						<p:commandButton icon="icon-plus"
 							oncomplete="PF('novoProdutoDialog').show()" />
