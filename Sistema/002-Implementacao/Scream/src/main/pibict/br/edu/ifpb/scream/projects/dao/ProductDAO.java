@@ -52,4 +52,12 @@ public class ProductDAO extends GenericDAO<Product>{
 		
 		return produtos;
     }
+    
+    @Override
+    public Product findById(Long id) {
+		
+		List<Product> product = query("Select p From Product p Where p.id=?1",id);
+		
+		return product.get(1);
+    }
 }

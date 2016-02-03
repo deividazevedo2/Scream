@@ -20,12 +20,13 @@
 					<!-- BEGIN OF PRODUCT SELECTORS -->
 					<h:outputText value="PRODUCT" />
 					<h:outputText />
-					<h:selectOneMenu id="product" value="#{productController.product.id}"
+					<h:selectOneMenu id="product" value="#{productController.product}"
 						style="width:145px">
 						<f:selectItem itemLabel="Selecione um produto" itemValue="#{null}" noSelectionOption="true"/>
 						<f:selectItems value="#{productController.listProduto}" var="produtos"
-						 itemValue="#{produtos.id}" itemLabel="#{produtos.name}"/>
+						 itemValue="#{produtos}" itemLabel="#{produtos.name}"/>
 					</h:selectOneMenu>
+					<p:commandButton icon="ui-icon-check" action="#{productController.submit()}"/>
 					<h:panelGrid columns="3">
 						<p:commandButton icon="icon-plus"
 							oncomplete="PF('novoProdutoDialog').show()" />
@@ -137,8 +138,31 @@
 				<!-- END OF TEAM MEMBER INFO -->
 
 			</h:panelGrid>
+			<!-- BEGIN OF EDIT PRODUCT DIALOG -->
+			<p:dialog id="editProductDialog" header="Editar Produto"
+				widgetVar="editProductDialog" modal="true" resizable="false" draggable="true" appendToBody="true" >
+				<p:panelGrid columns="2">
 
-			<!-- BEGIN OF PRODUCT DIALOG -->
+					<p:outputLabel value="Nome" for="editNome" />
+					<p:inputText id="editNome" maxlength="50"
+						placeholder="Nome do Produto"
+						value="#{productController.produto.name}" />
+
+					<p:outputLabel id="editDescription" value="Descrição" />
+					<p:inputTextarea rows="5" cols="30"
+						value="#{productController.produto.descricao}" queryDelay="750"
+						minQueryLength="4" />
+
+				</p:panelGrid>
+
+				<p:commandButton id="editProduct" value="Salvar" icon="ui-icon-disk"
+					action="#{productController.create}"
+					oncomplete="PF('editProductDialog').hide()">
+				</p:commandButton>
+			</p:dialog>
+			<!-- END OF EDIT PRODUCT DIALOG -->
+			
+			<!-- BEGIN OF NEW PRODUCT DIALOG -->
 			<p:dialog id="novoProdutoDialog" header="Novo Produto"
 				widgetVar="novoProdutoDialog" modal="true" resizable="false" draggable="true" appendToBody="true" >
 				<p:panelGrid columns="2">
@@ -160,7 +184,7 @@
 					oncomplete="PF('novoProdutoDialog').hide()">
 				</p:commandButton>
 			</p:dialog>
-			<!-- END OF PRODUCT DIALOG -->
+			<!-- END OF NEW PRODUCT DIALOG -->
 			
 		</h:form>
 	</ui:composition>

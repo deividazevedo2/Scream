@@ -44,7 +44,7 @@ public class ProdutoService {
     }
     
     public Product find(Long id) {
-        return (Product) productDAO.findById(id);
+        return productDAO.findById(id);
     }
     
     public List<Product> findAll() {

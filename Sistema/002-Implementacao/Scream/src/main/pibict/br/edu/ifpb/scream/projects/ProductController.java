@@ -111,6 +111,10 @@ public class ProductController implements Serializable {
 
 		return true;
 	}
+	
+	public void submit() {
+	    System.out.println("Selected item: " );
+	}
 
 //	public void verItens(Product product) {
 //		try {

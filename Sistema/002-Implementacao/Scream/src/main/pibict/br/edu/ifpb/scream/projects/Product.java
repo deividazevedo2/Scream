@@ -79,6 +79,20 @@ public class Product implements Serializable{
 
 
     @Override
+    public boolean equals(Object other) {
+        return (other != null && getClass() == other.getClass() && id != null)
+            ? id.equals(((Product) other).id)
+            : (other == this);
+    }
+
+    @Override
+    public int hashCode() {
+        return (id != null) 
+            ? (getClass().hashCode() + id.hashCode())
+            : super.hashCode();
+    }
+    
+    @Override
     public String toString() {
         return "Product[" + "name=" + name + ", description=" + description+"]";
     }

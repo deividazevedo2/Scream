@@ -6,10 +6,11 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
-
+import javax.inject.Inject;
 
 import br.edu.ifpb.scream.projects.Product;
 import br.edu.ifpb.scream.projects.ProductController;
+import br.edu.ifpb.scream.projects.ProdutoService;
 
 /**
  * 
@@ -21,25 +22,28 @@ import br.edu.ifpb.scream.projects.ProductController;
 @FacesConverter(forClass=Product.class)
 public class ProductConverter implements Converter {
 
+	
+	@Inject
+	private ProdutoService service;
+	
 	/**
 	 * method recover a object from a object string key on context 
 	 */
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
 		System.out.println("Passou aqui getAsObject");
+		System.out.println(value);
+
 	       if (value == null) {
 	            return null;
-	        }
-
-	        ProductController produtoController = context.getApplication().evaluateExpressionGet(context, "#{productController}", ProductController.class);
-
-	        for (Product product : produtoController.getListProduto()) {
-	            if (product.getId().toString().equals(value)) {
-	                return product;
-	            }
-	        }
-
-	        throw new ConverterException(new FacesMessage(String.format("Cannot convert %s to Country", value)));
+	            
+	       }try{
+	    	   return service.find(Long.valueOf(value)).getId();
+	    	   
+	       }catch(NumberFormatException e){
+	    	   throw new ConverterException(new FacesMessage(String.format("%s is not a valid Product ID", value)), e);
+	       }
+	       
 	    }
 	
 	/**
