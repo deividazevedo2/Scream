@@ -58,6 +58,6 @@ public class ProductDAO extends GenericDAO<Product>{
 		
 		List<Product> product = query("Select p From Product p Where p.id=?1",id);
 		
-		return product.get(1);
+		return product.get(0);
     }
 }

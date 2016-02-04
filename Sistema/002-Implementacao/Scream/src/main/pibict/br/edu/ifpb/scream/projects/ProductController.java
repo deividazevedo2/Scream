@@ -64,7 +64,6 @@ public class ProductController implements Serializable {
 //		itemProductBacklog = new ItemProductBacklog();
 		listProduto = service.findAll();
 		produtoSelect = (Product) contexto.getExternalContext().getSessionMap().get("product");
-
 	}
 
 	public void create() {
@@ -75,7 +74,13 @@ public class ProductController implements Serializable {
 			this.product = new Product();
 			JsfUtil.addSuccessMessage("Product Criado com Sucesso");
 			redirect();
+			lookingFor();
 		}
+	}
+	
+	public void lookingFor(){
+		Product p = service.find(1L);
+		System.out.println(p.getName());
 	}
 
 

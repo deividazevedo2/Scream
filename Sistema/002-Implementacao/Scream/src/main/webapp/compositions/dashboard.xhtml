@@ -26,7 +26,7 @@
 						<f:selectItems value="#{productController.listProduto}" var="produtos"
 						 itemValue="#{produtos}" itemLabel="#{produtos.name}"/>
 					</h:selectOneMenu>
-					<p:commandButton icon="ui-icon-check" action="#{productController.submit()}"/>
+					<p:commandButton icon="ui-icon-check" action="#{productController.lookingFor()}"/>
 					<h:panelGrid columns="3">
 						<p:commandButton icon="icon-plus"
 							oncomplete="PF('novoProdutoDialog').show()" />
@@ -146,11 +146,11 @@
 					<p:outputLabel value="Nome" for="editNome" />
 					<p:inputText id="editNome" maxlength="50"
 						placeholder="Nome do Produto"
-						value="#{productController.produto.name}" />
+						value="#{productController.product.name}" />
 
 					<p:outputLabel id="editDescription" value="Descrição" />
 					<p:inputTextarea rows="5" cols="30"
-						value="#{productController.produto.descricao}" queryDelay="750"
+						value="#{productController.product.descricao}" queryDelay="750"
 						minQueryLength="4" />
 
 				</p:panelGrid>
@@ -183,7 +183,7 @@
 					action="#{productController.create}"
 					oncomplete="PF('novoProdutoDialog').hide()">
 				</p:commandButton>
-			</p:dialog>
+			</p:dialog> 
 			<!-- END OF NEW PRODUCT DIALOG -->
 			
 		</h:form>
