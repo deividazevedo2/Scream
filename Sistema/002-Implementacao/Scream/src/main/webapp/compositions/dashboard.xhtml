@@ -26,14 +26,14 @@
 						<f:selectItems value="#{productController.listProduto}" var="produtos"
 						 itemValue="#{produtos}" itemLabel="#{produtos.name}"/>
 					</h:selectOneMenu>
-					<p:commandButton icon="ui-icon-check" action="#{productController.lookingFor()}"/>
+					<!-- <p:commandButton icon="ui-icon-check" action="#{productController.lookingFor()}"/>  -->
 					<h:panelGrid columns="3">
 						<p:commandButton icon="icon-plus"
-							oncomplete="PF('novoProdutoDialog').show()" />
+							onclick="PF('novoProdutoDialog').show()" />
 						<p:commandButton icon="icon-edit"
-							oncomplete="PF('novoProdutoDialog').show()" />
+							onclick="PF('novoProdutoDialog').show()" />
 						<p:commandButton icon="icon-less"
-							oncomplete="PF('novoProdutoDialog').show()" />
+							onclick="PF('novoProdutoDialog').show()" />
 					</h:panelGrid>
 					<!-- END OF PRODUCT SELECTORS -->
 
@@ -136,58 +136,11 @@
 
 
 				<!-- END OF TEAM MEMBER INFO -->
-
 			</h:panelGrid>
-			<!-- BEGIN OF EDIT PRODUCT DIALOG -->
-			<p:dialog id="editProductDialog" header="Editar Produto"
-				widgetVar="editProductDialog" modal="true" resizable="false" draggable="true" appendToBody="true" >
-				<p:panelGrid columns="2">
-
-					<p:outputLabel value="Nome" for="editNome" />
-					<p:inputText id="editNome" maxlength="50"
-						placeholder="Nome do Produto"
-						value="#{productController.product.name}" />
-
-					<p:outputLabel id="editDescription" value="Descrição" />
-					<p:inputTextarea rows="5" cols="30"
-						value="#{productController.product.descricao}" queryDelay="750"
-						minQueryLength="4" />
-
-				</p:panelGrid>
-
-				<p:commandButton id="editProduct" value="Salvar" icon="ui-icon-disk"
-					action="#{productController.create}"
-					oncomplete="PF('editProductDialog').hide()">
-				</p:commandButton>
-			</p:dialog>
-			<!-- END OF EDIT PRODUCT DIALOG -->
-			
-			<!-- BEGIN OF NEW PRODUCT DIALOG -->
-			<p:dialog id="novoProdutoDialog" header="Novo Produto"
-				widgetVar="novoProdutoDialog" modal="true" resizable="false" draggable="true" appendToBody="true" >
-				<p:panelGrid columns="2">
-
-					<p:outputLabel value="Nome" for="novoNome" />
-					<p:inputText id="novoNome" maxlength="50"
-						placeholder="Nome do Produto"
-						value="#{productController.produto.name}" />
-
-					<p:outputLabel id="novaDescricao" value="Descrição" />
-					<p:inputTextarea rows="5" cols="30"
-						value="#{productController.produto.descricao}" queryDelay="750"
-						minQueryLength="4" />
-
-				</p:panelGrid>
-
-				<p:commandButton id="novoProduto" value="Salvar" icon="ui-icon-disk"
-					action="#{productController.create}"
-					oncomplete="PF('novoProdutoDialog').hide()">
-				</p:commandButton>
-			</p:dialog> 
-			<!-- END OF NEW PRODUCT DIALOG -->
-			
 		</h:form>
 	</ui:composition>
 	<!-- END DASHBOARD COMPOSITION  -->
+	
+	
 </h:body>
 </html>

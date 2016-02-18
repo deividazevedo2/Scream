@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:body>
+
+	<!-- BEGIN DASHBOARD COMPOSITION -->
+	<ui:composition>
+		<h:form>
+			<!-- BEGIN OF NEW PRODUCT DIALOG -->
+
+			<p:dialog header="Novo Produto" widgetVar="novoProdutoDialog"
+				modal="true" resizable="false" draggable="true">
+				<p:panelGrid columns="2">
+
+					<p:outputLabel value="Nome" for="novoNome" />
+					<p:inputText id="novoNome" maxlength="50"
+						placeholder="Nome do Produto"
+						value="#{productController.product.name}" />
+
+					<p:outputLabel id="novaDescricao" value="Descrição" />
+					<p:inputTextarea rows="5" cols="30"
+						value="#{productController.product.description}" queryDelay="750"
+						minQueryLength="4" />
+
+				</p:panelGrid>
+
+				<p:commandButton id="novoProduto" value="Salvar" icon="ui-icon-disk"
+					action="#{productController.create}"
+					oncomplete="PF('novoProdutoDialog').hide()">
+				</p:commandButton>
+			</p:dialog>
+			<!-- END DASHBOARD COMPOSITION  -->
+		</h:form>
+	</ui:composition>
+</h:body>
+</html>
+<!-- END OF NEW PRODUCT DIALOG -->

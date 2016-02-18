@@ -2,12 +2,7 @@ package br.edu.ifpb.scream.projects;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
@@ -20,8 +15,6 @@ import org.primefaces.event.CloseEvent;
 import org.primefaces.event.DashboardReorderEvent;
 import org.primefaces.event.ToggleEvent;
 
-//import br.ifpb.monteiro.scream.entities.ItemProductBacklog;
-import br.edu.ifpb.scream.projects.Product;
 //import br.ifpb.monteiro.scream.entities.Projeto;
 //import br.ifpb.monteiro.scream.services.ProdutoService;
 import br.edu.ifpb.scream.security.SecurityService;
@@ -43,7 +36,7 @@ public class ProductController implements Serializable {
 	@Inject
 	private SecurityService ss;
 
-	private Product product = new Product();
+	private Product product;
 
 	private Product produtoSelect;
 
@@ -61,6 +54,7 @@ public class ProductController implements Serializable {
 
 	@PostConstruct
 	public void init() {
+		product = new Product();
 //		itemProductBacklog = new ItemProductBacklog();
 		listProduto = service.findAll();
 		produtoSelect = (Product) contexto.getExternalContext().getSessionMap().get("product");
@@ -179,12 +173,8 @@ public class ProductController implements Serializable {
 		this.service = service;
 	}
 
-	public Product getProduto() {
+	public Product getProduct() {
 		return product;
-	}
-
-	public void setProduto(Product produto) {
-		this.product = produto;
 	}
 
 	public List<Product> getListProduto() {
@@ -213,9 +203,6 @@ public class ProductController implements Serializable {
 //		this.itemProductBacklog = itemProductBacklog;
 //	}
 
-	public Product getProduct() {
-		return product;
-	}
 
 	public void setProduct(Product product) {
 		this.product = product;
