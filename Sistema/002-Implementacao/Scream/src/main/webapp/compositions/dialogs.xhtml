@@ -10,7 +10,7 @@
 
 	<!-- BEGIN DASHBOARD COMPOSITION -->
 	<ui:composition>
-		<h:form>
+		<h:form id="formDialog">
 			<!-- BEGIN OF NEW PRODUCT DIALOG -->
 
 			<p:dialog header="Novo Produto" widgetVar="novoProdutoDialog"
@@ -40,22 +40,27 @@
  			<p:dialog id="editProductDialog" header="Editar Produto"
  				widgetVar="editProductDialog" modal="true" resizable="false" draggable="true" appendToBody="true" >
  				<p:panelGrid columns="2">
- 
+
+ 					<p:inputText value="#{productController.productSelect.id}" for="id" rendered="false"/>
+ 					
  					<p:outputLabel value="Nome" for="editNome" />
  					<p:inputText id="editNome" maxlength="50"
  						placeholder="Nome do Produto"
- 						value="#{productController.product.name}" />
+ 						value="#{productController.productSelect.name}" />
  
  					<p:outputLabel id="editDescription" value="Descrição" />
  					<p:inputTextarea rows="5" cols="30"
- 						value="#{productController.product.description}" queryDelay="750"
+ 						value="#{productController.productSelect.description}" queryDelay="750"
  						minQueryLength="4" />
  
  				</p:panelGrid>
   
  				<p:commandButton id="editProduct" value="Salvar" icon="ui-icon-disk"
- 					action="#{productController.create}"
- 					oncomplete="PF('editProductDialog').hide()">
+ 					action="#{productController.editar}"
+ 					oncomplete="PF('editProductDialog').hide()" update=":formDashboard">
+ 					
+ 					<f:setPropertyActionListener value="#{productController.product}"
+								target="#{productController.product}"/>
  				</p:commandButton>
  			</p:dialog>
  			<!-- END OF EDIT PRODUCT DIALOG -->

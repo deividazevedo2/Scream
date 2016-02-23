@@ -38,7 +38,7 @@ public class ProductController implements Serializable {
 
 	private Product product;
 
-	private Product produtoSelect;
+	private Product productSelect;
 
 	private List<Product> listProduto;
 
@@ -57,7 +57,7 @@ public class ProductController implements Serializable {
 		product = new Product();
 //		itemProductBacklog = new ItemProductBacklog();
 		listProduto = service.findAll();
-		produtoSelect = (Product) contexto.getExternalContext().getSessionMap().get("product");
+		productSelect = (Product) contexto.getExternalContext().getSessionMap().get("productSelected");
 	}
 
 	public void create() {
@@ -68,15 +68,8 @@ public class ProductController implements Serializable {
 			this.product = new Product();
 			JsfUtil.addSuccessMessage("Product Criado com Sucesso");
 			redirect();
-			lookingFor();
 		}
 	}
-	
-	public void lookingFor(){
-		Product p = service.find(1L);
-		System.out.println(p.getName()+"HUEHUEHUEHUE");
-	}
-
 
 	public void delete(Product produtoSelect) {
 		//        if (ss.isAuthorized("SCRUM_MASTER")) {
@@ -86,19 +79,25 @@ public class ProductController implements Serializable {
 		redirect();
 		
 	}
+	
+	public void keepProduct(){
+		contexto.getExternalContext().getSessionMap().put("productSelected", productSelect);
+	}
+	
 
 	public void editar() {
 
 
-		if (produtoSelect.getId() == null) {
-			JsfUtil.addErrorMessage("Erro ao selecionar seu product, por favor tente mais tarde");
+		if (productSelect.getId() == null) {
+			System.out.println("Deu merge");
+			JsfUtil.addErrorMessage("Erro ao selecionar seu produto, por favor tente mais tarde");
 
 		} else {
-			if (validarProduto(produtoSelect)){
-				service.update(produtoSelect);
-				JsfUtil.addSuccessMessage("Product atualizado com sucesso");
-				//redirect();
-
+			if (validarProduto(productSelect)){
+				System.out.println("Não deu merge");
+				service.update(productSelect);
+				JsfUtil.addSuccessMessage("Produto atualizado com sucesso");
+				redirect();
 			}
 		}
 
@@ -112,7 +111,7 @@ public class ProductController implements Serializable {
 	}
 	
 	public void submit() {
-	    System.out.println("Selected item: " );
+	    System.out.println("Selected item: "+product.getName());
 	}
 
 //	public void verItens(Product product) {
@@ -185,12 +184,12 @@ public class ProductController implements Serializable {
 		this.listProduto = listProduto;
 	}
 
-	public Product getProdutoSelect() {
-		return produtoSelect;
+	public Product getProductSelect() {
+		return productSelect;
 	}
 
-	public void setProdutoSelect(Product produtoSelect) {
-		this.produtoSelect = produtoSelect;
+	public void setProductSelect(Product produtoSelect) {
+		this.productSelect = produtoSelect;
 	}
 	
 	
@@ -209,7 +208,7 @@ public class ProductController implements Serializable {
 	}
 
 	public void manterProduto() {
-		contexto.getExternalContext().getSessionMap().put("product", produtoSelect);
+		contexto.getExternalContext().getSessionMap().put("product", productSelect);
 	}
 
 }

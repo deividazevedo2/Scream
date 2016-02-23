@@ -43,7 +43,9 @@ public class ProductConverter implements Converter {
 	            return null;
 	            
 	       }try{
-	    	   return service.find(Long.valueOf(value)).getId();
+	    	   Product p = service.find(Long.valueOf(value));
+	    	   return p;
+	    	   
 	    	   
 	       }catch(NumberFormatException e){
 	    	   throw new ConverterException(new FacesMessage(String.format("%s is not a valid Product ID", value)), e);

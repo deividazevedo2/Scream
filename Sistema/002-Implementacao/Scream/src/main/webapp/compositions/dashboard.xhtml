@@ -10,7 +10,7 @@
 
 	<!-- BEGIN DASHBOARD COMPOSITION -->
 	<ui:composition>
-		<h:form>
+		<h:form id="formDashboard">
 			<h:panelGrid columns="5"
 				columnClasses="dashbd-product-project, dashbd-alerts, dashbd-sprint-release-info,
 	dashbd-gamification-info, dashbd-team-member-info">
@@ -21,36 +21,30 @@
 					<h:outputText value="PRODUCT" />
 					<h:outputText />
 					<h:selectOneMenu id="product" value="#{productController.product}" converter="#{productConverter}" 
-						style="width:145px">
+						style="width:145px" >
 						<f:selectItem itemLabel="Selecione um produto" itemValue="#{null}" noSelectionOption="true"/>
 						<f:selectItems value="#{productController.listProduto}" var="produtos"
 						 itemValue="#{produtos}" itemLabel="#{produtos.name}"/>
 					</h:selectOneMenu>
-					<!-- <p:commandButton icon="ui-icon-check" action="#{productController.lookingFor()}"/>  -->
+					<p:commandButton icon="ui-icon-check" action="#{productController.submit()}"/>
 					<h:panelGrid columns="3">
 						<p:commandButton icon="icon-plus"
 							onclick="PF('novoProdutoDialog').show()" />
 						<p:commandButton icon="icon-edit"
-							onclick="PF('editProductDialog').show()" />
-						<p:commandButton icon="icon-less"
-							action="#{productController.lookingFor()}" />
+							oncomplete="PF('editProductDialog').show()" update=":formDialog"
+							
+							action="#{productController.keepProduct()}" >
+							<f:setPropertyActionListener value="#{productController.product}"
+								target="#{productController.productSelect}" for="productSelected"/>
+							
+							</p:commandButton>
+						<p:commandButton icon="icon-less"/>
 					</h:panelGrid>
 					<!-- END OF PRODUCT SELECTORS -->
 
 					<!-- BEGIN OF PROJECT SELECTORS -->
 					<h:outputText value="PROJECT" />
 					<h:outputText />
-					
-					<!--
-					<p:selectOneMenu id="projeto" process="@this"
-						value="#{projetoController.projetoSelecionado}"
-						style="width:145px" converter="simpleIndexConverter">
-						<f:selectItem itemLabel="Selecione um produto" itemValue="" />
-						<f:selectItems value="#{projetoController.projetos}" var="projeto"
-							itemLabel="#{projeto.nome}" itemValue="projeto" process="@this">
-						</f:selectItems>
-					</p:selectOneMenu>
-					-->
 					
 					<h:panelGrid columns="3">
 						<p:commandButton icon="icon-plus"
