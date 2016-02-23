@@ -11,6 +11,9 @@
 	<!-- BEGIN DASHBOARD COMPOSITION -->
 	<ui:composition>
 		<h:form id="formDashboard">
+		
+		<p:growl id="message" showDetail="true" />
+		
 			<h:panelGrid columns="5"
 				columnClasses="dashbd-product-project, dashbd-alerts, dashbd-sprint-release-info,
 	dashbd-gamification-info, dashbd-team-member-info">
@@ -20,32 +23,53 @@
 					<!-- BEGIN OF PRODUCT SELECTORS -->
 					<h:outputText value="PRODUCT" />
 					<h:outputText />
-					<h:selectOneMenu id="product" value="#{productController.product}" converter="#{productConverter}" 
-						style="width:145px" >
-						<f:selectItem itemLabel="Selecione um produto" itemValue="#{null}" noSelectionOption="true"/>
-						<f:selectItems value="#{productController.listProduto}" var="produtos"
-						 itemValue="#{produtos}" itemLabel="#{produtos.name}"/>
+					<h:selectOneMenu id="product" value="#{productController.product}"
+						converter="#{productConverter}" style="width:145px">
+						<f:selectItem itemLabel="Selecione um produto" itemValue="#{null}"
+							noSelectionOption="true" />
+						<f:selectItems value="#{productController.listProduto}"
+							var="produtos" itemValue="#{produtos}"
+							itemLabel="#{produtos.name}" />
 					</h:selectOneMenu>
-					<p:commandButton icon="ui-icon-check" action="#{productController.submit()}"/>
+					
 					<h:panelGrid columns="3">
 						<p:commandButton icon="icon-plus"
 							onclick="PF('novoProdutoDialog').show()" />
 						<p:commandButton icon="icon-edit"
 							oncomplete="PF('editProductDialog').show()" update=":formDialog"
-							
-							action="#{productController.keepProduct()}" >
+							action="#{productController.keepProduct()}">
 							<f:setPropertyActionListener value="#{productController.product}"
-								target="#{productController.productSelect}" for="productSelected"/>
-							
-							</p:commandButton>
-						<p:commandButton icon="icon-less"/>
+								target="#{productController.productSelect}"	for="productSelected" />
+						</p:commandButton>
+
+
+						<p:commandButton icon="icon-less"
+							actionListener="#{productController.delete()}" update="message">
+							<p:confirm header="Confirmation" message="Tem certeza que deseja apagar #{productController.product.name} ?"
+								icon="ui-icon-alert" />
+							<f:setPropertyActionListener value="#{productController.product}"
+								target="#{productController.productSelect}" for="productSelected" />
+								
+						</p:commandButton>
+
 					</h:panelGrid>
 					<!-- END OF PRODUCT SELECTORS -->
+
+					<!-- BEGIN OF PRODUCT DIALOGBOX -->
+
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+						<p:commandButton value="Sim" type="button"
+							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+						<p:commandButton value="Não" type="button"
+							styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+					</p:confirmDialog>
+
+					<!-- END OF PRODUCT DIALOGBOX -->
 
 					<!-- BEGIN OF PROJECT SELECTORS -->
 					<h:outputText value="PROJECT" />
 					<h:outputText />
-					
+
 					<h:panelGrid columns="3">
 						<p:commandButton icon="icon-plus"
 							oncomplete="PF('novoProjetoDialog').show()" />
@@ -134,7 +158,7 @@
 		</h:form>
 	</ui:composition>
 	<!-- END DASHBOARD COMPOSITION  -->
-	
-	
+
+
 </h:body>
 </html>

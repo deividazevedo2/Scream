@@ -11,7 +11,7 @@ import br.ifpb.monteiro.scream.util.jpa.Transactional;
 
 /**
  *
- * @author Markus
+ * @author Mauricio
  */
 
 public class ProductDAO extends GenericDAO<Product>{
@@ -34,14 +34,7 @@ public class ProductDAO extends GenericDAO<Product>{
 	
 		}
 		
-		Query queryPro = getEntityManager().createNativeQuery("DELETE FROM teste_aceitacao USING item_product_backlog "
-				+ "WHERE teste_aceitacao.item_product_backlog=item_product_backlog.id and item_product_backlog.produto_id = " + entity.getId());
-		queryPro.executeUpdate();
-		
-		Query queryDef = getEntityManager().createNativeQuery("DELETE FROM item_product_backlog WHERE produto_id = " + entity.getId());
-		queryDef.executeUpdate();
-		
-		Query queryProduto = getEntityManager().createNativeQuery("DELETE FROM produto WHERE id = " + entity.getId());
+		Query queryProduto = getEntityManager().createNativeQuery("DELETE FROM product WHERE id = " + entity.getId());
 		queryProduto.executeUpdate();
 	}
 	

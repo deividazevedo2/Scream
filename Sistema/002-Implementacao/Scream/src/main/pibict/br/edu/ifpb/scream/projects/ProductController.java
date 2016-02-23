@@ -71,11 +71,11 @@ public class ProductController implements Serializable {
 		}
 	}
 
-	public void delete(Product produtoSelect) {
+	public void delete() {
 		//        if (ss.isAuthorized("SCRUM_MASTER")) {
 		//            System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		JsfUtil.addSuccessMessage("Product Apagado com Sucesso");
-		service.remove(produtoSelect);
+		service.remove(productSelect);
 		redirect();
 		
 	}
