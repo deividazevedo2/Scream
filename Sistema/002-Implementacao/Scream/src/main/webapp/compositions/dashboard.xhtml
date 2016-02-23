@@ -20,7 +20,7 @@
 					<!-- BEGIN OF PRODUCT SELECTORS -->
 					<h:outputText value="PRODUCT" />
 					<h:outputText />
-					<h:selectOneMenu id="product" value="#{productController.product}"
+					<h:selectOneMenu id="product" value="#{productController.product}" converter="#{productConverter}" 
 						style="width:145px">
 						<f:selectItem itemLabel="Selecione um produto" itemValue="#{null}" noSelectionOption="true"/>
 						<f:selectItems value="#{productController.listProduto}" var="produtos"
@@ -31,9 +31,9 @@
 						<p:commandButton icon="icon-plus"
 							onclick="PF('novoProdutoDialog').show()" />
 						<p:commandButton icon="icon-edit"
-							onclick="PF('novoProdutoDialog').show()" />
+							onclick="PF('editProductDialog').show()" />
 						<p:commandButton icon="icon-less"
-							onclick="PF('novoProdutoDialog').show()" />
+							action="#{productController.lookingFor()}" />
 					</h:panelGrid>
 					<!-- END OF PRODUCT SELECTORS -->
 

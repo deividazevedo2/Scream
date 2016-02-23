@@ -1,5 +1,6 @@
 package br.ifpb.monteiro.scream.converters;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -7,10 +8,12 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import br.edu.ifpb.scream.projects.Product;
 import br.edu.ifpb.scream.projects.ProductController;
 import br.edu.ifpb.scream.projects.ProdutoService;
+import br.edu.ifpb.scream.projects.dao.ProductDAO;
 
 /**
  * 
@@ -19,7 +22,9 @@ import br.edu.ifpb.scream.projects.ProdutoService;
  * to work with selectOneMenu function
  *
  */
-@FacesConverter(forClass=Product.class)
+//@FacesConverter(forClass=Product.class)
+@Named
+@ApplicationScoped
 public class ProductConverter implements Converter {
 
 	
@@ -33,7 +38,7 @@ public class ProductConverter implements Converter {
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
 		System.out.println("Passou aqui getAsObject");
 		System.out.println(value);
-
+		
 	       if (value == null) {
 	            return null;
 	            

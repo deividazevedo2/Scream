@@ -7,8 +7,12 @@ import java.util.logging.Logger;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
+
+import org.eclipse.persistence.internal.jpa.EntityManagerFactoryProvider;
 
 import br.ifpb.monteiro.scream.util.jpa.Transactional;
 import javax.persistence.Transient;
@@ -105,7 +109,8 @@ public class GenericDAO<T> implements Serializable {
      * @return T object;
      */
     public T findById(Long id) {
-        return entityManager.find(entity, id);
+    	
+    	return entityManager.find(entity, id);
     }
     
     /**

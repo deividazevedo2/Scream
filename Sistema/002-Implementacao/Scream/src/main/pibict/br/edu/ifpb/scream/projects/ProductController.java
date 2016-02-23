@@ -74,7 +74,7 @@ public class ProductController implements Serializable {
 	
 	public void lookingFor(){
 		Product p = service.find(1L);
-		System.out.println(p.getName());
+		System.out.println(p.getName()+"HUEHUEHUEHUE");
 	}
 
 

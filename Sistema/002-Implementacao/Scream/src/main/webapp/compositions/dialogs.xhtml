@@ -34,9 +34,34 @@
 					oncomplete="PF('novoProdutoDialog').hide()">
 				</p:commandButton>
 			</p:dialog>
-			<!-- END DASHBOARD COMPOSITION  -->
+			<!-- END OF NEW PRODUCT DIALOG -->
+			
+			<!-- BEGIN OF EDIT PRODUCT DIALOG -->
+ 			<p:dialog id="editProductDialog" header="Editar Produto"
+ 				widgetVar="editProductDialog" modal="true" resizable="false" draggable="true" appendToBody="true" >
+ 				<p:panelGrid columns="2">
+ 
+ 					<p:outputLabel value="Nome" for="editNome" />
+ 					<p:inputText id="editNome" maxlength="50"
+ 						placeholder="Nome do Produto"
+ 						value="#{productController.product.name}" />
+ 
+ 					<p:outputLabel id="editDescription" value="Descrição" />
+ 					<p:inputTextarea rows="5" cols="30"
+ 						value="#{productController.product.description}" queryDelay="750"
+ 						minQueryLength="4" />
+ 
+ 				</p:panelGrid>
+  
+ 				<p:commandButton id="editProduct" value="Salvar" icon="ui-icon-disk"
+ 					action="#{productController.create}"
+ 					oncomplete="PF('editProductDialog').hide()">
+ 				</p:commandButton>
+ 			</p:dialog>
+ 			<!-- END OF EDIT PRODUCT DIALOG -->
+			
 		</h:form>
 	</ui:composition>
+	<!-- END DASHBOARD COMPOSITION  -->
 </h:body>
 </html>
-<!-- END OF NEW PRODUCT DIALOG -->
