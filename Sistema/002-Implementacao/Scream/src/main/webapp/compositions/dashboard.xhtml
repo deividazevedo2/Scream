@@ -33,20 +33,21 @@
 					</h:selectOneMenu>
 					
 					<h:panelGrid columns="3">
+						<!-- BUTTON NEW PRODUCT -->
 						<p:commandButton icon="icon-plus"
 							onclick="PF('novoProdutoDialog').show()" />
+							
+						<!-- BUTTON EDIT PRODUCT -->
 						<p:commandButton icon="icon-edit"
 							oncomplete="PF('editProductDialog').show()" update=":formDialog"
 							action="#{productController.keepProduct()}">
 							<f:setPropertyActionListener value="#{productController.product}"
 								target="#{productController.productSelect}"	for="productSelected" />
 						</p:commandButton>
-
-
-						<p:commandButton icon="icon-less"
-							actionListener="#{productController.delete()}" update="message">
-							<p:confirm header="Confirmation" message="Tem certeza que deseja apagar #{productController.product.name} ?"
-								icon="ui-icon-alert" />
+						
+						<!-- BUTTON DELETE PRODUCT -->
+						<p:commandButton icon="icon-less" oncomplete="PF('deleteProductDialog').show()" update=":formDialog"
+							action="#{productController.keepProduct()}">
 							<f:setPropertyActionListener value="#{productController.product}"
 								target="#{productController.productSelect}" for="productSelected" />
 								

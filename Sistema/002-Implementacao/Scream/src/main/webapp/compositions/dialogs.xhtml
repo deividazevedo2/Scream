@@ -64,6 +64,26 @@
  				</p:commandButton>
  			</p:dialog>
  			<!-- END OF EDIT PRODUCT DIALOG -->
+ 			
+ 			<!-- BEGIN OF DELETE PRODUCT DIALOG -->
+ 			<p:dialog id="deleteProductDialog" header="Apagar Produto"
+ 				widgetVar="deleteProductDialog" modal="true" resizable="false" draggable="true" appendToBody="true" >
+ 				<p:panelGrid columns="2">
+ 					
+ 					<p:outputLabel value="#{productController.productSelect.name}" />
+ 					<p:outputLabel value="#{productController.productSelect.description}" />
+ 	
+ 				</p:panelGrid>
+  
+ 				<p:commandButton id="deleteProduct" value="Apagar" icon="ui-icon-disk"
+ 					action="#{productController.delete}"
+ 					oncomplete="PF('deleteProductDialog').hide()" update=":formDashboard">
+ 					<f:setPropertyActionListener value="#{productController.product}"
+								target="#{productController.product}"/>
+ 				</p:commandButton>
+ 				
+ 			</p:dialog>
+ 			<!-- END OF DELETE PRODUCT DIALOG -->
 			
 		</h:form>
 	</ui:composition>

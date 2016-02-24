@@ -185,6 +185,8 @@ public class ProductController implements Serializable {
 	}
 
 	public Product getProductSelect() {
+		if(productSelect == null)
+			productSelect = new Product();
 		return productSelect;
 	}
 
